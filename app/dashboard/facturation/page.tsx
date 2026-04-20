@@ -561,7 +561,7 @@ export default function FacturationPage() {
             </div>
 
             <Button onClick={() => setGenerated(true)} className="w-full rounded-sm bg-[#1f1f1f] hover:bg-black">
-              Generer l'apercu de facture
+              Generer l&apos;apercu de facture
             </Button>
           </CardContent>
         </Card>
@@ -572,7 +572,7 @@ export default function FacturationPage() {
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-[#333333]">
             {!generated ? (
-              <p className="text-[#666666]">Remplis le formulaire puis clique sur "Generer l'apercu de facture".</p>
+              <p className="text-[#666666]">Remplis le formulaire puis clique sur &quot;Generer l&apos;apercu de facture&quot;.</p>
             ) : (
               <>
                 <div className="space-y-1 border-b border-[#e3e3e3] pb-3">

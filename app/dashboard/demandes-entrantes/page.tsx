@@ -95,7 +95,7 @@ export default function DemandesEntrantesPage() {
         <p className="ni-label">Leads formulaire</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#111111]">Demandes entrantes</h1>
         <p className="mt-2 text-sm text-[#666666]">
-          Les nouvelles demandes projet sont captees, reformulees par l'IA, puis traitees avec reponse et relance.
+          Les nouvelles demandes projet sont captees, reformulees par l&apos;IA, puis traitees avec reponse et relance.
         </p>
       </div>
 

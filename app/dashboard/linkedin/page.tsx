@@ -47,7 +47,7 @@ export default function LinkedinPage() {
         <p className="ni-label">Social selling</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#111111]">Linkedin</h1>
         <p className="mt-2 text-sm text-[#666666]">
-          Simule une connexion Linkedin entreprise: l'agent IA redige le post, tu valides, puis tu publies.
+          Simule une connexion Linkedin entreprise: l&apos;agent IA redige le post, tu valides, puis tu publies.
         </p>
       </div>
 
