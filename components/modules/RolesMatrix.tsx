@@ -42,7 +42,7 @@ export function RolesMatrix() {
       <Card className="ni-surface rounded-sm">
         <CardHeader className="flex-row items-center justify-between space-y-0">
           <CardTitle className="text-base tracking-tight">Utilisateurs actifs</CardTitle>
-          <Button size="sm" className="rounded-sm bg-[#1f1f1f] hover:bg-black">Ajouter un utilisateur</Button>
+          <Button size="sm" className="rounded-sm bg-[#252525] hover:bg-[#1e1e1e]">Ajouter un utilisateur</Button>
         </CardHeader>
         <CardContent>
           <Table>

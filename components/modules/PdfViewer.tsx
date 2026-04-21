@@ -17,7 +17,7 @@ export function PdfViewer() {
           <br />
           Charge statique recommandee jusqu&apos;a 80kg sur 1.2m.
           <br />
-          <span className="rounded-sm bg-[#f0a500] px-1.5 py-0.5 text-black">Reference 3 842 990 026, section renforcee.</span>
+          <span className="rounded-sm bg-[#f0a500] px-1.5 py-0.5 text-[#252525]">Reference 3 842 990 026, section renforcee.</span>
         </div>
         <Button variant="outline" className="w-full rounded-sm">
           Ouvrir le document complet

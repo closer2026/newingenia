@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { NiLogo } from "@/components/layout/NiLogo";
 
 type InvoiceLine = {
   id: string;
@@ -605,7 +606,7 @@ export default function FacturationPage() {
               <p className="text-muted-foreground">Remplis le formulaire puis clique sur &quot;Generer l&apos;apercu de facture&quot;.</p>
             ) : (
               <div className="rounded-lg border border-border bg-muted/30 p-3">
-                <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#111111] shadow-sm">
+                <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#252525] shadow-sm">
                   <div className="mb-6 flex items-start justify-between border-b border-zinc-200 pb-4">
                     <div>
                       <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Facture</p>
@@ -614,7 +615,9 @@ export default function FacturationPage() {
                       <p className="text-xs text-zinc-500">Echeance: {dueDate}</p>
                     </div>
                     <div className="text-right text-sm">
-                      <p className="font-semibold">New Ingenia SA</p>
+                      <div className="mb-2 flex justify-end">
+                        <NiLogo compact bare />
+                      </div>
                       <p className="text-xs text-zinc-500">Rue St-Randoald 2A</p>
                       <p className="text-xs text-zinc-500">2800 Delemont</p>
                       <p className="text-xs text-zinc-500">info@newingenia.ch</p>

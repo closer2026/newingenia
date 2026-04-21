@@ -1,4 +1,4 @@
-import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box } from "lucide-react";
+import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ModuleKey } from "./roles";
 
@@ -43,9 +43,15 @@ export const navItems: NavItem[] = [
   },
   {
     key: "studio-visuel",
-    label: "Studio visuel intelligent",
+    label: "Studio 3D",
     href: "/dashboard/studio-visuel",
     icon: Box,
+  },
+  {
+    key: "studio-marketing",
+    label: "Studio marketing",
+    href: "/dashboard/studio-marketing",
+    icon: Sparkles,
   },
   {
     key: "gestion-roles",

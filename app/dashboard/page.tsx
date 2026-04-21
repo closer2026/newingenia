@@ -17,7 +17,8 @@ const modules = [
   { key: "redaction-offres", title: "Redaction offres", href: "/dashboard/redaction-offres", description: "Generer une offre commerciale structuree" },
   { key: "reunion-ia", title: "Réunion", href: "/dashboard/reunion-ia", description: "Enregistrer, transcrire et extraire des actions" },
   { key: "redaction-emails", title: "Redaction emails", href: "/dashboard/redaction-emails", description: "Creer des emails professionnels au format NI" },
-  { key: "studio-visuel", title: "Studio visuel intelligent", href: "/dashboard/studio-visuel", description: "Simuler la generation de visuels 3D produits avec viewer interactif" },
+  { key: "studio-visuel", title: "Studio 3D", href: "/dashboard/studio-visuel", description: "Viewer 3D interactif et generation simulee de modeles produits" },
+  { key: "studio-marketing", title: "Studio marketing", href: "/dashboard/studio-marketing", description: "Visuels marketing, photos produit et variantes IA pour vos campagnes" },
 ] as const;
 
 export default function DashboardPage() {
@@ -148,7 +149,7 @@ export default function DashboardPage() {
               "Creer une tache prioritaire",
               "Lancer triage emails",
               "Generer offre commerciale",
-              "Ouvrir Studio visuel",
+              "Ouvrir Studio 3D",
             ].map((action) => (
               <button
                 key={action}

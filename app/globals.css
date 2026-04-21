@@ -50,18 +50,18 @@
 
 :root {
   --background: #ececec;
-  --foreground: #111111;
+  --foreground: #252525;
   --card: #ffffff;
-  --card-foreground: #111111;
+  --card-foreground: #252525;
   --popover: #ffffff;
-  --popover-foreground: #111111;
-  --primary: #171717;
+  --popover-foreground: #252525;
+  --primary: #252525;
   --primary-foreground: #ffffff;
   --secondary: #f5f5f5;
-  --secondary-foreground: #171717;
+  --secondary-foreground: #252525;
   --muted: #f0f0f0;
   --muted-foreground: #6b6b6b;
-  --accent: #2f2f2f;
+  --accent: #252525;
   --accent-foreground: #ffffff;
   --destructive: #d92d20;
   --border: #d7d7d7;
@@ -74,11 +74,11 @@
   --chart-5: oklch(0.269 0 0);
   --radius: 0.625rem;
   --sidebar: #f9f9f9;
-  --sidebar-foreground: #111111;
-  --sidebar-primary: #171717;
+  --sidebar-foreground: #252525;
+  --sidebar-primary: #252525;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #ececec;
-  --sidebar-accent-foreground: #171717;
+  --sidebar-accent-foreground: #252525;
   --sidebar-border: #dbdbdb;
   --sidebar-ring: #7d7d7d;
 }
@@ -91,7 +91,7 @@
   --popover: #121827;
   --popover-foreground: #e5e7eb;
   --primary: #cbd5e1;
-  --primary-foreground: #0b0f19;
+  --primary-foreground: #252525;
   --secondary: #1e293b;
   --secondary-foreground: #e5e7eb;
   --muted: #1e2638;
@@ -128,7 +128,7 @@
 
 @layer utilities {
   .ni-surface {
-    @apply rounded-lg border border-border bg-card shadow-[0_12px_32px_-24px_rgba(0,0,0,0.35)];
+    @apply rounded-lg border border-border bg-card shadow-[0_12px_32px_-24px_rgba(37,37,37,0.22)];
   }
 
   .ni-label {

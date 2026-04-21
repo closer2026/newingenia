@@ -18,7 +18,8 @@ const labels: Record<string, string> = {
   "/dashboard/reunion-ia": "Réunion",
   "/dashboard/redaction-emails": "Redaction emails",
   "/dashboard/triage-emails": "Triage emails",
-  "/dashboard/studio-visuel": "Studio visuel intelligent",
+  "/dashboard/studio-visuel": "Studio 3D",
+  "/dashboard/studio-marketing": "Studio marketing",
   "/dashboard/gestion-roles": "Gestion des roles",
   "/dashboard/parametres": "Parametres",
 };

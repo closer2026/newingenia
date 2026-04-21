@@ -11,6 +11,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "NI · Workspace IA",
   description: "Plateforme IA privee de New Ingenia SA",
+  icons: {
+    icon: "/ni-logo-neg.png",
+    shortcut: "/ni-logo-neg.png",
+    apple: "/ni-logo-neg.png",
+  },
 };
 
 export default function RootLayout({
@@ -20,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-[#ececec] text-[#111111]">
+      <body className="min-h-full bg-[#ececec] text-foreground">
         <Providers>{children}</Providers>
       </body>
     </html>

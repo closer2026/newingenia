@@ -57,7 +57,7 @@ export function OffreForm({ onGenerated }: { onGenerated: () => void }) {
           Joindre des fichiers (drag & drop)
         </div>
         {loading ? <Progress value={progress} /> : null}
-        <Button onClick={generate} className="w-full rounded-sm bg-[#1f1f1f] hover:bg-black">Generer l&apos;offre avec l&apos;IA</Button>
+        <Button onClick={generate} className="w-full rounded-sm bg-[#252525] hover:bg-[#1e1e1e]">Generer l&apos;offre avec l&apos;IA</Button>
         <Button variant="outline" className="w-full rounded-sm">Sauvegarder le brouillon</Button>
       </CardContent>
     </Card>

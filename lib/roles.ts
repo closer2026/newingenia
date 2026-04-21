@@ -12,6 +12,7 @@ export type ModuleKey =
   | "redaction-emails"
   | "triage-emails"
   | "studio-visuel"
+  | "studio-marketing"
   | "gestion-roles"
   | "parametres";
 
@@ -42,6 +43,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "redaction-emails": true,
     "triage-emails": true,
     "studio-visuel": true,
+    "studio-marketing": true,
     "gestion-roles": true,
     parametres: true,
   },
@@ -57,6 +59,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "redaction-emails": true,
     "triage-emails": false,
     "studio-visuel": true,
+    "studio-marketing": true,
     "gestion-roles": false,
     parametres: true,
   },
@@ -72,6 +75,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "redaction-emails": false,
     "triage-emails": false,
     "studio-visuel": true,
+    "studio-marketing": true,
     "gestion-roles": false,
     parametres: true,
   },
