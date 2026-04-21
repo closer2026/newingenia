@@ -1,21 +1,133 @@
 "use client";
 
+import { Bell, Moon, Shield, Sun, UserCog } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useState } from "react";
 
 export default function ParametresPage() {
+  const { theme, setTheme } = useTheme();
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [digestEnabled, setDigestEnabled] = useState(true);
+  const [autoSummaryEnabled, setAutoSummaryEnabled] = useState(true);
+
   return (
     <div className="space-y-6">
       <div>
         <p className="ni-label">Configuration</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#111111]">Parametres</h1>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Parametres</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Personnalisez l&apos;interface, le compte admin et les preferences de notifications de la plateforme.
+        </p>
       </div>
 
-      <Card className="rounded-sm border-[#d8d8d8]">
+      <div className="grid gap-5 lg:grid-cols-2">
+        <Card className="rounded-lg border-border">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-base tracking-tight">
+              <UserCog className="h-4 w-4" />
+              Profil administrateur
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-sm text-muted-foreground">
+            <div className="rounded-md border border-border bg-card p-3">
+              <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Nom</p>
+              <p className="mt-1 font-medium text-foreground">Arnaud Dupont</p>
+            </div>
+            <div className="rounded-md border border-border bg-card p-3">
+              <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Email</p>
+              <p className="mt-1 font-medium text-foreground">arnaud.dupont@newingenia.ch</p>
+            </div>
+            <Button className="rounded-md">Mettre a jour le profil</Button>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-lg border-border">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2 text-base tracking-tight">
+              {theme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
+              Apparence de la plateforme
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4 text-sm text-muted-foreground">
+            <p>Selectionnez le theme principal de votre environnement de travail.</p>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                onClick={() => setTheme("light")}
+                className={`rounded-md border p-3 text-left transition ${
+                  theme === "light" ? "border-primary bg-primary/10 text-foreground" : "border-border bg-card hover:bg-muted"
+                }`}
+              >
+                <p className="text-sm font-medium">Mode clair</p>
+                <p className="mt-1 text-xs text-muted-foreground">Ideal pour les bureaux lumineux</p>
+              </button>
+              <button
+                onClick={() => setTheme("dark")}
+                className={`rounded-md border p-3 text-left transition ${
+                  theme === "dark" ? "border-primary bg-primary/10 text-foreground" : "border-border bg-card hover:bg-muted"
+                }`}
+              >
+                <p className="text-sm font-medium">Mode sombre</p>
+                <p className="mt-1 text-xs text-muted-foreground">Confort visuel en usage prolonge</p>
+              </button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Card className="rounded-lg border-border">
         <CardHeader>
-          <CardTitle className="text-base tracking-tight">Preferences du compte</CardTitle>
+          <CardTitle className="flex items-center gap-2 text-base tracking-tight">
+            <Bell className="h-4 w-4" />
+            Notifications internes
+          </CardTitle>
         </CardHeader>
-        <CardContent className="text-sm text-[#666666]">
-          Cette section est prete pour brancher les options utilisateur (profil, langue, notifications).
+        <CardContent className="grid gap-3 text-sm text-muted-foreground md:grid-cols-3">
+          {[
+            {
+              label: "Alertes demandes entrantes prioritaires",
+              enabled: notificationsEnabled,
+              onToggle: () => setNotificationsEnabled((value) => !value),
+            },
+            {
+              label: "Syntheses quotidiennes des modules IA",
+              enabled: digestEnabled,
+              onToggle: () => setDigestEnabled((value) => !value),
+            },
+            {
+              label: "Rappels actions reunion a traiter",
+              enabled: autoSummaryEnabled,
+              onToggle: () => setAutoSummaryEnabled((value) => !value),
+            },
+          ].map((item) => (
+            <div key={item.label} className="rounded-md border border-border bg-card p-3">
+              <p className="font-medium text-foreground">{item.label}</p>
+              <p className="mt-1 text-xs">Active par defaut pour le compte administrateur.</p>
+              <button
+                onClick={item.onToggle}
+                className={`mt-3 rounded-md border px-2.5 py-1 text-xs transition ${
+                  item.enabled
+                    ? "border-emerald-300 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400"
+                    : "border-border bg-muted text-muted-foreground"
+                }`}
+              >
+                {item.enabled ? "Active" : "Desactivee"}
+              </button>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-lg border-border">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-base tracking-tight">
+            <Shield className="h-4 w-4" />
+            Gouvernance workspace
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="text-sm text-muted-foreground">
+          Tous les modules sont accessibles avec un compte administrateur unique pour cette maquette de presentation.
         </CardContent>
       </Card>
     </div>

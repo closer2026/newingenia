@@ -41,13 +41,13 @@ export function DocsChat() {
   };
 
   return (
-    <div className="ni-surface flex h-[680px] flex-col rounded-sm">
-      <div className="flex items-center justify-between border-b border-[#dddddd] px-5 py-4">
+    <div className="ni-surface flex h-[680px] flex-col rounded-lg">
+      <div className="flex items-center justify-between border-b border-border px-5 py-4">
         <div>
           <p className="ni-label">Module IA</p>
-          <h2 className="font-semibold tracking-tight text-[#111111]">Recherche documentation</h2>
+          <h2 className="font-semibold tracking-tight text-foreground">Recherche documentation</h2>
         </div>
-        <Badge className="rounded-sm border border-[#d8d8d8] bg-[#f5f5f5] text-[#303030]">Catalogues indexes : 12 docs</Badge>
+        <Badge className="rounded-md border border-border bg-muted text-foreground">Catalogues indexes : 12 docs</Badge>
       </div>
       <ScrollArea className="flex-1 px-5 py-4">
         <div className="space-y-3">
@@ -56,8 +56,8 @@ export function DocsChat() {
               key={idx}
               className={`max-w-[88%] rounded-sm border px-3 py-2.5 text-sm ${
                 msg.role === "user"
-                  ? "ml-auto border-[#1f1f1f] bg-[#1f1f1f] text-white"
-                  : "border-[#dfdfdf] bg-[#f7f7f7] text-[#1A1A1A]"
+                  ? "ml-auto border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-muted text-foreground"
               }`}
             >
               {msg.content}
@@ -71,20 +71,20 @@ export function DocsChat() {
               ) : null}
             </div>
           ))}
-          {typing ? <p className="text-sm text-[#666666]">IA est en train d&apos;ecrire...</p> : null}
+          {typing ? <p className="text-sm text-muted-foreground">IA est en train d&apos;ecrire...</p> : null}
         </div>
       </ScrollArea>
-      <div className="border-t border-[#dddddd] p-4">
+      <div className="border-t border-border p-4">
         <div className="flex items-center gap-2">
           <Button size="icon" variant="outline" className="rounded-sm">
             <Paperclip className="h-4 w-4" />
           </Button>
           <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Posez votre question..." className="rounded-sm" />
-          <Button onClick={send} className="rounded-sm bg-[#1f1f1f] hover:bg-black">
+          <Button onClick={send} className="rounded-sm">
             <Send className="h-4 w-4" />
           </Button>
         </div>
-        <p className="mt-2 text-xs text-[#666666]">L&apos;agent repose des questions si necessaire</p>
+        <p className="mt-2 text-xs text-muted-foreground">L&apos;agent repose des questions si necessaire</p>
       </div>
     </div>
   );

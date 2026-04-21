@@ -1,9 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { Topbar } from "@/components/layout/Topbar";
 import { ChatbotWidget } from "@/components/layout/ChatbotWidget";
+import { DashboardEntryIntro } from "@/components/layout/DashboardEntryIntro";
 
 const labels: Record<string, string> = {
   "/dashboard": "Tableau de bord",
@@ -16,20 +18,29 @@ const labels: Record<string, string> = {
   "/dashboard/reunion-ia": "Réunion",
   "/dashboard/redaction-emails": "Redaction emails",
   "/dashboard/triage-emails": "Triage emails",
+  "/dashboard/studio-visuel": "Studio visuel intelligent",
   "/dashboard/gestion-roles": "Gestion des roles",
   "/dashboard/parametres": "Parametres",
 };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   return (
-    <div className="min-h-screen bg-[#ececec]">
+    <div className="min-h-screen bg-background">
+      <DashboardEntryIntro />
       <div className="mx-auto flex min-h-screen w-full min-w-[1280px]">
-        <Sidebar />
-        <div className="relative flex min-h-screen flex-1 flex-col overflow-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(0deg,rgba(255,255,255,0.66),rgba(255,255,255,0.66)),linear-gradient(90deg,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:100%,42px_42px,42px_42px]" />
-          <Topbar breadcrumb={labels[pathname] ?? "Tableau de bord"} />
-          <main className="relative z-10 flex-1 px-8 py-7">{children}</main>
+        <Sidebar collapsed={sidebarCollapsed} />
+        <div className="relative flex min-h-screen flex-1 flex-col overflow-x-hidden">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(120,119,198,0.12),transparent_28%),radial-gradient(circle_at_86%_18%,rgba(14,165,233,0.08),transparent_24%)] dark:bg-[radial-gradient(circle_at_18%_12%,rgba(120,119,198,0.2),transparent_30%),radial-gradient(circle_at_86%_18%,rgba(14,165,233,0.14),transparent_24%)]" />
+          <Topbar
+            breadcrumb={labels[pathname] ?? "Tableau de bord"}
+            sidebarCollapsed={sidebarCollapsed}
+            onToggleSidebar={() => setSidebarCollapsed((value) => !value)}
+          />
+          <main className="relative z-10 flex-1 px-8 py-7">
+            <div className="mx-auto w-full max-w-[1320px]">{children}</div>
+          </main>
           <ChatbotWidget />
         </div>
       </div>

@@ -1,24 +1,22 @@
 "use client";
 
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useMemo } from "react";
 import type { AppRole, ModuleKey } from "@/lib/roles";
 import { canAccess } from "@/lib/roles";
 
 type RoleContextValue = {
   role: AppRole;
-  setRole: (role: AppRole) => void;
   can: (module: ModuleKey) => boolean;
 };
 
 const RoleContext = createContext<RoleContextValue | null>(null);
 
 export function RoleProvider({ children }: { children: React.ReactNode }) {
-  const [role, setRole] = useState<AppRole>("admin");
+  const role: AppRole = "admin";
 
   const value = useMemo(
     () => ({
       role,
-      setRole,
       can: (module: ModuleKey) => canAccess(role, module),
     }),
     [role]

@@ -11,6 +11,7 @@ export type ModuleKey =
   | "reunion-ia"
   | "redaction-emails"
   | "triage-emails"
+  | "studio-visuel"
   | "gestion-roles"
   | "parametres";
 
@@ -40,6 +41,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "reunion-ia": true,
     "redaction-emails": true,
     "triage-emails": true,
+    "studio-visuel": true,
     "gestion-roles": true,
     parametres: true,
   },
@@ -54,6 +56,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "reunion-ia": true,
     "redaction-emails": true,
     "triage-emails": false,
+    "studio-visuel": true,
     "gestion-roles": false,
     parametres: true,
   },
@@ -68,6 +71,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "reunion-ia": false,
     "redaction-emails": false,
     "triage-emails": false,
+    "studio-visuel": true,
     "gestion-roles": false,
     parametres: true,
   },

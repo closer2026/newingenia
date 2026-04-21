@@ -16,7 +16,7 @@ export default function LoginPage() {
 
   const handleLogin = () => {
     setLoading(true);
-    setTimeout(() => router.push("/dashboard"), 1000);
+    setTimeout(() => router.push("/dashboard?welcome=1"), 1000);
   };
 
   return (
@@ -24,13 +24,13 @@ export default function LoginPage() {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.08),transparent_38%),linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:100%,36px_36px,36px_36px]" />
 
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="z-10 w-full max-w-md">
-        <Card className="rounded-sm border-[#dbdbdb] bg-white/95 shadow-[0_24px_52px_-30px_rgba(0,0,0,0.6)]">
+        <Card className="rounded-sm border-border bg-card/95 shadow-[0_24px_52px_-30px_rgba(0,0,0,0.6)]">
           <CardContent className="space-y-5 p-7">
             <NiLogo />
             <div>
               <p className="ni-label">Espace securise</p>
-              <h1 className="mt-1 text-xl font-semibold tracking-tight text-[#111111]">Connexion</h1>
-              <p className="text-sm text-[#666666]">Plateforme IA privee · New Ingenia SA</p>
+              <h1 className="mt-1 text-xl font-semibold tracking-tight text-foreground">Connexion</h1>
+              <p className="text-sm text-muted-foreground">Plateforme IA privee · New Ingenia SA</p>
             </div>
             <div className="space-y-3">
               <Label>Email</Label>
@@ -38,10 +38,10 @@ export default function LoginPage() {
               <Label>Mot de passe</Label>
               <Input defaultValue="••••••••" type="password" />
             </div>
-            <Button onClick={handleLogin} disabled={loading} className="w-full rounded-sm bg-[#191919] hover:bg-[#000000]">
+            <Button onClick={handleLogin} disabled={loading} className="w-full rounded-sm">
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Se connecter"}
             </Button>
-            <p className="text-center text-xs text-[#666666]">Acces reserve aux collaborateurs New Ingenia SA</p>
+            <p className="text-center text-xs text-muted-foreground">Acces reserve aux collaborateurs New Ingenia SA</p>
           </CardContent>
         </Card>
       </motion.div>

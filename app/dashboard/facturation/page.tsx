@@ -350,35 +350,51 @@ export default function FacturationPage() {
   }, [chatInput]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <div>
         <p className="ni-label">Finance operationnelle</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#111111]">Creation facture</h1>
-        <p className="mt-2 text-sm text-[#666666]">
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Creation facture</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
           Cree une facture detaillee avec produits/services, quantites, remises et controles HT/TVA/TTC.
         </p>
       </div>
 
-      <Card className="rounded-sm border-[#d8d8d8]">
+      <section className="grid gap-4 md:grid-cols-4">
+        {[
+          { label: "Client actif", value: clientName || "N/A" },
+          { label: "Numero facture", value: invoiceNumber || "N/A" },
+          { label: "Total TTC", value: `${totals.ttcTotal.toFixed(2)} ${currency}` },
+          { label: "Echeance", value: dueDate || "N/A" },
+        ].map((item) => (
+          <Card key={item.label} className="rounded-xl border-border bg-card/90 shadow-sm">
+            <CardContent className="p-4">
+              <p className="ni-label">{item.label}</p>
+              <p className="mt-2 text-sm font-semibold text-foreground">{item.value}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+
+      <Card className="rounded-xl border-border bg-card/90 shadow-sm">
         <CardHeader>
           <CardTitle className="text-base tracking-tight">Assistant IA facture</CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
-          <div className="max-h-56 space-y-2 overflow-auto rounded-sm border border-[#e1e1e1] bg-white p-3">
+          <div className="max-h-56 space-y-2 overflow-auto rounded-md border border-border bg-muted p-3">
             {chatMessages.map((message, idx) => (
               <div
                 key={`${message.role}-${idx}`}
                 className={`rounded-sm px-3 py-2 text-sm ${
                   message.role === "assistant"
-                    ? "bg-[#f3f3f3] text-[#333333]"
-                    : "bg-[#1f1f1f] text-white"
+                    ? "bg-card text-foreground"
+                    : "bg-primary text-primary-foreground"
                 }`}
               >
                 {message.content}
               </div>
             ))}
           </div>
-          <div className="rounded-sm border border-[#d9d9d9] bg-white p-2">
+          <div className="rounded-md border border-border bg-card p-2">
             <div className="grid grid-cols-[1fr_auto_auto] items-end gap-2">
               <Textarea
                 rows={2}
@@ -416,24 +432,26 @@ export default function FacturationPage() {
                   </svg>
                 </Button>
               )}
-              <Button onClick={() => handleAssistantMessage()} className="h-10 rounded-sm bg-[#1f1f1f] hover:bg-black">
+              <Button onClick={() => handleAssistantMessage()} className="h-10 rounded-sm">
                 Envoyer
               </Button>
             </div>
-            <p className="mt-1 px-2 text-xs text-[#666666]">
+            <p className="mt-1 px-2 text-xs text-muted-foreground">
               {voiceStatus || "Clique sur Micro, parle, corrige le texte si besoin, puis clique Envoyer."}
             </p>
           </div>
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-2 gap-5">
-        <Card className="rounded-sm border-[#d8d8d8]">
+      <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1.3fr_1fr]">
+        <Card className="rounded-xl border-border bg-card/90 shadow-sm">
           <CardHeader>
             <CardTitle className="text-base tracking-tight">Formulaire facture detaille</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="grid grid-cols-2 gap-3">
+          <CardContent className="space-y-5">
+            <div className="space-y-3 rounded-lg border border-border bg-muted/40 p-4">
+              <p className="ni-label">Client</p>
+              <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <Label>Client</Label>
                 <Input value={clientName} onChange={(e) => setClientName(e.target.value)} />
@@ -448,8 +466,11 @@ export default function FacturationPage() {
               <Label>Adresse de facturation</Label>
               <Input value={clientAddress} onChange={(e) => setClientAddress(e.target.value)} />
             </div>
+            </div>
 
-            <div className="grid grid-cols-3 gap-3">
+            <div className="space-y-3 rounded-lg border border-border bg-muted/40 p-4">
+              <p className="ni-label">Reference facture</p>
+              <div className="grid grid-cols-3 gap-3">
               <div className="space-y-1.5">
                 <Label>Numero de facture</Label>
                 <Input value={invoiceNumber} onChange={(e) => setInvoiceNumber(e.target.value)} />
@@ -478,11 +499,12 @@ export default function FacturationPage() {
                 <Input value={purchaseOrderRef} onChange={(e) => setPurchaseOrderRef(e.target.value)} />
               </div>
             </div>
+            </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 rounded-lg border border-border bg-muted/40 p-4">
               <div className="mb-2 flex items-center justify-between">
-                <Label>Lignes de facturation (produits/services)</Label>
-                <Button type="button" variant="outline" className="rounded-sm" onClick={addLine}>
+                <Label className="text-sm font-semibold">Lignes de facturation (produits/services)</Label>
+                <Button type="button" variant="outline" className="rounded-md" onClick={addLine}>
                   Ajouter une ligne
                 </Button>
               </div>
@@ -490,10 +512,10 @@ export default function FacturationPage() {
                 {lines.map((line, index) => {
                   const computed = lineTotals.find((item) => item.id === line.id);
                   return (
-                    <div key={line.id} className="rounded-sm border border-[#dddddd] bg-white p-3">
+                    <div key={line.id} className="rounded-lg border border-border bg-card p-3 shadow-sm">
                       <div className="mb-2 flex items-center justify-between">
-                        <p className="text-xs font-semibold uppercase tracking-wide text-[#666666]">Ligne {index + 1}</p>
-                        <Button type="button" variant="outline" className="rounded-sm" onClick={() => removeLine(line.id)}>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Ligne {index + 1}</p>
+                        <Button type="button" variant="outline" className="rounded-md" onClick={() => removeLine(line.id)}>
                           Supprimer
                         </Button>
                       </div>
@@ -535,7 +557,7 @@ export default function FacturationPage() {
                           />
                         </div>
                       </div>
-                      <p className="mt-2 text-xs text-[#666666]">
+                      <p className="mt-2 text-xs text-muted-foreground">
                         Total ligne HT: {computed?.netHt.toFixed(2) ?? "0.00"} {currency}
                       </p>
                     </div>
@@ -544,7 +566,9 @@ export default function FacturationPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="space-y-3 rounded-lg border border-border bg-muted/40 p-4">
+              <p className="ni-label">Ajustements</p>
+              <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <Label>Remise globale (%)</Label>
                 <Input value={globalDiscountRate} onChange={(e) => setGlobalDiscountRate(e.target.value)} />
@@ -559,69 +583,102 @@ export default function FacturationPage() {
               <Label>Notes / Conditions</Label>
               <Textarea rows={4} value={notes} onChange={(e) => setNotes(e.target.value)} />
             </div>
+            </div>
 
-            <Button onClick={() => setGenerated(true)} className="w-full rounded-sm bg-[#1f1f1f] hover:bg-black">
+            <Button onClick={() => setGenerated(true)} className="w-full rounded-md text-sm font-semibold">
               Generer l&apos;apercu de facture
             </Button>
           </CardContent>
         </Card>
 
-        <Card className="rounded-sm border-[#d8d8d8]">
+        <Card className="rounded-xl border-border bg-card/95 shadow-sm xl:sticky xl:top-6 xl:self-start">
           <CardHeader>
-            <CardTitle className="text-base tracking-tight">Apercu client</CardTitle>
+            <div className="flex items-center justify-between gap-2">
+              <CardTitle className="text-base tracking-tight">Apercu facture</CardTitle>
+              <Button variant="outline" className="rounded-md text-xs">
+                Telecharger en PDF
+              </Button>
+            </div>
           </CardHeader>
-          <CardContent className="space-y-4 text-sm text-[#333333]">
+          <CardContent className="space-y-4 text-sm text-foreground">
             {!generated ? (
-              <p className="text-[#666666]">Remplis le formulaire puis clique sur &quot;Generer l&apos;apercu de facture&quot;.</p>
+              <p className="text-muted-foreground">Remplis le formulaire puis clique sur &quot;Generer l&apos;apercu de facture&quot;.</p>
             ) : (
-              <>
-                <div className="space-y-1 border-b border-[#e3e3e3] pb-3">
-                  <p className="text-xs uppercase tracking-[0.16em] text-[#7a7a7a]">Facture</p>
-                  <p className="font-semibold">#{invoiceNumber}</p>
-                  <p>{clientName}</p>
-                  <p className="text-xs text-[#666666]">{clientAddress}</p>
-                  <p className="text-xs text-[#666666]">{clientEmail}</p>
-                  <p className="text-xs text-[#666666]">Emission: {issueDate} · Echeance: {dueDate}</p>
-                  <p className="text-xs text-[#666666]">Ref commande: {purchaseOrderRef}</p>
-                </div>
+              <div className="rounded-lg border border-border bg-muted/30 p-3">
+                <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#111111] shadow-sm">
+                  <div className="mb-6 flex items-start justify-between border-b border-zinc-200 pb-4">
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Facture</p>
+                      <p className="mt-1 text-xl font-semibold">#{invoiceNumber}</p>
+                      <p className="mt-1 text-xs text-zinc-500">Emission: {issueDate}</p>
+                      <p className="text-xs text-zinc-500">Echeance: {dueDate}</p>
+                    </div>
+                    <div className="text-right text-sm">
+                      <p className="font-semibold">New Ingenia SA</p>
+                      <p className="text-xs text-zinc-500">Rue St-Randoald 2A</p>
+                      <p className="text-xs text-zinc-500">2800 Delemont</p>
+                      <p className="text-xs text-zinc-500">info@newingenia.ch</p>
+                    </div>
+                  </div>
 
-                <div className="space-y-2 border-b border-[#e3e3e3] pb-3">
-                  {lines.map((line) => {
-                    const computed = lineTotals.find((item) => item.id === line.id);
-                    return (
-                      <div key={line.id} className="rounded-sm border border-[#ececec] bg-[#fafafa] p-2">
-                        <p className="font-medium">{line.designation || "Ligne sans designation"}</p>
-                        <p className="text-xs text-[#666666]">
-                          {line.quantity} x {toNumber(line.unitPrice).toFixed(2)} {currency} · TVA {line.vatRate}% · Remise {line.discountRate}%
-                        </p>
-                        <p className="text-xs font-semibold">
-                          Total HT ligne: {computed?.netHt.toFixed(2) ?? "0.00"} {currency}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
+                  <div className="mb-5">
+                    <p className="text-xs uppercase tracking-[0.14em] text-zinc-500">Facture pour</p>
+                    <p className="mt-1 font-semibold">{clientName}</p>
+                    <p className="text-xs text-zinc-500">{clientAddress}</p>
+                    <p className="text-xs text-zinc-500">{clientEmail}</p>
+                    <p className="mt-1 text-xs text-zinc-500">Ref commande: {purchaseOrderRef}</p>
+                  </div>
 
-                <div className="space-y-1 border-b border-[#e3e3e3] pb-3">
-                  <p>Sous-total HT: {totals.subtotalHt.toFixed(2)} {currency}</p>
-                  <p>Remise globale: -{totals.globalDiscountAmount.toFixed(2)} {currency}</p>
-                  <p>Frais additionnels: +{totals.shipping.toFixed(2)} {currency}</p>
-                  <p>TVA estimee: {totals.effectiveVat.toFixed(2)} {currency}</p>
-                  <p className="font-semibold">Total TTC: {totals.ttcTotal.toFixed(2)} {currency}</p>
-                </div>
+                  <div className="overflow-hidden rounded-md border border-zinc-200">
+                    <div className="grid grid-cols-[2fr_0.7fr_1fr_1fr] bg-zinc-100 px-3 py-2 text-xs font-semibold text-zinc-700">
+                      <p>Designation</p>
+                      <p className="text-right">Qte</p>
+                      <p className="text-right">PU HT</p>
+                      <p className="text-right">Total HT</p>
+                    </div>
+                    {lines.map((line) => {
+                      const computed = lineTotals.find((item) => item.id === line.id);
+                      return (
+                        <div key={line.id} className="grid grid-cols-[2fr_0.7fr_1fr_1fr] border-t border-zinc-200 px-3 py-2 text-xs">
+                          <p className="font-medium">{line.designation || "Ligne sans designation"}</p>
+                          <p className="text-right">{line.quantity}</p>
+                          <p className="text-right">{toNumber(line.unitPrice).toFixed(2)} {currency}</p>
+                          <p className="text-right font-semibold">{computed?.netHt.toFixed(2) ?? "0.00"} {currency}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
 
-                <div className="space-y-1">
-                  <p className="text-xs uppercase tracking-[0.16em] text-[#7a7a7a]">Commentaire</p>
-                  <p>{notes}</p>
-                  <p className="text-xs text-[#666666]">{paymentTerms}</p>
-                </div>
+                  <div className="mt-5 ml-auto w-[260px] space-y-1 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Sous-total HT</span>
+                      <span>{totals.subtotalHt.toFixed(2)} {currency}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Remise globale</span>
+                      <span>-{totals.globalDiscountAmount.toFixed(2)} {currency}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">Frais additionnels</span>
+                      <span>+{totals.shipping.toFixed(2)} {currency}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-500">TVA</span>
+                      <span>{totals.effectiveVat.toFixed(2)} {currency}</span>
+                    </div>
+                    <div className="mt-2 flex justify-between border-t border-zinc-300 pt-2 text-base font-semibold">
+                      <span>Total TTC</span>
+                      <span>{totals.ttcTotal.toFixed(2)} {currency}</span>
+                    </div>
+                  </div>
 
-                <div className="pt-2">
-                  <Button variant="outline" className="rounded-sm">
-                    Valider et emettre (simulation)
-                  </Button>
+                  <div className="mt-6 border-t border-zinc-200 pt-4 text-xs text-zinc-600">
+                    <p className="font-semibold text-zinc-700">Commentaire</p>
+                    <p>{notes}</p>
+                    <p className="mt-1">{paymentTerms}</p>
+                  </div>
                 </div>
-              </>
+              </div>
             )}
           </CardContent>
         </Card>

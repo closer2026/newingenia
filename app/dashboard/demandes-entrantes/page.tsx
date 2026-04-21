@@ -93,14 +93,14 @@ export default function DemandesEntrantesPage() {
     <div className="space-y-6">
       <div>
         <p className="ni-label">Leads formulaire</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#111111]">Demandes entrantes</h1>
-        <p className="mt-2 text-sm text-[#666666]">
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Demandes entrantes</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
           Les nouvelles demandes projet sont captees, reformulees par l&apos;IA, puis traitees avec reponse et relance.
         </p>
       </div>
 
       <div className="grid grid-cols-3 gap-5">
-        <Card className="rounded-sm border-[#d8d8d8]">
+        <Card className="rounded-sm border-border bg-card">
           <CardHeader>
             <CardTitle className="text-base tracking-tight">Nouvelles demandes</CardTitle>
           </CardHeader>
@@ -114,8 +114,8 @@ export default function DemandesEntrantesPage() {
                 }}
                 className={`w-full rounded-sm border px-3 py-2 text-left text-xs transition ${
                   req.id === selectedId
-                    ? "border-[#202020] bg-[#202020] text-white"
-                    : "border-[#d8d8d8] bg-white text-[#333333] hover:bg-[#f5f5f5]"
+                    ? "border-primary bg-primary text-primary-foreground"
+                    : "border-border bg-card text-foreground hover:bg-muted"
                 }`}
               >
                 <p className="font-semibold">{req.company}</p>
@@ -125,11 +125,11 @@ export default function DemandesEntrantesPage() {
           </CardContent>
         </Card>
 
-        <Card className="col-span-2 rounded-sm border-[#d8d8d8]">
+        <Card className="col-span-2 rounded-sm border-border bg-card">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="text-base tracking-tight">Traitement IA - {selected.company}</CardTitle>
-              <Badge className="rounded-sm border border-zinc-200 bg-white text-[#555555]">{selected.id}</Badge>
+              <Badge className="rounded-sm border border-border bg-muted text-muted-foreground">{selected.id}</Badge>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
@@ -159,7 +159,7 @@ export default function DemandesEntrantesPage() {
                   value={responseContext}
                   onChange={(e) => setResponseContext(e.target.value)}
                 />
-                <Button onClick={generateResponse} className="w-full rounded-sm bg-[#1f1f1f] hover:bg-black">
+                <Button onClick={generateResponse} className="w-full rounded-sm">
                   Generer reponse + relance
                 </Button>
               </div>
@@ -190,7 +190,7 @@ export default function DemandesEntrantesPage() {
               <Button
                 disabled={!responseDraft.trim()}
                 onClick={() => setSent(true)}
-                className="rounded-sm bg-[#1f1f1f] hover:bg-black"
+                className="rounded-sm"
               >
                 Envoyer au client
               </Button>

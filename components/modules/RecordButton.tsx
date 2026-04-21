@@ -33,11 +33,11 @@ export function RecordButton() {
   };
 
   return (
-    <Card className="ni-surface mx-auto max-w-3xl rounded-sm">
+    <Card className="ni-surface mx-auto max-w-3xl rounded-lg">
       <CardContent className="space-y-4 py-8 text-center">
         <p className="ni-label">Voice intelligence</p>
-        <h2 className="text-2xl font-semibold tracking-tight text-[#111111]">Réunion</h2>
-        <p className="text-sm text-[#666666]">Enregistrez, transcrivez, resumez</p>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Réunion</h2>
+        <p className="text-sm text-muted-foreground">Enregistrez, transcrivez, resumez</p>
         <motion.button
           whileTap={{ scale: 0.96 }}
           animate={
@@ -52,7 +52,7 @@ export function RecordButton() {
               ? "border-red-500 bg-red-500 text-white"
               : status === "done"
                 ? "border-emerald-500 bg-emerald-500 text-white"
-                : "border-[#cdcdcd] bg-[#f3f3f3] text-[#1A2E4A]"
+                : "border-border bg-card text-foreground"
           }`}
         >
           <Mic className="h-10 w-10" />
@@ -63,7 +63,6 @@ export function RecordButton() {
           {status === "processing" && "Transcription en cours..."}
           {status === "done" && "Analyse terminee"}
         </p>
-        <p className="text-xs text-[#666666]">Compatible navigateur et mobile · Max 3h · ~0.70 CHF/heure</p>
       </CardContent>
     </Card>
   );

@@ -2,43 +2,53 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Lock } from "lucide-react";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { navItems } from "@/lib/mock-data";
-import { ROLE_BADGE_CLASSES, ROLE_LABELS } from "@/lib/roles";
-import { useRole } from "@/contexts/RoleContext";
+import { ROLE_BADGE_CLASSES } from "@/lib/roles";
 import { NiLogo } from "./NiLogo";
 import { cn } from "@/lib/utils";
 
-export function Sidebar() {
+export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
   const pathname = usePathname();
-  const { role, can } = useRole();
+  const role: "admin" = "admin";
 
   return (
-    <aside className="flex h-screen w-[220px] shrink-0 flex-col border-r border-[#d8d8d8] bg-[#f7f7f7] px-4 py-6">
+    <aside
+      className={cn(
+        "sticky top-0 flex h-screen shrink-0 flex-col overflow-y-auto border-r border-border bg-sidebar py-6 transition-[width,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        collapsed ? "w-[84px] px-2" : "w-[248px] px-4"
+      )}
+    >
       <NiLogo compact />
 
-      <div className="mt-8 rounded-sm border border-[#dddddd] bg-white p-3">
-        <p className="ni-label mb-2">Session active</p>
-        <div className="flex items-center gap-2">
-          <Avatar className="h-8 w-8 rounded-sm">
-            <AvatarFallback>AD</AvatarFallback>
-          </Avatar>
-          <div className="min-w-0">
-            <p className="truncate text-xs font-semibold tracking-tight text-[#111111]">Arnaud Dupont</p>
-            <Badge className={cn("mt-1 rounded-sm border text-[10px]", ROLE_BADGE_CLASSES[role])}>
-              {ROLE_LABELS[role]}
-            </Badge>
+      <div
+        className={cn(
+          "mt-8 overflow-hidden rounded-lg border border-sidebar-border bg-card transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          collapsed ? "max-h-0 scale-95 opacity-0" : "max-h-40 scale-100 opacity-100 p-3"
+        )}
+      >
+        {!collapsed ? (
+          <>
+          <p className="ni-label mb-2">Session active</p>
+          <div className="flex items-center gap-2">
+            <Avatar className="h-8 w-8 rounded-md">
+              <AvatarFallback>AD</AvatarFallback>
+            </Avatar>
+            <div className="min-w-0">
+              <p className="truncate text-xs font-semibold tracking-tight text-sidebar-foreground">Arnaud Dupont</p>
+              <Badge className={cn("mt-1 rounded-md border text-[10px]", ROLE_BADGE_CLASSES[role])}>
+                Admin
+              </Badge>
+            </div>
           </div>
-        </div>
+          </>
+        ) : null}
       </div>
 
       <nav className="mt-6 space-y-1.5">
         {navItems.map((item, index) => {
-          if (item.adminOnly && role !== "admin") return null;
-          const restricted = !can(item.key);
           const isActive =
             item.href === "/dashboard"
               ? pathname === "/dashboard"
@@ -47,29 +57,43 @@ export function Sidebar() {
             <div key={`${item.label}-${index}`}>
               {item.label === "Gestion des roles" ? <Separator className="my-2" /> : null}
               <Link
-                href={restricted ? pathname : item.href}
+                href={item.href}
                 className={cn(
-                  "group flex items-center justify-between rounded-sm border px-2.5 py-2.5 text-xs transition-all duration-200",
+                  "group flex items-center justify-between rounded-md border px-2.5 py-2.5 text-xs transition-all duration-300",
+                  collapsed && "justify-center px-2",
                   isActive
-                    ? "border-[#202020] bg-[#202020] text-white"
-                    : "border-transparent text-[#616161] hover:border-[#d8d8d8] hover:bg-white hover:text-[#111111]",
-                  restricted && "cursor-not-allowed opacity-70"
+                    ? "border-sidebar-primary bg-sidebar-primary text-sidebar-primary-foreground shadow-sm"
+                    : "border-transparent text-muted-foreground hover:border-border hover:bg-card hover:text-foreground"
                 )}
+                title={item.label}
               >
-                <span className="flex items-center gap-2">
+                <span className={cn("flex items-center gap-2", collapsed && "gap-0")}>
                   <item.icon className="h-3.5 w-3.5 transition group-hover:scale-105" />
-                  {item.label}
+                  <span
+                    className={cn(
+                      "overflow-hidden whitespace-nowrap transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+                      collapsed ? "w-0 translate-x-1 opacity-0" : "w-auto translate-x-0 opacity-100"
+                    )}
+                  >
+                    {item.label}
+                  </span>
                 </span>
-                {restricted ? <Lock className="h-3.5 w-3.5" /> : null}
               </Link>
             </div>
           );
         })}
       </nav>
 
-      <p className="mt-auto border-t border-[#dedede] pt-4 text-center text-[10px] uppercase tracking-[0.2em] text-[#777777]">
-        Version 1.0 · Beta
-      </p>
+      <div
+        className={cn(
+          "mt-auto overflow-hidden border-t border-border text-center transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          collapsed ? "max-h-0 pt-0 opacity-0" : "max-h-14 pt-4 opacity-100"
+        )}
+      >
+        {!collapsed ? (
+          <p className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Version 1.0 · Beta</p>
+        ) : null}
+      </div>
     </aside>
   );
 }

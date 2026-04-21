@@ -45,14 +45,14 @@ export default function LinkedinPage() {
     <div className="space-y-6">
       <div>
         <p className="ni-label">Social selling</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-[#111111]">Linkedin</h1>
-        <p className="mt-2 text-sm text-[#666666]">
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Linkedin</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
           Simule une connexion Linkedin entreprise: l&apos;agent IA redige le post, tu valides, puis tu publies.
         </p>
       </div>
 
       <div className="grid grid-cols-2 gap-5">
-        <Card className="rounded-sm border-[#d8d8d8]">
+        <Card className="rounded-sm border-border bg-card">
           <CardHeader>
             <CardTitle className="text-base tracking-tight">Brief de publication</CardTitle>
           </CardHeader>
@@ -64,7 +64,7 @@ export default function LinkedinPage() {
                 value={mediaName}
                 onChange={(e) => setMediaName(e.target.value)}
               />
-              <p className="inline-flex items-center gap-1 text-xs text-[#6b6b6b]">
+              <p className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                 Piece jointe simulee frontend
               </p>
             </div>
@@ -89,18 +89,18 @@ export default function LinkedinPage() {
               />
             </div>
 
-            <Button disabled={!canGenerate} onClick={generatePost} className="w-full rounded-sm bg-[#1f1f1f] hover:bg-black">
+            <Button disabled={!canGenerate} onClick={generatePost} className="w-full rounded-sm">
               Generer le post IA
             </Button>
           </CardContent>
         </Card>
 
-        <Card className="rounded-sm border-[#d8d8d8]">
+        <Card className="rounded-sm border-border bg-card">
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="text-base tracking-tight">Proposition IA</CardTitle>
               {generatedPost ? (
-                <Badge className="rounded-sm border border-zinc-200 bg-white text-[#555555]">
+                <Badge className="rounded-sm border border-border bg-muted text-muted-foreground">
                   Brouillon pret
                 </Badge>
               ) : null}
@@ -129,7 +129,7 @@ export default function LinkedinPage() {
               <Button
                 disabled={!validated}
                 onClick={() => setPublished(true)}
-                className="rounded-sm bg-[#1f1f1f] hover:bg-black"
+                className="rounded-sm"
               >
                 Valider et publier
               </Button>

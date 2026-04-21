@@ -4,15 +4,15 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function PdfViewer() {
   return (
-    <Card className="ni-surface h-[680px] rounded-sm border-[#d8d8d8]">
+    <Card className="ni-surface h-[680px] rounded-lg">
       <CardHeader>
         <CardTitle className="text-base tracking-tight">Document source</CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         <p className="ni-label">Reference active</p>
-        <p className="text-sm font-medium text-[#111111]">Catalogue Structure Bosch Rexroth 2024</p>
-        <p className="text-xs text-[#666666]">Page 47 sur 312</p>
-        <div className="rounded-sm border border-[#dddddd] bg-[#f8f8f8] p-4 text-sm leading-relaxed text-[#1A1A1A]">
+        <p className="text-sm font-medium text-foreground">Catalogue Structure Bosch Rexroth 2024</p>
+        <p className="text-xs text-muted-foreground">Page 47 sur 312</p>
+        <div className="rounded-md border border-border bg-muted p-4 text-sm leading-relaxed text-foreground">
           Extrait technique - Profiles de structure serie 45x45
           <br />
           Charge statique recommandee jusqu&apos;a 80kg sur 1.2m.

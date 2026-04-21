@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "sonner";
 import { RoleProvider } from "@/contexts/RoleContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -28,10 +29,12 @@ function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <TooltipProvider>
-      <RoleProvider>
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
-        <Toaster position="top-right" richColors />
-      </RoleProvider>
+      <ThemeProvider>
+        <RoleProvider>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
+          <Toaster position="top-right" richColors />
+        </RoleProvider>
+      </ThemeProvider>
     </TooltipProvider>
   );
 }

@@ -10,7 +10,7 @@ export default function GestionRolesPage() {
   if (role !== "admin") {
     return (
       <Card className="ni-surface rounded-sm">
-        <CardContent className="py-10 text-center text-sm text-[#666666]">
+        <CardContent className="py-10 text-center text-sm text-muted-foreground">
           Cette section est reservee au role Admin.
         </CardContent>
       </Card>
