@@ -1,16 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function DashboardEntryIntro() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const shouldShow = pathname === "/dashboard" && searchParams.get("welcome") === "1";
+    const shouldShow = pathname === "/dashboard" && new URLSearchParams(window.location.search).get("welcome") === "1";
     if (!shouldShow) return;
 
     setVisible(true);
@@ -22,7 +21,7 @@ export function DashboardEntryIntro() {
     }, 1400);
 
     return () => window.clearTimeout(timer);
-  }, [pathname, searchParams]);
+  }, [pathname]);
 
   return (
     <AnimatePresence>
