@@ -1,10 +1,18 @@
 import { RecordButton } from "@/components/modules/RecordButton";
+import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export default function ReunionIaPage() {
   return (
     <div className="space-y-5">
+      <div>
+        <p className="ni-label">Reunion intelligente</p>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Réunion IA</h1>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Enregistrement simule, resume automatique, decisions extraites puis creation de taches.
+        </p>
+      </div>
       <RecordButton />
       <div className="grid grid-cols-3 gap-4">
         <Card className="ni-surface rounded-lg">
@@ -29,6 +37,20 @@ export default function ReunionIaPage() {
             </ScrollArea>
           </CardContent>
         </Card>
+      </div>
+      <div className="flex flex-wrap gap-2">
+        <Link
+          href="/dashboard/taches"
+          className="rounded-sm border border-border bg-card px-3 py-2 text-xs font-medium text-foreground transition hover:bg-muted"
+        >
+          Creer taches (simulation)
+        </Link>
+        <Link
+          href="/dashboard/redaction-emails"
+          className="rounded-sm border border-border bg-card px-3 py-2 text-xs font-medium text-foreground transition hover:bg-muted"
+        >
+          Envoyer compte-rendu
+        </Link>
       </div>
     </div>
   );

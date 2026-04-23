@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -133,6 +134,25 @@ export default function DemandesEntrantesPage() {
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
+            <div className="grid grid-cols-4 gap-2">
+              <div className="rounded-sm border border-border bg-muted/30 p-2 text-xs">
+                <p className="ni-label">Statut</p>
+                <p className="mt-1 font-medium text-foreground">Nouveau</p>
+              </div>
+              <div className="rounded-sm border border-border bg-muted/30 p-2 text-xs">
+                <p className="ni-label">Score IA</p>
+                <p className="mt-1 font-medium text-foreground">7 / 10</p>
+              </div>
+              <div className="rounded-sm border border-border bg-muted/30 p-2 text-xs">
+                <p className="ni-label">Urgence</p>
+                <p className="mt-1 font-medium text-foreground">Normale</p>
+              </div>
+              <div className="rounded-sm border border-red-200 bg-red-50 p-2 text-xs">
+                <p className="ni-label text-red-700">A traiter</p>
+                <p className="mt-1 font-medium text-red-700">+4h</p>
+              </div>
+            </div>
+
             <div>
               <Label>Message client</Label>
               <Textarea rows={4} value={selected.message} readOnly />
@@ -194,6 +214,12 @@ export default function DemandesEntrantesPage() {
               >
                 Envoyer au client
               </Button>
+              <Link
+                href="/dashboard/redaction-offres"
+                className="rounded-sm border border-border bg-card px-3 py-2 text-xs font-medium text-foreground transition hover:bg-muted"
+              >
+                Creer offre
+              </Link>
               {sent ? (
                 <p className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
                   Reponse envoyee au client (simulation frontend).

@@ -41,9 +41,26 @@ export default function TachesPage() {
         <p className="ni-label">Execution quotidienne</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Taches</h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Toutes les actions prioritaires a traiter: facturation, contenus Linkedin et demandes projet.
+          To-do IA centralise. Les taches sont generees automatiquement depuis les autres modules.
         </p>
       </div>
+
+      <Card className="rounded-sm border-border bg-card">
+        <CardContent className="grid grid-cols-3 gap-3 px-4 py-4 text-sm">
+          <div>
+            <p className="ni-label">Taches du jour</p>
+            <p className="mt-1 text-xl font-semibold text-foreground">12</p>
+          </div>
+          <div>
+            <p className="ni-label">En retard</p>
+            <p className="mt-1 text-xl font-semibold text-red-700">2</p>
+          </div>
+          <div>
+            <p className="ni-label">Terminees semaine</p>
+            <p className="mt-1 text-xl font-semibold text-foreground">37</p>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 gap-4">
         {tasks.map((task) => {

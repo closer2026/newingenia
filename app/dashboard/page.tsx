@@ -10,19 +10,42 @@ import { roleSubtitle, ROLE_LABELS } from "@/lib/roles";
 
 const modules = [
   { key: "taches", title: "Taches", href: "/dashboard/taches", description: "Centraliser les actions a faire: facturation, suivi client et operations" },
+  { key: "suivi-projets", title: "Suivi de projets", href: "/dashboard/suivi-projets", description: "Piloter les projets en kanban, timeline et alertes de retard" },
+  { key: "crm", title: "CRM", href: "/dashboard/crm", description: "Suivre les relations clients, interactions et prochaines actions" },
   { key: "facturation", title: "Creation facture", href: "/dashboard/facturation", description: "Creer une facture, verifier la TVA et generer un apercu avant emission" },
   { key: "linkedin", title: "Linkedin", href: "/dashboard/linkedin", description: "Generer un post avec l'IA et valider la publication entreprise" },
   { key: "demandes-entrantes", title: "Demandes entrantes", href: "/dashboard/demandes-entrantes", description: "Traiter les demandes projet du formulaire vitrine et repondre vite" },
   { key: "recherche-docs", title: "Recherche docs", href: "/dashboard/recherche-docs", description: "Interroger les catalogues Bosch Rexroth et NI" },
   { key: "redaction-offres", title: "Redaction offres", href: "/dashboard/redaction-offres", description: "Generer une offre commerciale structuree" },
-  { key: "reunion-ia", title: "Réunion", href: "/dashboard/reunion-ia", description: "Enregistrer, transcrire et extraire des actions" },
+  { key: "reunion-ia", title: "Réunion IA", href: "/dashboard/reunion-ia", description: "Enregistrer, transcrire et extraire des actions" },
   { key: "redaction-emails", title: "Redaction emails", href: "/dashboard/redaction-emails", description: "Creer des emails professionnels au format NI" },
   { key: "studio-visuel", title: "Studio 3D", href: "/dashboard/studio-visuel", description: "Viewer 3D interactif et generation simulee de modeles produits" },
   { key: "studio-marketing", title: "Studio marketing", href: "/dashboard/studio-marketing", description: "Visuels marketing, photos produit et variantes IA pour vos campagnes" },
+  { key: "veille", title: "Veille", href: "/dashboard/veille", description: "Surveiller SIAMS, Bosch Rexroth et tendances du secteur chaque semaine" },
 ] as const;
 
 export default function DashboardPage() {
   const { role } = useRole();
+  const demoScenarios = [
+    {
+      title: "Scenario 1 · Demande > Offre",
+      description: "Traiter une demande entrante, generer la reponse puis ouvrir la redaction d'offre.",
+      steps: ["Ouvrir Demandes entrantes", "Generer reponse", "Cliquer Creer offre"],
+      links: ["/dashboard/demandes-entrantes", "/dashboard/redaction-offres"],
+    },
+    {
+      title: "Scenario 2 · Reunion > Taches",
+      description: "Lancer une reunion simulee puis convertir les decisions en plan d'action equipe.",
+      steps: ["Ouvrir Reunion IA", "Verifier resume", "Suivre dans Taches"],
+      links: ["/dashboard/reunion-ia", "/dashboard/taches"],
+    },
+    {
+      title: "Scenario 3 · CRM > Email",
+      description: "Consulter un compte client, identifier la prochaine action puis rediger l'email.",
+      steps: ["Ouvrir CRM", "Verifier resume IA", "Generer email de suivi"],
+      links: ["/dashboard/crm", "/dashboard/redaction-emails"],
+    },
+  ] as const;
 
   return (
     <div className="space-y-8">
@@ -70,6 +93,53 @@ export default function DashboardPage() {
         ))}
       </section>
 
+      <Card className="rounded-lg border-amber-200 bg-amber-50/60">
+        <CardContent className="px-4 py-3 text-sm text-amber-900">
+          ⚠ ALERTE : 2 demandes entrantes non traitees depuis plus de 4 heures.
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-lg border-border">
+        <CardHeader>
+          <CardTitle className="text-base tracking-tight">Resume IA du jour</CardTitle>
+        </CardHeader>
+        <CardContent className="text-sm text-muted-foreground">
+          3 demandes recues hier. Offre Helio Industrie en attente de validation depuis 2 jours.
+          Reunion Cartier SA : 2 taches non completees.
+        </CardContent>
+      </Card>
+
+      <Card className="rounded-lg border-border bg-card">
+        <CardHeader>
+          <CardTitle className="text-base tracking-tight">Parcours demo guide</CardTitle>
+        </CardHeader>
+        <CardContent className="grid grid-cols-3 gap-4">
+          {demoScenarios.map((scenario) => (
+            <div key={scenario.title} className="rounded-md border border-border bg-muted/30 p-3">
+              <p className="text-sm font-semibold text-foreground">{scenario.title}</p>
+              <p className="mt-1 text-xs text-muted-foreground">{scenario.description}</p>
+              <p className="mt-3 text-[11px] text-muted-foreground">
+                {scenario.steps.join("  →  ")}
+              </p>
+              <div className="mt-3 flex gap-2">
+                <Link
+                  href={scenario.links[0]}
+                  className="rounded-md border border-border bg-card px-2.5 py-1.5 text-xs text-foreground transition hover:bg-muted"
+                >
+                  Lancer
+                </Link>
+                <Link
+                  href={scenario.links[scenario.links.length - 1]}
+                  className="rounded-md border border-border bg-card px-2.5 py-1.5 text-xs text-muted-foreground transition hover:bg-muted"
+                >
+                  Etape finale
+                </Link>
+              </div>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+
       <div>
         <p className="ni-label">Modules IA</p>
         <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Vos espaces de travail</h2>
@@ -113,6 +183,7 @@ export default function DashboardPage() {
           <p>Triage emails · 42 messages classes · il y a 1h</p>
           <p>Offre commerciale · Helio Industrie · il y a 2h</p>
           <p>Compte rendu reunion · Atelier production · il y a 3h</p>
+          <p>Veille hebdomadaire · SIAMS 2026 en cours · il y a 4h</p>
         </CardContent>
       </Card>
 

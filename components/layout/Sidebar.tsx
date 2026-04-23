@@ -49,13 +49,25 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
 
       <nav className="mt-6 space-y-1.5">
         {navItems.map((item, index) => {
+          if (item.section) {
+            return collapsed ? null : (
+              <div key={`${item.label}-${index}`} className="pt-2">
+                <Separator className="mb-2" />
+                <p className="px-2 text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{item.label}</p>
+              </div>
+            );
+          }
+
+          if (!item.href || !item.icon) {
+            return null;
+          }
+
           const isActive =
             item.href === "/dashboard"
               ? pathname === "/dashboard"
               : pathname.startsWith(item.href);
           return (
             <div key={`${item.label}-${index}`}>
-              {item.label === "Gestion des roles" ? <Separator className="my-2" /> : null}
               <Link
                 href={item.href}
                 className={cn(
@@ -78,6 +90,18 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
                     {item.label}
                   </span>
                 </span>
+                {!collapsed && item.badge ? (
+                  <span
+                    className={cn(
+                      "rounded-sm border px-1.5 py-0.5 text-[9px] uppercase tracking-[0.12em]",
+                      item.badge === "urgent" && "border-red-200 bg-red-50 text-red-700",
+                      item.badge === "nouveau" && "border-blue-200 bg-blue-50 text-blue-700",
+                      item.badge === "auto" && "border-emerald-200 bg-emerald-50 text-emerald-700"
+                    )}
+                  >
+                    {item.badge}
+                  </span>
+                ) : null}
               </Link>
             </div>
           );

@@ -3,6 +3,8 @@ export type AppRole = "admin" | "manager" | "technicien";
 export type ModuleKey =
   | "dashboard"
   | "taches"
+  | "suivi-projets"
+  | "crm"
   | "facturation"
   | "linkedin"
   | "demandes-entrantes"
@@ -13,6 +15,7 @@ export type ModuleKey =
   | "triage-emails"
   | "studio-visuel"
   | "studio-marketing"
+  | "veille"
   | "gestion-roles"
   | "parametres";
 
@@ -34,6 +37,8 @@ export const PERMISSIONS: PermissionMatrix = {
   admin: {
     dashboard: true,
     taches: true,
+    "suivi-projets": true,
+    crm: true,
     facturation: true,
     linkedin: true,
     "demandes-entrantes": true,
@@ -44,12 +49,15 @@ export const PERMISSIONS: PermissionMatrix = {
     "triage-emails": true,
     "studio-visuel": true,
     "studio-marketing": true,
+    veille: true,
     "gestion-roles": true,
     parametres: true,
   },
   manager: {
     dashboard: true,
     taches: true,
+    "suivi-projets": true,
+    crm: true,
     facturation: true,
     linkedin: true,
     "demandes-entrantes": true,
@@ -60,12 +68,15 @@ export const PERMISSIONS: PermissionMatrix = {
     "triage-emails": false,
     "studio-visuel": true,
     "studio-marketing": true,
+    veille: true,
     "gestion-roles": false,
     parametres: true,
   },
   technicien: {
     dashboard: true,
     taches: true,
+    "suivi-projets": false,
+    crm: false,
     facturation: false,
     linkedin: true,
     "demandes-entrantes": true,
@@ -76,6 +87,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "triage-emails": false,
     "studio-visuel": true,
     "studio-marketing": true,
+    veille: false,
     "gestion-roles": false,
     parametres: true,
   },

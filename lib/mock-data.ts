@@ -1,21 +1,22 @@
-import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box, Sparkles } from "lucide-react";
+import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box, Sparkles, BriefcaseBusiness, Users, Radar } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ModuleKey } from "./roles";
 
 export type NavItem = {
-  key: ModuleKey;
+  key?: ModuleKey;
   label: string;
-  href: string;
-  icon: LucideIcon;
+  href?: string;
+  icon?: LucideIcon;
+  section?: boolean;
+  badge?: "urgent" | "nouveau" | "auto";
   adminOnly?: boolean;
 };
 
 export const navItems: NavItem[] = [
   { key: "dashboard", label: "Tableau de bord", href: "/dashboard", icon: Home },
-  { key: "taches", label: "Taches", href: "/dashboard/taches", icon: FileText },
-  { key: "facturation", label: "Creation facture", href: "/dashboard/facturation", icon: FileText },
-  { key: "linkedin", label: "Linkedin", href: "/dashboard/linkedin", icon: Mail },
-  { key: "demandes-entrantes", label: "Demandes entrantes", href: "/dashboard/demandes-entrantes", icon: Inbox },
+  { key: "taches", label: "Taches", href: "/dashboard/taches", icon: FileText, badge: "auto" },
+  { label: "Commercial", section: true },
+  { key: "demandes-entrantes", label: "Demandes entrantes", href: "/dashboard/demandes-entrantes", icon: Inbox, badge: "urgent" },
   {
     key: "recherche-docs",
     label: "Recherche docs",
@@ -28,7 +29,7 @@ export const navItems: NavItem[] = [
     href: "/dashboard/redaction-offres",
     icon: FileText,
   },
-  { key: "reunion-ia", label: "Réunion", href: "/dashboard/reunion-ia", icon: Mic },
+  { key: "facturation", label: "Creation facture", href: "/dashboard/facturation", icon: FileText },
   {
     key: "redaction-emails",
     label: "Redaction emails",
@@ -41,18 +42,38 @@ export const navItems: NavItem[] = [
     href: "/dashboard/triage-emails",
     icon: Inbox,
   },
+  { key: "linkedin", label: "Linkedin", href: "/dashboard/linkedin", icon: Mail, badge: "nouveau" },
+  { label: "Projets & Clients", section: true },
+  {
+    key: "suivi-projets",
+    label: "Suivi de projets",
+    href: "/dashboard/suivi-projets",
+    icon: BriefcaseBusiness,
+  },
+  {
+    key: "crm",
+    label: "CRM",
+    href: "/dashboard/crm",
+    icon: Users,
+  },
+  { label: "Technique", section: true },
   {
     key: "studio-visuel",
     label: "Studio 3D",
     href: "/dashboard/studio-visuel",
     icon: Box,
   },
+  { key: "reunion-ia", label: "Réunion IA", href: "/dashboard/reunion-ia", icon: Mic },
+  { label: "Creation", section: true },
   {
     key: "studio-marketing",
     label: "Studio marketing",
     href: "/dashboard/studio-marketing",
     icon: Sparkles,
   },
+  { label: "Intelligence", section: true },
+  { key: "veille", label: "Veille", href: "/dashboard/veille", icon: Radar, badge: "nouveau" },
+  { label: "Admin", section: true },
   {
     key: "gestion-roles",
     label: "Gestion des roles",

@@ -231,7 +231,7 @@ export default function StudioVisuelPage() {
     <div className="space-y-6">
       <div>
         <p className="ni-label">Visual intelligence</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Studio 3D</h1>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Studio 3D (Tripo)</h1>
         <p className="mt-2 max-w-4xl text-sm text-muted-foreground">
           Generation de visuels produits 3D pour les offres, presentations techniques et revues internes.
         </p>

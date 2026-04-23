@@ -95,8 +95,8 @@ export default function StudioMarketingPage() {
         transition={{ duration: 0.4 }}
         className="relative"
       >
-        <p className="ni-label">Marketing produit</p>
-        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Studio Créatif IA</h1>
+        <p className="ni-label">Creation visuelle</p>
+        <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Studio Marketing</h1>
         <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
           Créez automatiquement vos visuels produits, photos marketing et vidéos
         </p>
