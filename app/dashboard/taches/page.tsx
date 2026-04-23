@@ -36,17 +36,18 @@ const tasks = [
 
 export default function TachesPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <div>
         <p className="ni-label">Execution quotidienne</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Taches</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          To-do IA centralise. Les taches sont generees automatiquement depuis les autres modules.
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">File des taches</h1>
+        <p className="ni-page-lead mt-2">
+          Chaque ligne indique d&apos;ou vient l&apos;action (badge FACT / INB / LI) et renvoie vers le bon ecran. Les compteurs sont des
+          valeurs demo pour le pitch.
         </p>
       </div>
 
-      <Card className="rounded-sm border-border bg-card">
-        <CardContent className="grid grid-cols-3 gap-3 px-4 py-4 text-sm">
+      <Card className="rounded-sm border-border bg-card shadow-sm">
+        <CardContent className="grid grid-cols-3 gap-3 px-4 py-5 text-sm">
           <div>
             <p className="ni-label">Taches du jour</p>
             <p className="mt-1 text-xl font-semibold text-foreground">12</p>
@@ -62,11 +63,11 @@ export default function TachesPage() {
         </CardContent>
       </Card>
 
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 gap-5">
         {tasks.map((task) => {
           const isInProgress = task.status === "en_cours";
           return (
-            <Card key={task.id} className="rounded-sm border-border bg-card">
+            <Card key={task.id} className="rounded-sm border-border bg-card shadow-sm">
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-4">
                   <CardTitle className="flex items-center gap-2 text-base tracking-tight">
@@ -90,7 +91,7 @@ export default function TachesPage() {
                     href={task.href}
                     className="inline-flex items-center gap-1 rounded-sm border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground transition hover:bg-muted"
                   >
-                    Ouvrir
+                    Ouvrir le module source
                   </Link>
                 </div>
               </CardContent>

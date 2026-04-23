@@ -355,8 +355,9 @@ export default function FacturationPage() {
       <div>
         <p className="ni-label">Finance operationnelle</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Creation facture</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Cree une facture detaillee avec produits/services, quantites, remises et controles HT/TVA/TTC.
+        <p className="ni-page-lead mt-2 max-w-3xl">
+          Partez d&apos;un brief texte ou vocal simule : l&apos;assistant remplit le formulaire, vous verifiez les lignes HT/TVA puis
+          ouvrez l&apos;apercu PDF cote droit. Parfait pour illustrer Omega SA ou tout autre client industriel.
         </p>
       </div>
 
@@ -377,8 +378,12 @@ export default function FacturationPage() {
       </section>
 
       <Card className="rounded-xl border-border bg-card/90 shadow-sm">
-        <CardHeader>
+        <CardHeader className="pb-2">
           <CardTitle className="text-base tracking-tight">Assistant IA facture</CardTitle>
+          <p className="text-xs text-muted-foreground">
+            Saisissez un brief naturel, dictes-le ou collez un extrait client : le chat simule l&apos;extraction des lignes et des
+            montants.
+          </p>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="max-h-56 space-y-2 overflow-auto rounded-md border border-border bg-muted p-3">
@@ -434,7 +439,7 @@ export default function FacturationPage() {
                 </Button>
               )}
               <Button onClick={() => handleAssistantMessage()} className="h-10 rounded-sm">
-                Envoyer
+                Envoyer le brief a l&apos;IA
               </Button>
             </div>
             <p className="mt-1 px-2 text-xs text-muted-foreground">
@@ -446,8 +451,12 @@ export default function FacturationPage() {
 
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1.3fr_1fr]">
         <Card className="rounded-xl border-border bg-card/90 shadow-sm">
-          <CardHeader>
+          <CardHeader className="pb-2">
             <CardTitle className="text-base tracking-tight">Formulaire facture detaille</CardTitle>
+            <p className="text-xs text-muted-foreground">
+              Chaque bloc regroupe une etape logique : client, references, lignes, ajustements. Les totaux se mettent a jour
+              automatiquement (demo).
+            </p>
           </CardHeader>
           <CardContent className="space-y-5">
             <div className="space-y-3 rounded-lg border border-border bg-muted/40 p-4">
@@ -587,23 +596,28 @@ export default function FacturationPage() {
             </div>
 
             <Button onClick={() => setGenerated(true)} className="w-full rounded-md text-sm font-semibold">
-              Generer l&apos;apercu de facture
+              Mettre a jour l&apos;apercu PDF
             </Button>
           </CardContent>
         </Card>
 
         <Card className="rounded-xl border-border bg-card/95 shadow-sm xl:sticky xl:top-6 xl:self-start">
-          <CardHeader>
+          <CardHeader className="pb-2">
             <div className="flex items-center justify-between gap-2">
               <CardTitle className="text-base tracking-tight">Apercu facture</CardTitle>
               <Button variant="outline" className="rounded-md text-xs">
-                Telecharger en PDF
+                Telecharger le PDF (demo)
               </Button>
             </div>
+            <p className="text-xs text-muted-foreground">
+              Rendu proche du papier NI : montrez-le en plein ecran pendant la reunion commerciale.
+            </p>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-foreground">
             {!generated ? (
-              <p className="text-muted-foreground">Remplis le formulaire puis clique sur &quot;Generer l&apos;apercu de facture&quot;.</p>
+              <p className="text-muted-foreground">
+                Renseignez le formulaire puis cliquez sur &quot;Mettre a jour l&apos;apercu PDF&quot; pour afficher la facture ici.
+              </p>
             ) : (
               <div className="rounded-lg border border-border bg-muted/30 p-3">
                 <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#252525] shadow-sm">

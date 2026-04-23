@@ -36,8 +36,10 @@ export function RecordButton() {
     <Card className="ni-surface mx-auto max-w-3xl rounded-lg">
       <CardContent className="space-y-4 py-8 text-center">
         <p className="ni-label">Voice intelligence</p>
-        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Réunion</h2>
-        <p className="text-sm text-muted-foreground">Enregistrez, transcrivez, resumez</p>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">Enregistrement reunion</h2>
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          Bouton central : demarrez / arretez la prise de son simulee, puis affichez resume et taches dans les cartes ci-dessous.
+        </p>
         <motion.button
           whileTap={{ scale: 0.96 }}
           animate={
@@ -58,10 +60,10 @@ export function RecordButton() {
           <Mic className="h-10 w-10" />
         </motion.button>
         <p className="font-medium">
-          {status === "idle" && "Appuyer pour demarrer"}
-          {status === "recording" && `Enregistrement en cours... ${formatTime(time)}`}
-          {status === "processing" && "Transcription en cours..."}
-          {status === "done" && "Analyse terminee"}
+          {status === "idle" && "Cliquez pour demarrer l'enregistrement (demo)"}
+          {status === "recording" && `Micro actif — ${formatTime(time)}`}
+          {status === "processing" && "Transcription et analyse en cours..."}
+          {status === "done" && "Resume disponible : consultez les cartes sous ce bloc"}
         </p>
       </CardContent>
     </Card>

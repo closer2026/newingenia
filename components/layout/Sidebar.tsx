@@ -3,16 +3,13 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { navItems } from "@/lib/mock-data";
-import { ROLE_BADGE_CLASSES } from "@/lib/roles";
 import { NiLogo } from "./NiLogo";
 import { cn } from "@/lib/utils";
 
 export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
   const pathname = usePathname();
-  const role: "admin" = "admin";
 
   return (
     <aside
@@ -38,9 +35,6 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
             </Avatar>
             <div className="min-w-0">
               <p className="truncate text-xs font-semibold tracking-tight text-sidebar-foreground">Arnaud Dupont</p>
-              <Badge className={cn("mt-1 rounded-md border text-[10px]", ROLE_BADGE_CLASSES[role])}>
-                Admin
-              </Badge>
             </div>
           </div>
           </>
@@ -90,18 +84,6 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
                     {item.label}
                   </span>
                 </span>
-                {!collapsed && item.badge ? (
-                  <span
-                    className={cn(
-                      "rounded-sm border px-1.5 py-0.5 text-[9px] uppercase tracking-[0.12em]",
-                      item.badge === "urgent" && "border-red-200 bg-red-50 text-red-700",
-                      item.badge === "nouveau" && "border-blue-200 bg-blue-50 text-blue-700",
-                      item.badge === "auto" && "border-emerald-200 bg-emerald-50 text-emerald-700"
-                    )}
-                  >
-                    {item.badge}
-                  </span>
-                ) : null}
               </Link>
             </div>
           );

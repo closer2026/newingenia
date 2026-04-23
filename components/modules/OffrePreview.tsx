@@ -106,11 +106,16 @@ export function OffrePreview({ generated }: { generated: boolean }) {
 
   return (
     <Card className="ni-surface h-full rounded-xl">
-      <CardHeader className="flex-row items-center justify-between space-y-0">
-        <CardTitle className="text-base tracking-tight">Apercu de l&apos;offre</CardTitle>
+      <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+        <div>
+          <CardTitle className="text-base tracking-tight">Apercu de l&apos;offre</CardTitle>
+          <p className="text-xs text-muted-foreground">
+            Parcourez les 3 pages comme un PDF : intro client, detail technique, conditions.
+          </p>
+        </div>
         <Badge className="rounded-sm border border-emerald-200 bg-emerald-100 text-emerald-700">Genere par IA</Badge>
       </CardHeader>
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-4">
         <motion.div
           key={`${generated ? "on" : "off"}-${activePage}`}
           initial={{ opacity: 0.2, y: 10 }}
@@ -137,9 +142,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
             <ChevronLeft className="mr-1 h-4 w-4" />
             Page precedente
           </Button>
-          <p className="text-xs text-muted-foreground">
-            Navigation pages offre
-          </p>
+          <p className="text-xs text-muted-foreground">Pages 1 a 3 du PDF NI</p>
           <Button
             size="sm"
             variant="outline"
@@ -152,11 +155,21 @@ export function OffrePreview({ generated }: { generated: boolean }) {
           </Button>
         </div>
         <div className="flex flex-wrap gap-2">
-          <Button size="sm" className="rounded-sm">Telecharger en PDF</Button>
-          <Button size="sm" variant="outline" className="rounded-sm">Envoyer par email</Button>
-          <Button size="sm" variant="outline" className="rounded-sm">Regenerer</Button>
+          <Button size="sm" className="rounded-sm">
+            Telecharger le PDF (demo)
+          </Button>
+          <Button size="sm" variant="outline" className="rounded-sm">
+            Simuler l&apos;envoi par email
+          </Button>
+          <Button size="sm" variant="outline" className="rounded-sm">
+            Regenerer le contenu
+          </Button>
         </div>
-        <p className="text-xs text-muted-foreground">{generated ? "Modifie il y a 2 min" : "Apercu en attente de generation"}</p>
+        <p className="text-xs text-muted-foreground">
+          {generated
+            ? "Apercu synchronise avec le formulaire (valeurs demo)."
+            : "Cliquez sur « Generer le PDF avec l'IA (demo) » dans le formulaire de gauche pour remplir cette zone."}
+        </p>
       </CardContent>
     </Card>
   );

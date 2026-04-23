@@ -5,10 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export function PdfViewer() {
   return (
     <Card className="ni-surface h-[680px] rounded-lg">
-      <CardHeader>
+      <CardHeader className="pb-2">
         <CardTitle className="text-base tracking-tight">Document source</CardTitle>
+        <p className="text-xs text-muted-foreground">
+          Panneau lecture : extrait synchronise avec la derniere reponse du chat (demo statique).
+        </p>
       </CardHeader>
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-4">
         <p className="ni-label">Reference active</p>
         <p className="text-sm font-medium text-foreground">Catalogue Structure Bosch Rexroth 2024</p>
         <p className="text-xs text-muted-foreground">Page 47 sur 312</p>
@@ -20,7 +23,7 @@ export function PdfViewer() {
           <span className="rounded-sm bg-[#f0a500] px-1.5 py-0.5 text-[#252525]">Reference 3 842 990 026, section renforcee.</span>
         </div>
         <Button variant="outline" className="w-full rounded-sm">
-          Ouvrir le document complet
+          Ouvrir le PDF catalogue (demo)
         </Button>
         <div className="space-y-2">
           <p className="text-sm font-medium">Autres references suggerees</p>

@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const matrix: [string, boolean, boolean, boolean, boolean][] = [
   ["Recherche docs", true, true, true, false],
   ["Redaction offres", true, true, false, false],
-  ["Réunion", true, true, false, false],
+  ["Réunion IA", true, true, false, false],
   ["Redaction emails", true, true, true, false],
   ["Triage emails", true, false, false, false],
   ["Gestion des roles", true, false, false, false],
@@ -17,11 +17,14 @@ const matrix: [string, boolean, boolean, boolean, boolean][] = [
 
 export function RolesMatrix() {
   return (
-    <div className="space-y-4">
-      <Card className="ni-surface rounded-sm">
-        <CardHeader>
+    <div className="space-y-5">
+      <Card className="ni-surface rounded-sm shadow-sm">
+        <CardHeader className="pb-2">
           <p className="ni-label">Administration</p>
           <CardTitle className="text-base tracking-tight">Matrice des permissions</CardTitle>
+          <p className="text-xs text-muted-foreground">
+            Chaque point vert indique un acces lecture/ecriture ; gris = pas d&apos;acces pour ce role (donnees demo).
+          </p>
         </CardHeader>
         <CardContent>
           <Table>
@@ -39,10 +42,15 @@ export function RolesMatrix() {
           </Table>
         </CardContent>
       </Card>
-      <Card className="ni-surface rounded-sm">
-        <CardHeader className="flex-row items-center justify-between space-y-0">
-          <CardTitle className="text-base tracking-tight">Utilisateurs actifs</CardTitle>
-          <Button size="sm" className="rounded-sm bg-[#252525] hover:bg-[#1e1e1e]">Ajouter un utilisateur</Button>
+      <Card className="ni-surface rounded-sm shadow-sm">
+        <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+          <div>
+            <CardTitle className="text-base tracking-tight">Utilisateurs actifs</CardTitle>
+            <p className="text-xs text-muted-foreground">Comptes fictifs pour illustrer les roles Admin / Manager / Technicien.</p>
+          </div>
+          <Button size="sm" className="rounded-sm bg-[#252525] hover:bg-[#1e1e1e]">
+            Inviter un collaborateur (demo)
+          </Button>
         </CardHeader>
         <CardContent>
           <Table>
@@ -54,7 +62,14 @@ export function RolesMatrix() {
                   <TableCell><Badge className={cn("rounded-sm border", ROLE_BADGE_CLASSES[user.role as keyof typeof ROLE_LABELS])}>{ROLE_LABELS[user.role as keyof typeof ROLE_LABELS]}</Badge></TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.lastLogin}</TableCell>
-                  <TableCell className="space-x-2"><Button variant="outline" size="sm" className="rounded-sm">Modifier</Button><Button variant="outline" size="sm" className="rounded-sm">Desactiver</Button></TableCell>
+                  <TableCell className="space-x-2">
+                    <Button variant="outline" size="sm" className="rounded-sm">
+                      Modifier les droits
+                    </Button>
+                    <Button variant="outline" size="sm" className="rounded-sm">
+                      Suspendre le compte
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

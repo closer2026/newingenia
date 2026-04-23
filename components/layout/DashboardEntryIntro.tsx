@@ -84,10 +84,11 @@ export function DashboardEntryIntro() {
 
                 <p className="ni-label text-center text-[#252525]/55 dark:text-white/55">Newingenia Workspace IA</p>
                 <h2 className="mt-3 text-balance text-xl font-semibold tracking-tight text-[#252525] dark:text-white sm:text-2xl">
-                  Bienvenue dans votre espace
+                  Bienvenue dans le workspace NI
                 </h2>
                 <p className="mt-2 max-w-sm text-pretty text-sm leading-relaxed text-[#252525]/70 dark:text-white/65">
-                  Préparation de votre environnement de travail sécurisé et synchronisation des modules.
+                  Chargement de la démo : vos modules s&apos;affichent dans quelques secondes — aucune donnée réelle n&apos;est
+                  envoyée.
                 </p>
 
                 <LoadingDots />

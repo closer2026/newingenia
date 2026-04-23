@@ -228,26 +228,28 @@ export default function StudioVisuelPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <div>
         <p className="ni-label">Visual intelligence</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Studio 3D (Tripo)</h1>
-        <p className="mt-2 max-w-4xl text-sm text-muted-foreground">
-          Generation de visuels produits 3D pour les offres, presentations techniques et revues internes.
+        <p className="ni-page-lead mt-2 max-w-4xl">
+          Parcours demo : consignes a gauche, viewer WebGL au centre, fiche produit a droite. Les fichiers .glb sont fournis dans
+          le depot pour montrer le rendu reel sans API Tripo.
         </p>
       </div>
 
-      <Card className="rounded-sm border-border bg-[linear-gradient(135deg,var(--color-card)_0%,var(--color-muted)_100%)]">
-        <CardContent className="px-6 py-5 text-sm text-muted-foreground">
-          Flux de travail studio: briefing produit, import de reference, generation assistee puis rendu 3D
-          directement exploitable dans vos documents commerciaux.
+      <Card className="rounded-sm border-border bg-[linear-gradient(135deg,var(--color-card)_0%,var(--color-muted)_100%)] shadow-sm">
+        <CardContent className="px-6 py-5 text-sm leading-relaxed text-muted-foreground">
+          <span className="font-medium text-foreground">Comment pitcher ce module :</span> import photo ou prompt texte, generation
+          simulee avec barre de progression, puis export GLB / capture pour une offre ou une presentation technique.
         </CardContent>
       </Card>
 
       <div className="grid grid-cols-[1.1fr_2fr_1fr] gap-5">
-        <Card className="rounded-sm border-border bg-card">
-          <CardHeader>
-            <CardTitle className="text-base tracking-tight">Zone de generation</CardTitle>
+        <Card className="rounded-sm border-border bg-card shadow-sm">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base tracking-tight">Consignes de generation</CardTitle>
+            <p className="text-xs text-muted-foreground">Choisissez le mode, importez si besoin, puis lancez la simulation de calcul.</p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
@@ -505,7 +507,7 @@ export default function StudioVisuelPage() {
               </select>
             </div>
             <Button onClick={handleGenerate} className="w-full rounded-sm">
-              Generer le modele 3D
+              Lancer la generation simulee
             </Button>
             <div className="rounded-sm border border-border bg-muted/60 p-3">
               <div className="mb-2 flex items-center justify-between">
@@ -519,10 +521,13 @@ export default function StudioVisuelPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-sm border-border bg-card">
+        <Card className="rounded-sm border-border bg-card shadow-sm">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between gap-3">
-              <CardTitle className="text-base tracking-tight">Viewer 3D</CardTitle>
+              <div>
+                <CardTitle className="text-base tracking-tight">Viewer 3D</CardTitle>
+                <p className="text-xs text-muted-foreground">Modeles fournis : changez le preset pour montrer plusieurs produits.</p>
+              </div>
               <div className="flex flex-wrap gap-1.5">
                 {productOptions.map((option) => (
                   <Button
@@ -593,7 +598,7 @@ export default function StudioVisuelPage() {
                   }}
                   className={viewMode === "solid" ? "rounded-sm" : "rounded-sm border-border"}
                 >
-                  Solid View
+                  Vue volumes (mat)
                 </Button>
                 <Button
                   variant={viewMode === "textured" ? "default" : "outline"}
@@ -604,18 +609,19 @@ export default function StudioVisuelPage() {
                   }}
                   className={viewMode === "textured" ? "rounded-sm" : "rounded-sm border-border"}
                 >
-                  Textured View
+                  Vue textures
                 </Button>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="rounded-sm border-border bg-card">
-          <CardHeader>
-            <CardTitle className="text-base tracking-tight">Panneau produit</CardTitle>
+        <Card className="rounded-sm border-border bg-card shadow-sm">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base tracking-tight">Fiche produit rapide</CardTitle>
+            <p className="text-xs text-muted-foreground">Synthese demo : statut, type et actions d&apos;export pour cloturer la slide.</p>
           </CardHeader>
-          <CardContent className="space-y-3 text-sm">
+          <CardContent className="space-y-4 text-sm">
             <p className="flex justify-between text-muted-foreground">
               <span>Produit selectionne</span>
               <span className="font-medium text-foreground">{selectedProduct.label}</span>
@@ -632,12 +638,12 @@ export default function StudioVisuelPage() {
             </p>
             <div className="space-y-2 pt-2">
               <Button variant="outline" className="w-full rounded-sm border-border">
-                Telecharger apercu
+                Telecharger une capture PNG (demo)
               </Button>
               <Button variant="outline" className="w-full rounded-sm border-border">
-                Copier lien
+                Copier le lien du viewer (demo)
               </Button>
-              <Button className="w-full rounded-sm">Utiliser dans devis</Button>
+              <Button className="w-full rounded-sm">Inserer dans une offre (demo)</Button>
             </div>
           </CardContent>
         </Card>

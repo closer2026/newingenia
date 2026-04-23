@@ -27,12 +27,13 @@ const columns = [
 
 export default function SuiviProjetsPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <div>
         <p className="ni-label">Nouveau module direction</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Suivi de projets</h1>
-        <p className="mt-2 max-w-4xl text-sm text-muted-foreground">
-          Vue kanban des projets en cours, timeline detaillee et resume IA pour remplacer le suivi Excel.
+        <p className="ni-page-lead mt-2 max-w-4xl">
+          Kanban + KPI + fiche detaillee : meme information qu&apos;un tableau Excel, mais lisible en reunion et enrichie par un
+          resume IA (donnees demo).
         </p>
       </div>
 
@@ -43,8 +44,8 @@ export default function SuiviProjetsPage() {
           { label: "Livraisons semaine", value: "4" },
           { label: "Retards critiques", value: "1" },
         ].map((kpi) => (
-          <Card key={kpi.label} className="rounded-sm border-border bg-card">
-            <CardContent className="px-4 py-4">
+          <Card key={kpi.label} className="rounded-sm border-border bg-card shadow-sm">
+            <CardContent className="px-4 py-5">
               <p className="ni-label">{kpi.label}</p>
               <p className="mt-2 text-xl font-semibold">{kpi.value}</p>
             </CardContent>
@@ -54,7 +55,7 @@ export default function SuiviProjetsPage() {
 
       <section className="grid grid-cols-4 gap-4">
         {columns.map((column) => (
-          <Card key={column.title} className="rounded-sm border-border bg-card">
+          <Card key={column.title} className="rounded-sm border-border bg-card shadow-sm">
             <CardHeader className="pb-3">
               <CardTitle className="text-sm uppercase tracking-[0.14em] text-muted-foreground">{column.title}</CardTitle>
             </CardHeader>
@@ -67,10 +68,10 @@ export default function SuiviProjetsPage() {
                   <p className="mt-1 text-xs font-medium text-foreground">{item.status}</p>
                   <div className="mt-3 flex gap-2">
                     <Button variant="outline" size="sm" className="h-7 rounded-sm border-border text-xs">
-                      Voir
+                      Ouvrir la fiche
                     </Button>
                     <Button variant="outline" size="sm" className="h-7 rounded-sm border-border text-xs">
-                      IA
+                      Actualiser le resume IA
                     </Button>
                   </div>
                 </div>
@@ -80,9 +81,10 @@ export default function SuiviProjetsPage() {
         ))}
       </section>
 
-      <Card className="rounded-sm border-border bg-card">
-        <CardHeader>
+      <Card className="rounded-sm border-border bg-card shadow-sm">
+        <CardHeader className="pb-2">
           <CardTitle className="text-base tracking-tight">Fiche projet detaillee · Cartier SA</CardTitle>
+          <p className="text-xs text-muted-foreground">Vue drill-down : jalons, alerte et actions rapides pour l&apos;equipe.</p>
         </CardHeader>
         <CardContent className="space-y-4 text-sm">
           <p className="text-muted-foreground">
@@ -99,12 +101,12 @@ export default function SuiviProjetsPage() {
             prioritaire recommandee : relancer SF aujourd&apos;hui.
           </div>
           <div className="flex flex-wrap gap-2">
-            <Button className="rounded-sm">Alerter l&apos;equipe</Button>
+            <Button className="rounded-sm">Notifier l&apos;equipe projet</Button>
             <Button variant="outline" className="rounded-sm border-border">
-              Email client
+              Preparer un email client
             </Button>
             <Button variant="outline" className="rounded-sm border-border">
-              Note
+              Ajouter une note de suivi
             </Button>
           </div>
         </CardContent>

@@ -97,8 +97,9 @@ export default function StudioMarketingPage() {
       >
         <p className="ni-label">Creation visuelle</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Studio Marketing</h1>
-        <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-          Créez automatiquement vos visuels produits, photos marketing et vidéos
+        <p className="ni-page-lead mt-2 max-w-3xl">
+          Brief + style : generez un visuel principal et trois variantes pour LinkedIn, un devis ou un salon. Les images
+          ci-dessous sont des placeholders (demo).
         </p>
         <div className="mt-5 flex flex-wrap gap-2">
           {quickPresets.map((preset) => (
@@ -127,6 +128,9 @@ export default function StudioMarketingPage() {
           <Card className="overflow-hidden rounded-xl border-border bg-card/90 shadow-sm backdrop-blur-sm">
             <CardHeader className="border-b border-border/80 pb-3">
               <CardTitle className="text-base tracking-tight">Brief créatif</CardTitle>
+              <p className="text-xs text-muted-foreground">
+                Decrivez le produit et l&apos;ambiance : les listes ci-dessous structurent le prompt envoye a l&apos;IA en version reelle.
+              </p>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
               <div className="space-y-2">
@@ -268,6 +272,7 @@ export default function StudioMarketingPage() {
           <Card className="overflow-hidden rounded-xl border-border bg-card/90 shadow-sm backdrop-blur-sm">
             <CardHeader className="border-b border-border/80 pb-3">
               <CardTitle className="text-base tracking-tight">Aperçu</CardTitle>
+              <p className="text-xs text-muted-foreground">Rendu principal : utilisez-le pour valider cadrage, lumiere et message avant export.</p>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
               <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-muted/40">
@@ -330,7 +335,7 @@ export default function StudioMarketingPage() {
               <div className="flex flex-wrap gap-2">
                 <Button className="flex-1 rounded-lg" onClick={() => runGeneration(false)} disabled={generating}>
                   {generating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4" />}
-                  Générer
+                  Generer le visuel principal
                 </Button>
                 <Button
                   variant="outline"
@@ -339,7 +344,7 @@ export default function StudioMarketingPage() {
                   disabled={generating || !mainVisual}
                 >
                   <RefreshCw className="mr-2 h-4 w-4" />
-                  Générer variantes
+                  Regenerer les 3 variantes
                 </Button>
               </div>
             </CardContent>
@@ -355,6 +360,7 @@ export default function StudioMarketingPage() {
           <Card className="overflow-hidden rounded-xl border-border bg-card/90 shadow-sm backdrop-blur-sm">
             <CardHeader className="border-b border-border/80 pb-3">
               <CardTitle className="text-base tracking-tight">Actions</CardTitle>
+              <p className="text-xs text-muted-foreground">Une fois le visuel choisi, montrez comment il rejoint les autres modules.</p>
             </CardHeader>
             <CardContent className="flex flex-col gap-2 pt-4">
               <Button
@@ -404,9 +410,12 @@ export default function StudioMarketingPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.4 }}
       >
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold tracking-tight">Variantes générées par IA</h2>
-          <span className="text-xs text-muted-foreground">3 propositions automatiques</span>
+        <div className="mb-4 flex items-center justify-between gap-3">
+          <div>
+            <h2 className="text-lg font-semibold tracking-tight">Variantes generees</h2>
+            <p className="text-xs text-muted-foreground">Trois declinaisons de prompt pour comparer cadrage et ambiance.</p>
+          </div>
+          <span className="shrink-0 text-xs text-muted-foreground">3 propositions (demo)</span>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {[0, 1, 2].map((i) => (

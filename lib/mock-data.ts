@@ -8,15 +8,14 @@ export type NavItem = {
   href?: string;
   icon?: LucideIcon;
   section?: boolean;
-  badge?: "urgent" | "nouveau" | "auto";
   adminOnly?: boolean;
 };
 
 export const navItems: NavItem[] = [
   { key: "dashboard", label: "Tableau de bord", href: "/dashboard", icon: Home },
-  { key: "taches", label: "Taches", href: "/dashboard/taches", icon: FileText, badge: "auto" },
+  { key: "taches", label: "Taches", href: "/dashboard/taches", icon: FileText },
   { label: "Commercial", section: true },
-  { key: "demandes-entrantes", label: "Demandes entrantes", href: "/dashboard/demandes-entrantes", icon: Inbox, badge: "urgent" },
+  { key: "demandes-entrantes", label: "Demandes entrantes", href: "/dashboard/demandes-entrantes", icon: Inbox },
   {
     key: "recherche-docs",
     label: "Recherche docs",
@@ -42,7 +41,7 @@ export const navItems: NavItem[] = [
     href: "/dashboard/triage-emails",
     icon: Inbox,
   },
-  { key: "linkedin", label: "Linkedin", href: "/dashboard/linkedin", icon: Mail, badge: "nouveau" },
+  { key: "linkedin", label: "Linkedin", href: "/dashboard/linkedin", icon: Mail },
   { label: "Projets & Clients", section: true },
   {
     key: "suivi-projets",
@@ -72,7 +71,7 @@ export const navItems: NavItem[] = [
     icon: Sparkles,
   },
   { label: "Intelligence", section: true },
-  { key: "veille", label: "Veille", href: "/dashboard/veille", icon: Radar, badge: "nouveau" },
+  { key: "veille", label: "Veille", href: "/dashboard/veille", icon: Radar },
   { label: "Admin", section: true },
   {
     key: "gestion-roles",

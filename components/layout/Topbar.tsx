@@ -57,15 +57,11 @@ export function Topbar({
             {sidebarCollapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
           </Button>
           <div>
-          <p className="ni-label">Workspace navigation</p>
+          <p className="ni-label">Vous etes ici</p>
           <p className="text-sm font-semibold tracking-tight text-foreground">{breadcrumb}</p>
           </div>
         </div>
         <div className="flex flex-1 items-center justify-end gap-3">
-          <div className="hidden items-center gap-2 rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] text-emerald-800 xl:flex">
-            <span className="inline-flex h-2 w-2 animate-pulse rounded-full bg-emerald-500" />
-            Mode demo actif
-          </div>
           <button
             onClick={() => setOpenPalette(true)}
             className="hidden h-11 w-full max-w-xl items-center justify-between rounded-md border border-border bg-card px-3 text-xs text-muted-foreground transition hover:bg-muted lg:flex"

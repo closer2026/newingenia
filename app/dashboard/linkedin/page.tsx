@@ -42,63 +42,67 @@ export default function LinkedinPage() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <div>
         <p className="ni-label">Social selling</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Linkedin</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Simule une connexion Linkedin entreprise: l&apos;agent IA redige le post, tu valides, puis tu publies.
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">LinkedIn entreprise</h1>
+        <p className="ni-page-lead mt-2">
+          Remplissez le brief : l&apos;IA propose un brouillon aligne ton NI (B2B, sans jargon vide). Validez, puis simulez la
+          publication sur la page entreprise — aucune API LinkedIn dans cette maquette.
         </p>
       </div>
 
       <div className="grid grid-cols-2 gap-5">
-        <Card className="rounded-sm border-border bg-card">
-          <CardHeader>
+        <Card className="rounded-sm border-border bg-card shadow-sm">
+          <CardHeader className="pb-2">
             <CardTitle className="text-base tracking-tight">Brief de publication</CardTitle>
+            <p className="text-xs text-muted-foreground">
+              Conseil demo : citez un client, un livrable concret et l&apos;angle (salon, etude de cas, produit).
+            </p>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-5">
             <div className="space-y-1.5">
-              <Label>Media (photo/video)</Label>
+              <Label>Fichier media (optionnel)</Label>
               <Input
-                placeholder="Ex: atelier-client-omega.mp4"
+                placeholder="Ex. : livraison-postes-omega.jpg"
                 value={mediaName}
                 onChange={(e) => setMediaName(e.target.value)}
               />
-              <p className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                Piece jointe simulee frontend
+              <p className="text-xs leading-relaxed text-muted-foreground">
+                Indiquez un nom de fichier : en demo, seul le libelle est conserve (pas d&apos;upload reel).
               </p>
             </div>
 
             <div className="space-y-1.5">
-              <Label>Contexte</Label>
+              <Label>Contexte metier</Label>
               <Textarea
                 rows={4}
-                placeholder="Explique la situation, le projet et ce qui a ete realise."
+                placeholder="Ex. : livraison de 3 postes NI'One ESD chez Cartier, integration en fin de ligne, delai tenu."
                 value={context}
                 onChange={(e) => setContext(e.target.value)}
               />
             </div>
 
             <div className="space-y-1.5">
-              <Label>But du post</Label>
+              <Label>Objectif du post</Label>
               <Textarea
                 rows={3}
-                placeholder="Ex: generer des leads PME industrielles en Suisse romande."
+                placeholder="Ex. : annoncer notre presence SIAMS + inviter les partenaires a prendre rendez-vous sur le stand."
                 value={goal}
                 onChange={(e) => setGoal(e.target.value)}
               />
             </div>
 
             <Button disabled={!canGenerate} onClick={generatePost} className="w-full rounded-sm">
-              Generer le post IA
+              Generer le brouillon avec l&apos;IA
             </Button>
           </CardContent>
         </Card>
 
-        <Card className="rounded-sm border-border bg-card">
-          <CardHeader>
+        <Card className="rounded-sm border-border bg-card shadow-sm">
+          <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-base tracking-tight">Proposition IA</CardTitle>
+              <CardTitle className="text-base tracking-tight">Brouillon genere</CardTitle>
               {generatedPost ? (
                 <Badge className="rounded-sm border border-border bg-muted text-muted-foreground">
                   Brouillon pret
@@ -107,9 +111,13 @@ export default function LinkedinPage() {
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
+            <p className="text-xs text-muted-foreground">
+              Relisez, coupez les phrases trop longues, puis validez. Les hashtags restent modifiables jusqu&apos;a la publication
+              simulee.
+            </p>
             <Textarea
               rows={14}
-              placeholder="Le post genere apparaitra ici..."
+              placeholder="Le texte propose par l&apos;IA apparait ici. Vous pouvez l&apos;editer librement."
               value={generatedPost}
               onChange={(e) => setGeneratedPost(e.target.value)}
             />
@@ -124,20 +132,20 @@ export default function LinkedinPage() {
                 }}
                 className="rounded-sm"
               >
-                Valider
+                Marquer comme valide
               </Button>
               <Button
                 disabled={!validated}
                 onClick={() => setPublished(true)}
                 className="rounded-sm"
               >
-                Valider et publier
+                Publier sur la page (demo)
               </Button>
             </div>
 
             {published ? (
               <p className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
-                Post publie sur la page Linkedin entreprise (simulation frontend).
+                Publication simulee : en production, cette etape appellerait l&apos;API LinkedIn avec vos droits entreprise.
               </p>
             ) : null}
           </CardContent>

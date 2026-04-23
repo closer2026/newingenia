@@ -46,8 +46,11 @@ export function DocsChat() {
         <div>
           <p className="ni-label">Module IA</p>
           <h2 className="font-semibold tracking-tight text-foreground">Recherche documentation</h2>
+          <p className="mt-1 max-w-xl text-xs leading-relaxed text-muted-foreground">
+            Posez une question technique : la reponse cite toujours un document et une page (conversation demo prechargee + simulation).
+          </p>
         </div>
-        <Badge className="rounded-md border border-border bg-muted text-foreground">Catalogues indexes : 12 docs</Badge>
+        <Badge className="rounded-md border border-border bg-muted text-foreground">12 catalogues indexes (demo)</Badge>
       </div>
       <ScrollArea className="flex-1 px-5 py-4">
         <div className="space-y-3">
@@ -76,15 +79,23 @@ export function DocsChat() {
       </ScrollArea>
       <div className="border-t border-border p-4">
         <div className="flex items-center gap-2">
-          <Button size="icon" variant="outline" className="rounded-sm">
+          <Button size="icon" variant="outline" className="rounded-sm" type="button" title="Joindre un fichier (demo)" aria-label="Joindre un fichier (demo)">
             <Paperclip className="h-4 w-4" />
           </Button>
-          <Input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Posez votre question..." className="rounded-sm" />
-          <Button onClick={send} className="rounded-sm">
-            <Send className="h-4 w-4" />
+          <Input
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="Ex. : quelle reference pour 120 kg sur 2 m ?"
+            className="rounded-sm"
+          />
+          <Button onClick={send} className="rounded-sm px-3" aria-label="Envoyer la question">
+            <Send className="mr-1.5 h-4 w-4" />
+            Envoyer
           </Button>
         </div>
-        <p className="mt-2 text-xs text-muted-foreground">L&apos;agent repose des questions si necessaire</p>
+        <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
+          L&apos;agent reformule ou demande une precision avant de citer une reference — comportement attendu en production.
+        </p>
       </div>
     </div>
   );

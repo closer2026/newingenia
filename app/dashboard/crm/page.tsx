@@ -5,18 +5,20 @@ import { Button } from "@/components/ui/button";
 
 export default function CrmPage() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <div>
         <p className="ni-label">Projets & Clients</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">CRM</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Carnet de contacts et suivi relationnel avec resume IA et relances automatiques.
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">CRM leger</h1>
+        <p className="ni-page-lead mt-2">
+          Vue demo d&apos;un compte strategique : contacts, historique chiffre, timeline d&apos;echanges et resume IA pour preparer le
+          prochain rendez-vous sans relire 50 emails.
         </p>
       </div>
 
-      <Card className="rounded-sm border-border bg-card">
-        <CardHeader>
+      <Card className="rounded-sm border-border bg-card shadow-sm">
+        <CardHeader className="pb-2">
           <CardTitle className="text-base tracking-tight">Fiche client · Omega SA</CardTitle>
+          <p className="text-xs text-muted-foreground">Exemple horlogerie : montrez la continuite commerciale et la prochaine opportunite.</p>
         </CardHeader>
         <CardContent className="space-y-4 text-sm">
           <div className="grid grid-cols-2 gap-3 rounded-sm border border-border bg-muted/30 p-3">
@@ -45,15 +47,15 @@ export default function CrmPage() {
           </div>
 
           <div className="flex flex-wrap gap-2">
-            <Button className="rounded-sm">Nouvelle offre</Button>
+            <Button className="rounded-sm">Rediger une nouvelle offre</Button>
             <Button variant="outline" className="rounded-sm border-border">
-              Email
+              Preparer un email client
             </Button>
             <Button variant="outline" className="rounded-sm border-border">
-              Appel
+              Logger un appel
             </Button>
             <Button variant="outline" className="rounded-sm border-border">
-              Note
+              Ajouter une note interne
             </Button>
           </div>
         </CardContent>

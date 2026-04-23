@@ -134,4 +134,9 @@
   .ni-label {
     @apply text-[10px] uppercase tracking-[0.24em] text-muted-foreground;
   }
+
+  /** Sous-titre de page : lisible, sans changer la structure des layouts */
+  .ni-page-lead {
+    @apply max-w-3xl text-sm leading-relaxed text-muted-foreground;
+  }
 }

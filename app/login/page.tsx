@@ -29,8 +29,10 @@ export default function LoginPage() {
             <NiLogo />
             <div>
               <p className="ni-label">Espace securise</p>
-              <h1 className="mt-1 text-xl font-semibold tracking-tight text-foreground">Connexion</h1>
-              <p className="text-sm text-muted-foreground">Plateforme IA privee · New Ingenia SA</p>
+              <h1 className="mt-1 text-xl font-semibold tracking-tight text-foreground">Connexion collaborateurs</h1>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Acces au workspace interne NI : demandes, offres, facturation et assistants IA (maquette de demonstration).
+              </p>
             </div>
             <div className="space-y-3">
               <Label>Email</Label>
@@ -39,9 +41,11 @@ export default function LoginPage() {
               <Input defaultValue="••••••••" type="password" />
             </div>
             <Button onClick={handleLogin} disabled={loading} className="w-full rounded-sm">
-              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Se connecter"}
+              {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Acceder au tableau de bord"}
             </Button>
-            <p className="text-center text-xs text-muted-foreground">Acces reserve aux collaborateurs New Ingenia SA</p>
+            <p className="text-center text-xs leading-relaxed text-muted-foreground">
+              Acces reserve aux collaborateurs New Ingenia SA. Les identifiants sont pre-remplis pour la demo.
+            </p>
           </CardContent>
         </Card>
       </motion.div>

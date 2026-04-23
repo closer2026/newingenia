@@ -13,22 +13,24 @@ export default function ParametresPage() {
   const [autoSummaryEnabled, setAutoSummaryEnabled] = useState(true);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-7">
       <div>
         <p className="ni-label">Configuration</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Parametres</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Personnalisez l&apos;interface, le compte admin et les preferences de notifications de la plateforme.
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Parametres workspace</h1>
+        <p className="ni-page-lead mt-2">
+          Reglages visuels et preferences de notification pour la demo. Les changements restent dans le navigateur (pas de
+          sauvegarde serveur).
         </p>
       </div>
 
       <div className="grid gap-5 lg:grid-cols-2">
-        <Card className="rounded-lg border-border">
-          <CardHeader>
+        <Card className="rounded-lg border-border shadow-sm">
+          <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2 text-base tracking-tight">
               <UserCog className="h-4 w-4" />
               Profil administrateur
             </CardTitle>
+            <p className="text-xs text-muted-foreground">Identite affichee dans l&apos;en-tete et les emails signes NI.</p>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-muted-foreground">
             <div className="rounded-md border border-border bg-card p-3">
@@ -39,16 +41,17 @@ export default function ParametresPage() {
               <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Email</p>
               <p className="mt-1 font-medium text-foreground">arnaud.dupont@newingenia.ch</p>
             </div>
-            <Button className="rounded-md">Mettre a jour le profil</Button>
+            <Button className="rounded-md">Enregistrer les infos profil (demo)</Button>
           </CardContent>
         </Card>
 
-        <Card className="rounded-lg border-border">
-          <CardHeader>
+        <Card className="rounded-lg border-border shadow-sm">
+          <CardHeader className="pb-2">
             <CardTitle className="flex items-center gap-2 text-base tracking-tight">
               {theme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
               Apparence de la plateforme
             </CardTitle>
+            <p className="text-xs text-muted-foreground">Choisissez le contraste adapte a la salle de reunion ou au bureau.</p>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-muted-foreground">
             <p>Selectionnez le theme principal de votre environnement de travail.</p>
@@ -76,12 +79,13 @@ export default function ParametresPage() {
         </Card>
       </div>
 
-      <Card className="rounded-lg border-border">
-        <CardHeader>
+      <Card className="rounded-lg border-border shadow-sm">
+        <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-base tracking-tight">
             <Bell className="h-4 w-4" />
             Notifications internes
           </CardTitle>
+          <p className="text-xs text-muted-foreground">Interrupteurs demo : montrez quels rappels automatiques existent dans le produit cible.</p>
         </CardHeader>
         <CardContent className="grid gap-3 text-sm text-muted-foreground md:grid-cols-3">
           {[
@@ -112,22 +116,23 @@ export default function ParametresPage() {
                     : "border-border bg-muted text-muted-foreground"
                 }`}
               >
-                {item.enabled ? "Active" : "Desactivee"}
+                {item.enabled ? "Notifications actives" : "Notifications coupees"}
               </button>
             </div>
           ))}
         </CardContent>
       </Card>
 
-      <Card className="rounded-lg border-border">
-        <CardHeader>
+      <Card className="rounded-lg border-border shadow-sm">
+        <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-base tracking-tight">
             <Shield className="h-4 w-4" />
             Gouvernance workspace
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-sm text-muted-foreground">
-          Tous les modules sont accessibles avec un compte administrateur unique pour cette maquette de presentation.
+        <CardContent className="text-sm leading-relaxed text-muted-foreground">
+          Compte administrateur unique pour cette maquette : sert a montrer l&apos;integralite des ecrans sans gerer plusieurs
+          logins techniques pendant la presentation.
         </CardContent>
       </Card>
     </div>

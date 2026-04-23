@@ -9,11 +9,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export function EmailPreview({ generated }: { generated: boolean }) {
   return (
     <Card className="ni-surface rounded-lg">
-      <CardHeader className="flex-row items-center justify-between space-y-0">
-        <CardTitle className="text-base tracking-tight">Apercu email</CardTitle>
+      <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
+        <div>
+          <CardTitle className="text-base tracking-tight">Apercu email</CardTitle>
+          <p className="text-xs text-muted-foreground">Format NI : en-tete, destinataire, corps et signature.</p>
+        </div>
         <Badge className="rounded-sm border border-emerald-200 bg-emerald-100 text-emerald-700">Genere par IA · Professionnel</Badge>
       </CardHeader>
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-4">
         <motion.div
           key={generated ? "gen" : "idle"}
           initial={{ opacity: 0.3, y: 10 }}
@@ -30,10 +33,18 @@ export function EmailPreview({ generated }: { generated: boolean }) {
           </div>
         </motion.div>
         <div className="flex flex-wrap gap-2">
-          <Button size="sm" className="rounded-sm">Envoyer</Button>
-          <Button size="sm" variant="outline" className="rounded-sm" onClick={() => toast.success("Email copie !")}>Copier</Button>
-          <Button size="sm" variant="outline" className="rounded-sm">Regenerer</Button>
-          <Button size="sm" variant="outline" className="rounded-sm">Modifier manuellement</Button>
+          <Button size="sm" className="rounded-sm">
+            Simuler l&apos;envoi
+          </Button>
+          <Button size="sm" variant="outline" className="rounded-sm" onClick={() => toast.success("Texte copie dans le presse-papier")}>
+            Copier le corps
+          </Button>
+          <Button size="sm" variant="outline" className="rounded-sm">
+            Regenerer avec un autre ton
+          </Button>
+          <Button size="sm" variant="outline" className="rounded-sm">
+            Editer manuellement
+          </Button>
         </div>
       </CardContent>
     </Card>
