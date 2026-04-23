@@ -86,7 +86,7 @@ export default function SuiviProjetsPage() {
         </CardHeader>
         <CardContent className="space-y-4 text-sm">
           <p className="text-muted-foreground">
-            Statut : EN CONCEPTION · Budget valide : CHF 24'000 · Livraison souhaitee : fin mai 2026.
+            Statut : EN CONCEPTION · Budget valide : CHF 24&apos;000 · Livraison souhaitee : fin mai 2026.
           </p>
           <div className="space-y-2 rounded-sm border border-border bg-muted/30 p-3 text-muted-foreground">
             <p>15/04 · Reunion de lancement</p>

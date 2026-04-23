@@ -28,11 +28,12 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
 
   const results = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    if (!normalized) return navItems;
-    return navItems.filter(
+    const searchableItems = navItems.filter((item) => Boolean(item.href));
+    if (!normalized) return searchableItems;
+    return searchableItems.filter(
       (item) =>
         item.label.toLowerCase().includes(normalized) ||
-        item.href.toLowerCase().includes(normalized)
+        item.href!.toLowerCase().includes(normalized)
     );
   }, [query]);
 
@@ -58,8 +59,8 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
           ) : (
             results.map((item) => (
               <Link
-                key={item.href}
-                href={item.href}
+                key={item.href!}
+                href={item.href!}
                 onClick={onClose}
                 className="flex items-center justify-between rounded-md px-3 py-2.5 text-sm text-popover-foreground transition hover:bg-muted"
               >

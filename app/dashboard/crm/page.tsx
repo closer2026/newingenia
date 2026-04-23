@@ -28,8 +28,8 @@ export default function CrmPage() {
 
           <div className="rounded-sm border border-border p-3">
             <p className="ni-label mb-2">Historique commercial</p>
-            <p className="text-muted-foreground">2026 : 2 projets · CHF 34'500 · 1 en cours</p>
-            <p className="text-muted-foreground">2025 : 3 projets · CHF 52'000 · tous livres</p>
+            <p className="text-muted-foreground">2026 : 2 projets · CHF 34&apos;500 · 1 en cours</p>
+            <p className="text-muted-foreground">2025 : 3 projets · CHF 52&apos;000 · tous livres</p>
           </div>
 
           <div className="rounded-sm border border-border p-3">
