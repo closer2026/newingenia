@@ -26,7 +26,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
                 <p>Validite: 30 jours</p>
               </div>
             </div>
-            <p className="font-medium text-[#696969]">Destinataire : Manufacture Horlogere Delta</p>
+            <p className="font-medium text-[#252525]">Destinataire : Manufacture Horlogere Delta</p>
             <p className="mt-2 text-xs text-zinc-700">
               Madame, Monsieur, suite à votre demande, nous vous transmettons notre proposition pour la fourniture
               et l&apos;intégration de 3 postes NI&apos;One avec surface ESD, éclairage intégré et rangements outils.
@@ -44,7 +44,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
         title: "Page 2 · Detail technique & budget",
         content: (
           <>
-            <p className="mb-3 text-sm font-semibold text-[#696969]">Detail des lignes</p>
+            <p className="mb-3 text-sm font-semibold text-[#252525]">Detail des lignes</p>
             <div className="overflow-hidden rounded-md border border-zinc-200">
               <div className="grid grid-cols-[2fr_0.6fr_1fr] bg-zinc-100 px-3 py-2 text-xs font-semibold text-zinc-700">
                 <p>Designation</p>
@@ -76,7 +76,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
         title: "Page 3 · Conditions & signature",
         content: (
           <>
-            <p className="mb-3 text-sm font-semibold text-[#696969]">Conditions commerciales</p>
+            <p className="mb-3 text-sm font-semibold text-[#252525]">Conditions commerciales</p>
             <div className="space-y-2 text-xs text-zinc-700">
               <p>• Paiement à 30 jours fin de mois.</p>
               <p>• Offre valable 30 jours des la date d&apos;emission.</p>
@@ -122,7 +122,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           className="rounded-lg border border-border bg-muted/30 p-3 text-sm"
         >
-          <div className="mx-auto w-full max-w-[720px] rounded-md border border-zinc-200 bg-white p-7 text-[#696969] shadow-sm">
+          <div className="mx-auto w-full max-w-[720px] rounded-md border border-zinc-200 bg-white p-7 text-[#252525] shadow-sm">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">{pages[activePage]?.title}</p>
               <p className="text-xs text-zinc-500">Page {activePage + 1} / {totalPages}</p>

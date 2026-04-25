@@ -51,7 +51,7 @@ export function Topbar({
 
   return (
     <>
-      <header className="flex h-[72px] items-center gap-4 border-b border-border/70 bg-background/68 px-6 shadow-[0_18px_60px_-50px_rgba(105,105,105,0.65)] backdrop-blur-xl xl:px-8">
+      <header className="flex h-[72px] items-center gap-4 border-b border-border/70 bg-background/68 px-6 shadow-[0_18px_60px_-50px_rgba(37,37,37,0.65)] backdrop-blur-xl xl:px-8">
         <div className="flex min-w-72 items-center gap-2">
           <Button
             size="icon"

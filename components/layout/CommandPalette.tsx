@@ -40,7 +40,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-[#696969]/35 p-8 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-[#252525]/35 p-8 backdrop-blur-sm">
       <div className="w-full max-w-2xl rounded-xl border border-border bg-popover shadow-2xl">
         <div className="flex items-center gap-2 border-b border-border px-4 py-3">
           <Search className="h-4 w-4 text-muted-foreground" />

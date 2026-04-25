@@ -97,7 +97,7 @@ export default function DemoPage() {
       <DemoFlowStatus flow={flow} onReset={() => setFlow(null)} />
       <section className="ni-surface overflow-hidden">
         <div className="grid grid-cols-[1.4fr_0.8fr]">
-          <div className="relative bg-[#696969] px-9 py-10 text-white">
+          <div className="relative bg-[#252525] px-9 py-10 text-white">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(255,255,255,0.18),transparent_30%)]" />
             <div className="relative">
               <p className="ni-label text-white/60">Parcours de compréhension</p>
@@ -139,7 +139,7 @@ export default function DemoPage() {
                 <p className="mt-2 text-sm leading-6 text-muted-foreground">{currentStep.title}</p>
                 <Link
                   href={currentStep.href}
-                  className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-[0_18px_44px_-30px_rgba(105,105,105,0.85)] transition hover:-translate-y-0.5"
+                  className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-foreground px-4 py-2 text-sm font-semibold text-background shadow-[0_18px_44px_-30px_rgba(37,37,37,0.85)] transition hover:-translate-y-0.5"
                 >
                   Ouvrir cette étape
                   <ArrowRight className="h-4 w-4" />
@@ -217,7 +217,7 @@ export default function DemoPage() {
                 </div>
                 <Link
                   href={item.href}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-foreground px-4 py-3 text-sm font-semibold text-background shadow-[0_20px_48px_-32px_rgba(105,105,105,0.85)] transition hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-foreground px-4 py-3 text-sm font-semibold text-background shadow-[0_20px_48px_-32px_rgba(37,37,37,0.85)] transition hover:-translate-y-0.5"
                 >
                   Ouvrir
                   <ArrowRight className="h-4 w-4" />

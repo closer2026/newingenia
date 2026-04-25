@@ -77,7 +77,7 @@ export function OffreForm({
           Piece jointe possible : plan, photo de ligne ou cahier des charges client.
         </div>
         {loading ? <Progress value={progress} /> : null}
-        <Button onClick={generate} className="w-full rounded-sm bg-[#696969] hover:bg-[#5f5f5f]">
+        <Button onClick={generate} className="w-full rounded-sm bg-[#252525] hover:bg-[#1e1e1e]">
           Préparer la base d&apos;offre
         </Button>
         <Button variant="outline" className="w-full rounded-sm">

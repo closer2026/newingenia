@@ -119,7 +119,7 @@ export default function DashboardPage() {
         className="ni-surface overflow-hidden"
       >
         <div className="grid grid-cols-5">
-          <div className="relative col-span-3 overflow-hidden bg-[#696969] px-9 py-11 text-white">
+          <div className="relative col-span-3 overflow-hidden bg-[#252525] px-9 py-11 text-white">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(255,255,255,0.18),transparent_30%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.10),transparent_28%)]" />
             <div className="relative">
               <p className="ni-label text-white/62">NI · Workspace IA</p>
@@ -133,7 +133,7 @@ export default function DashboardPage() {
               <div className="mt-8 flex gap-3">
                 <Link
                   href="/dashboard/demo"
-                  className="rounded-2xl bg-white px-4 py-2.5 text-sm font-semibold text-[#696969] shadow-[0_18px_42px_-24px_rgba(255,255,255,0.75)] transition hover:-translate-y-0.5"
+                  className="rounded-2xl bg-white px-4 py-2.5 text-sm font-semibold text-[#252525] shadow-[0_18px_42px_-24px_rgba(255,255,255,0.75)] transition hover:-translate-y-0.5"
                 >
                   Voir les exemples
                 </Link>
@@ -188,7 +188,7 @@ export default function DashboardPage() {
             text: "Voir l'historique client, les actions à faire et les prochaines relances.",
           },
         ].map((item) => (
-          <Card key={item.title} className="hover:-translate-y-1 hover:shadow-[0_28px_70px_-50px_rgba(105,105,105,0.48)]">
+          <Card key={item.title} className="hover:-translate-y-1 hover:shadow-[0_28px_70px_-50px_rgba(37,37,37,0.48)]">
             <CardContent className="px-4 py-4">
               <p className="text-sm font-semibold text-foreground">{item.title}</p>
               <p className="mt-3 text-xs leading-6 text-muted-foreground">{item.text}</p>
@@ -264,7 +264,7 @@ export default function DashboardPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.08, duration: 0.35 }}
             >
-              <Card className="overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/86 hover:shadow-[0_30px_80px_-52px_rgba(105,105,105,0.55)]">
+              <Card className="overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/86 hover:shadow-[0_30px_80px_-52px_rgba(37,37,37,0.55)]">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-start justify-between gap-3 text-base tracking-tight">
                     <span>{module.title}</span>

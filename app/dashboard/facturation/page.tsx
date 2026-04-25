@@ -626,7 +626,7 @@ export default function FacturationPage() {
               </p>
             ) : (
               <div className="rounded-lg border border-border bg-muted/30 p-3">
-                <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#696969] shadow-sm">
+                <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#252525] shadow-sm">
                   <div className="mb-6 flex items-start justify-between border-b border-zinc-200 pb-4">
                     <div>
                       <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Facture</p>
