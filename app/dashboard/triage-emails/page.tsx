@@ -8,14 +8,14 @@ const buckets = [
   {
     title: "Urgent",
     count: 3,
-    tone: "border-red-200 bg-red-50/80 text-red-900",
+    tone: "border-red-200 bg-red-50/80 text-red-900 dark:border-red-300/35 dark:bg-red-500/14 dark:text-red-100",
     example: "MecaPro SA — « Urgent : devis ligne complete »",
     actions: ["Creer une demande", "Rediger une reponse"],
   },
   {
     title: "A traiter",
     count: 12,
-    tone: "border-amber-200 bg-amber-50/70 text-amber-950",
+    tone: "border-amber-200 bg-amber-50/70 text-amber-950 dark:border-amber-300/35 dark:bg-amber-400/14 dark:text-amber-100",
     example: "Omega SA — « Question sur delai livraison »",
     actions: ["Generer une reponse", "Archiver"],
   },
@@ -71,10 +71,10 @@ export default function TriageEmailsPage() {
           </div>
           <div className="grid gap-3 md:grid-cols-2">
             {buckets.map((bucket) => (
-              <div key={bucket.title} className={`rounded-sm border p-4 shadow-sm ${bucket.tone}`}>
+              <div key={bucket.title} className={`rounded-2xl border p-4 shadow-sm ${bucket.tone}`}>
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-sm font-semibold">{bucket.title}</p>
-                  <span className="rounded-sm border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium">
+                  <span className="rounded-xl border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium dark:bg-white/8">
                     {bucket.count} mails
                   </span>
                 </div>

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { upsertDemoFlow } from "@/lib/demo-flow";
 
 type IncomingRequest = {
   id: string;
@@ -39,6 +40,7 @@ export default function DemandesEntrantesPage() {
   const [responseDraft, setResponseDraft] = useState("");
   const [followUpDraft, setFollowUpDraft] = useState("");
   const [sent, setSent] = useState(false);
+  const [flowStarted, setFlowStarted] = useState(false);
 
   const selected = useMemo(
     () => requests.find((r) => r.id === selectedId) ?? requests[0],
@@ -88,6 +90,19 @@ export default function DemandesEntrantesPage() {
     setResponseDraft(response);
     setFollowUpDraft(followUp);
     setSent(false);
+  }
+
+  function startOfferFlow() {
+    upsertDemoFlow({
+      leadId: selected.id,
+      company: selected.company,
+      contact: selected.contact,
+      message: selected.message,
+      responseDraft,
+      followUpDraft,
+      stage: "offer",
+    });
+    setFlowStarted(true);
   }
 
   return (
@@ -149,9 +164,9 @@ export default function DemandesEntrantesPage() {
                 <p className="ni-label">Urgence</p>
                 <p className="mt-1 font-medium text-foreground">Normale</p>
               </div>
-              <div className="rounded-sm border border-red-200 bg-red-50 p-2 text-xs">
-                <p className="ni-label text-red-700">A traiter</p>
-                <p className="mt-1 font-medium text-red-700">+4h</p>
+              <div className="rounded-2xl border border-red-200 bg-red-50 p-2 text-xs dark:border-red-300/35 dark:bg-red-500/14">
+                <p className="ni-label text-red-700 dark:text-red-200">A traiter</p>
+                <p className="mt-1 font-medium text-red-700 dark:text-red-100">+4h</p>
               </div>
             </div>
 
@@ -217,14 +232,20 @@ export default function DemandesEntrantesPage() {
                 Simuler l&apos;envoi au client
               </Button>
               <Link
-                href="/dashboard/redaction-offres"
-                className="rounded-sm border border-border bg-card px-3 py-2 text-xs font-medium text-foreground transition hover:bg-muted"
+                href="/dashboard/redaction-offres?from=lead"
+                onClick={startOfferFlow}
+                className="rounded-2xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground transition hover:-translate-y-0.5 hover:bg-muted"
               >
-                Continuer vers l&apos;offre
+                Créer l&apos;offre depuis ce lead
               </Link>
               {sent ? (
-                <p className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+                <p className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 dark:text-emerald-300">
                   Envoi simule : le commercial verrait ici la confirmation d&apos;envoi et l&apos;horodatage.
+                </p>
+              ) : null}
+              {flowStarted ? (
+                <p className="inline-flex items-center gap-1 text-xs font-medium text-foreground">
+                  Parcours demo initialisé : l&apos;offre reprend ce lead.
                 </p>
               ) : null}
             </div>

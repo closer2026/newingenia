@@ -144,7 +144,7 @@ export default function LinkedinPage() {
             </div>
 
             {published ? (
-              <p className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700">
+              <p className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 dark:text-emerald-300">
                 Publication simulee : en production, cette etape appellerait l&apos;API LinkedIn avec vos droits entreprise.
               </p>
             ) : null}

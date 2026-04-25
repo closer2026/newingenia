@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { cn } from "@/lib/utils";
 
 const matrix: [string, boolean, boolean, boolean, boolean][] = [
+  ["Parcours demo", true, true, true, true],
   ["Recherche docs", true, true, true, false],
   ["Redaction offres", true, true, false, false],
   ["Réunion IA", true, true, false, false],
@@ -18,7 +19,7 @@ const matrix: [string, boolean, boolean, boolean, boolean][] = [
 export function RolesMatrix() {
   return (
     <div className="space-y-5">
-      <Card className="ni-surface rounded-sm shadow-sm">
+      <Card>
         <CardHeader className="pb-2">
           <p className="ni-label">Administration</p>
           <CardTitle className="text-base tracking-tight">Matrice des permissions</CardTitle>
@@ -42,13 +43,13 @@ export function RolesMatrix() {
           </Table>
         </CardContent>
       </Card>
-      <Card className="ni-surface rounded-sm shadow-sm">
+      <Card>
         <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
           <div>
             <CardTitle className="text-base tracking-tight">Utilisateurs actifs</CardTitle>
             <p className="text-xs text-muted-foreground">Comptes fictifs pour illustrer les roles Admin / Manager / Technicien.</p>
           </div>
-          <Button size="sm" className="rounded-sm bg-[#252525] hover:bg-[#1e1e1e]">
+          <Button size="sm">
             Inviter un collaborateur (demo)
           </Button>
         </CardHeader>
@@ -59,14 +60,14 @@ export function RolesMatrix() {
               {users.map((user) => (
                 <TableRow key={user.email}>
                   <TableCell>{user.name}</TableCell>
-                  <TableCell><Badge className={cn("rounded-sm border", ROLE_BADGE_CLASSES[user.role as keyof typeof ROLE_LABELS])}>{ROLE_LABELS[user.role as keyof typeof ROLE_LABELS]}</Badge></TableCell>
+                  <TableCell><Badge className={cn("rounded-xl border", ROLE_BADGE_CLASSES[user.role as keyof typeof ROLE_LABELS])}>{ROLE_LABELS[user.role as keyof typeof ROLE_LABELS]}</Badge></TableCell>
                   <TableCell>{user.email}</TableCell>
                   <TableCell>{user.lastLogin}</TableCell>
                   <TableCell className="space-x-2">
-                    <Button variant="outline" size="sm" className="rounded-sm">
+                    <Button variant="outline" size="sm">
                       Modifier les droits
                     </Button>
-                    <Button variant="outline" size="sm" className="rounded-sm">
+                    <Button variant="outline" size="sm">
                       Suspendre le compte
                     </Button>
                   </TableCell>

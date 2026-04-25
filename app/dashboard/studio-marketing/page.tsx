@@ -26,6 +26,8 @@ type StyleType = "industriel" | "premium" | "technique" | "marketing";
 
 const mockMain = (seed: string) => `https://picsum.photos/seed/${seed}/880/560`;
 const mockVariant = (seed: string, n: number) => `https://picsum.photos/seed/${seed}v${n}/280/200`;
+const marketingVideoSrc = "/videos/video-exemple.mp4";
+const productPhotoSrc = "/images/ni-one.jpg";
 
 export default function StudioMarketingPage() {
   const [uploadPreview, setUploadPreview] = useState<string | null>(null);
@@ -46,7 +48,7 @@ export default function StudioMarketingPage() {
   const [fond, setFond] = useState("Neutre atelier");
   const [ambiance, setAmbiance] = useState("Lumiere douce");
   const [prompt, setPrompt] = useState(
-    "Mise en valeur du produit sur fond neutre, ombres douces, rendu catalogue haute définition."
+    "Change les couleurs de ce bureau : mets toute la partie noire en blanc et transforme la partie blanche en materiau style ardoise fonce."
   );
   const [generating, setGenerating] = useState(false);
   const [mainVisual, setMainVisual] = useState<string | null>(null);
@@ -300,14 +302,43 @@ export default function StudioMarketingPage() {
                   ) : null}
                 </AnimatePresence>
 
-                {!mainVisual && !generating ? (
+                {creativeType === "video" && !generating ? (
+                  <motion.video
+                    key="marketing-video-preview"
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.35 }}
+                    src={marketingVideoSrc}
+                    className="h-full min-h-[280px] w-full object-cover"
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  />
+                ) : null}
+
+                {creativeType === "photo" && !generating ? (
+                  <motion.div
+                    key="product-photo-preview"
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.35 }}
+                    className="relative h-full min-h-[280px] w-full"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={productPhotoSrc} alt="Apercu produit NI One" className="h-full w-full object-cover" />
+                  </motion.div>
+                ) : null}
+
+                {creativeType !== "video" && creativeType !== "photo" && !mainVisual && !generating ? (
                   <div className="flex h-full min-h-[280px] flex-col items-center justify-center gap-2 p-6 text-center">
                     <Sparkles className="h-10 w-10 text-muted-foreground/60" />
                     <p className="text-sm text-muted-foreground">Le rendu marketing apparaîtra ici après génération.</p>
                   </div>
                 ) : null}
 
-                {mainVisual && !generating ? (
+                {creativeType !== "video" && creativeType !== "photo" && mainVisual && !generating ? (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -316,13 +347,6 @@ export default function StudioMarketingPage() {
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={mainVisual} alt="Visuel genere" className="h-full w-full object-cover" />
-                    {creativeType === "video" ? (
-                      <div className="absolute inset-0 flex items-center justify-center bg-[#252525]/25">
-                        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg">
-                          <Clapperboard className="h-7 w-7 text-foreground" />
-                        </div>
-                      </div>
-                    ) : null}
                     {creativeType === "360" ? (
                       <span className="absolute bottom-3 right-3 rounded-full bg-background/90 px-3 py-1 text-xs font-semibold shadow">
                         360° interactif (simulation)

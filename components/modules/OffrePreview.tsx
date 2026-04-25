@@ -113,7 +113,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
             Parcourez les 3 pages comme un PDF : intro client, detail technique, conditions.
           </p>
         </div>
-        <Badge className="rounded-sm border border-emerald-200 bg-emerald-100 text-emerald-700">Genere par IA</Badge>
+        <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Genere par IA</Badge>
       </CardHeader>
       <CardContent className="space-y-4">
         <motion.div

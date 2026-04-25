@@ -1,4 +1,4 @@
-import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box, Sparkles, BriefcaseBusiness, Users, Radar } from "lucide-react";
+import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box, Sparkles, Radar, Route } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ModuleKey } from "./roles";
 
@@ -13,6 +13,7 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   { key: "dashboard", label: "Tableau de bord", href: "/dashboard", icon: Home },
+  { key: "demo", label: "Parcours demo", href: "/dashboard/demo", icon: Route },
   { key: "taches", label: "Taches", href: "/dashboard/taches", icon: FileText },
   { label: "Commercial", section: true },
   { key: "demandes-entrantes", label: "Demandes entrantes", href: "/dashboard/demandes-entrantes", icon: Inbox },
@@ -42,19 +43,6 @@ export const navItems: NavItem[] = [
     icon: Inbox,
   },
   { key: "linkedin", label: "Linkedin", href: "/dashboard/linkedin", icon: Mail },
-  { label: "Projets & Clients", section: true },
-  {
-    key: "suivi-projets",
-    label: "Suivi de projets",
-    href: "/dashboard/suivi-projets",
-    icon: BriefcaseBusiness,
-  },
-  {
-    key: "crm",
-    label: "CRM",
-    href: "/dashboard/crm",
-    icon: Users,
-  },
   { label: "Technique", section: true },
   {
     key: "studio-visuel",

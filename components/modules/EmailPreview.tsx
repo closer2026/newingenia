@@ -14,7 +14,7 @@ export function EmailPreview({ generated }: { generated: boolean }) {
           <CardTitle className="text-base tracking-tight">Apercu email</CardTitle>
           <p className="text-xs text-muted-foreground">Format NI : en-tete, destinataire, corps et signature.</p>
         </div>
-        <Badge className="rounded-sm border border-emerald-200 bg-emerald-100 text-emerald-700">Genere par IA · Professionnel</Badge>
+        <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Genere par IA · Professionnel</Badge>
       </CardHeader>
       <CardContent className="space-y-4">
         <motion.div

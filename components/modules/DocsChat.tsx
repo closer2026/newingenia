@@ -66,7 +66,7 @@ export function DocsChat() {
               {msg.content}
               {msg.content.includes("Reference proposee") ? (
                 <div className="mt-2 flex items-center gap-2">
-                  <Badge className="rounded-sm border border-emerald-200 bg-emerald-100 text-emerald-700">Trouve · p.47</Badge>
+                  <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Trouve · p.47</Badge>
                   <Badge variant="outline" className="rounded-sm">
                     Catalogue Structure.pdf · p.47
                   </Badge>

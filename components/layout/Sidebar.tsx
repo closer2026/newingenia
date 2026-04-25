@@ -14,7 +14,7 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
   return (
     <aside
       className={cn(
-        "sticky top-0 flex h-screen shrink-0 flex-col overflow-y-auto border-r border-border bg-sidebar py-6 transition-[width,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "sticky top-0 flex h-screen shrink-0 flex-col overflow-y-auto border-r border-border/70 bg-sidebar py-6 shadow-[20px_0_70px_-55px_rgba(37,37,37,0.7)] backdrop-blur-xl transition-[width,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
         collapsed ? "w-[84px] px-2" : "w-[248px] px-4"
       )}
     >
@@ -22,7 +22,7 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
 
       <div
         className={cn(
-          "mt-8 overflow-hidden rounded-lg border border-sidebar-border bg-card transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          "mt-8 overflow-hidden rounded-2xl border border-sidebar-border/80 bg-card/70 shadow-sm backdrop-blur transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
           collapsed ? "max-h-0 scale-95 opacity-0" : "max-h-40 scale-100 opacity-100 p-3"
         )}
       >
@@ -65,11 +65,11 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
               <Link
                 href={item.href}
                 className={cn(
-                  "group flex items-center justify-between rounded-md border px-2.5 py-2.5 text-xs transition-all duration-300",
+                  "group flex items-center justify-between rounded-2xl border px-3 py-2.5 text-xs font-medium transition-all duration-300",
                   collapsed && "justify-center px-2",
                   isActive
-                    ? "border-sidebar-primary bg-sidebar-primary text-sidebar-primary-foreground shadow-sm"
-                    : "border-transparent text-muted-foreground hover:border-border hover:bg-card hover:text-foreground"
+                    ? "border-sidebar-primary bg-sidebar-primary text-sidebar-primary-foreground shadow-[0_16px_36px_-28px_rgba(37,37,37,0.8)]"
+                    : "border-transparent text-muted-foreground hover:border-border/80 hover:bg-card/70 hover:text-foreground hover:shadow-sm"
                 )}
                 title={item.label}
               >

@@ -6,12 +6,12 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { Topbar } from "@/components/layout/Topbar";
 import { ChatbotWidget } from "@/components/layout/ChatbotWidget";
 import { DashboardEntryIntro } from "@/components/layout/DashboardEntryIntro";
+import { ToolContextBar } from "@/components/layout/ToolContextBar";
 
 const labels: Record<string, string> = {
   "/dashboard": "Tableau de bord",
+  "/dashboard/demo": "Parcours demo",
   "/dashboard/taches": "Taches",
-  "/dashboard/suivi-projets": "Suivi de projets",
-  "/dashboard/crm": "CRM",
   "/dashboard/facturation": "Creation facture",
   "/dashboard/linkedin": "Linkedin",
   "/dashboard/demandes-entrantes": "Demandes entrantes",
@@ -36,14 +36,17 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="mx-auto flex min-h-screen w-full min-w-[1280px]">
         <Sidebar collapsed={sidebarCollapsed} />
         <div className="relative flex min-h-screen flex-1 flex-col overflow-x-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(120,119,198,0.12),transparent_28%),radial-gradient(circle_at_86%_18%,rgba(14,165,233,0.08),transparent_24%)] dark:bg-[radial-gradient(circle_at_18%_12%,rgba(120,119,198,0.2),transparent_30%),radial-gradient(circle_at_86%_18%,rgba(14,165,233,0.14),transparent_24%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(37,37,37,0.10),transparent_30%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.85),transparent_26%),linear-gradient(135deg,rgba(255,255,255,0.55),transparent_36%)] dark:bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.05),transparent_26%)]" />
           <Topbar
             breadcrumb={labels[pathname] ?? "Tableau de bord"}
             sidebarCollapsed={sidebarCollapsed}
             onToggleSidebar={() => setSidebarCollapsed((value) => !value)}
           />
-          <main className="relative z-10 flex-1 px-8 py-7">
-            <div className="mx-auto w-full max-w-[1320px]">{children}</div>
+          <main className="relative z-10 flex-1 px-8 py-9">
+            <div className="mx-auto w-full max-w-[1320px]">
+              <ToolContextBar />
+              {children}
+            </div>
           </main>
           <ChatbotWidget />
         </div>
