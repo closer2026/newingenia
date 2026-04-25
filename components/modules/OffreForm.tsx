@@ -22,8 +22,8 @@ export function OffreForm({
 }) {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(5);
-  const [client, setClient] = useState(demoCompany || "Omega SA");
-  const [contact, setContact] = useState(demoContact || "M. Jean-Pierre Martin");
+  const [client, setClient] = useState(demoCompany || "Manufacture Horlogere Delta");
+  const [contact, setContact] = useState(demoContact || "Claire Martin");
 
   useEffect(() => {
     if (demoCompany) setClient(demoCompany);
@@ -39,17 +39,17 @@ export function OffreForm({
       setProgress(100);
       setLoading(false);
       onGenerated();
-      toast.success("Offre generee !");
+      toast.success("Base d'offre preparee");
     }, 2000);
   };
 
   return (
     <Card className="ni-surface rounded-sm">
       <CardHeader className="pb-2">
-        <p className="ni-label">Assistant commercial</p>
-        <CardTitle className="text-base tracking-tight">Nouvelle offre</CardTitle>
+        <p className="ni-label">Offre client</p>
+        <CardTitle className="text-base tracking-tight">Base d&apos;offre</CardTitle>
         <p className="text-xs text-muted-foreground">
-          Renseignez le projet : l&apos;IA simule la generation du PDF 3 pages visible a droite (demo).
+          Renseignez le projet : l&apos;outil prépare une base d&apos;offre visible à droite, à relire avant envoi.
         </p>
       </CardHeader>
       <CardContent className="space-y-5">
@@ -61,8 +61,8 @@ export function OffreForm({
             <SelectItem value="poste">Poste de travail</SelectItem><SelectItem value="flux">Flux laminaire</SelectItem><SelectItem value="chariot">Chariot</SelectItem><SelectItem value="mesure">Sur mesure</SelectItem>
           </SelectContent></Select>
         </div>
-        <div className="ni-field"><Label>Dimensions L × l × H</Label><Input placeholder="2400 x 900 x 780 mm" /></div>
-        <div className="ni-field"><Label>Charge maximale</Label><Input placeholder="80kg" /></div>
+        <div className="ni-field"><Label>Dimensions L × l × H</Label><Input placeholder="1800 x 800 x 900 mm" /></div>
+        <div className="ni-field"><Label>Charge maximale</Label><Input placeholder="120 kg" /></div>
         <div className="space-y-3">
           <Label>Options speciales</Label>
           <div className="space-y-2">
@@ -72,13 +72,13 @@ export function OffreForm({
           </div>
         </div>
         <div className="ni-field"><Label>Contraintes specifiques</Label><Textarea /></div>
-        <div className="ni-field"><Label>Delai souhaite</Label><Input type="date" /></div>
-        <div className="rounded-sm border border-dashed border-[#bbbbbb] p-4 text-center text-sm leading-relaxed text-[#666666]">
-          Zone pieces jointes (demo) : glissez un plan ou un cahier des charges pour montrer le flux reel plus tard.
+        <div className="ni-field"><Label>Délai souhaité</Label><Input type="date" /></div>
+        <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-4 text-center text-sm leading-relaxed text-muted-foreground">
+          Piece jointe possible : plan, photo de ligne ou cahier des charges client.
         </div>
         {loading ? <Progress value={progress} /> : null}
-        <Button onClick={generate} className="w-full rounded-sm bg-[#252525] hover:bg-[#1e1e1e]">
-          Generer le PDF avec l&apos;IA (demo)
+        <Button onClick={generate} className="w-full rounded-sm bg-[#696969] hover:bg-[#5f5f5f]">
+          Préparer la base d&apos;offre
         </Button>
         <Button variant="outline" className="w-full rounded-sm">
           Sauvegarder le brouillon localement

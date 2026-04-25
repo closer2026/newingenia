@@ -47,15 +47,15 @@ function firstMoneyValue(text: string): string | null {
 }
 
 export default function FacturationPage() {
-  const [clientName, setClientName] = useState("Omega SA");
-  const [clientEmail, setClientEmail] = useState("finance@omega.ch");
-  const [clientAddress, setClientAddress] = useState("Rue de l'Industrie 12, 1000 Lausanne");
+  const [clientName, setClientName] = useState("Manufacture Horlogere Delta");
+  const [clientEmail, setClientEmail] = useState("finance@delta-horlogerie.ch");
+  const [clientAddress, setClientAddress] = useState("Rue de l'Industrie 12, 2800 Delemont");
   const [invoiceNumber, setInvoiceNumber] = useState("FAC-2026-041");
   const [issueDate, setIssueDate] = useState("2026-04-20");
   const [dueDate, setDueDate] = useState("2026-05-20");
   const [currency, setCurrency] = useState("CHF");
   const [paymentTerms, setPaymentTerms] = useState("Paiement sous 30 jours");
-  const [purchaseOrderRef, setPurchaseOrderRef] = useState("PO-OMEGA-8841");
+  const [purchaseOrderRef, setPurchaseOrderRef] = useState("PO-DELTA-8841");
   const [notes, setNotes] = useState("Paiement sous 30 jours. Merci pour votre confiance.");
   const [globalDiscountRate, setGlobalDiscountRate] = useState("0");
   const [shippingAmount, setShippingAmount] = useState("0");
@@ -63,17 +63,17 @@ export default function FacturationPage() {
   const [lines, setLines] = useState<InvoiceLine[]>([
     {
       id: "line-1",
-      designation: "Audit process atelier principal",
-      quantity: "1",
-      unitPrice: "1800",
+      designation: "Poste de travail NI'One avec surface ESD",
+      quantity: "3",
+      unitPrice: "4900",
       vatRate: "8.1",
       discountRate: "0",
     },
     {
       id: "line-2",
-      designation: "Accompagnement optimisation Q2",
-      quantity: "16",
-      unitPrice: "190",
+      designation: "Éclairage intégré, rangements outils et installation",
+      quantity: "1",
+      unitPrice: "6850",
       vatRate: "8.1",
       discountRate: "5",
     },
@@ -87,7 +87,7 @@ export default function FacturationPage() {
     {
       role: "assistant",
       content:
-        "Parle-moi comme a un assistant: je transforme ton brief vocal en facture complete. Exemple: \"Facture Atlas SA: 2 cameras a 650, 6h installation a 140, TVA 8.1, echeance 15 jours\".",
+        "Indiquez la source de facturation. Exemple: facture issue de l'offre validee pour 3 postes NI'One ESD, installation incluse, TVA 8.1%, paiement 30 jours.",
     },
   ]);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
@@ -245,7 +245,7 @@ export default function FacturationPage() {
     if (hasTraining) {
       suggestedLines.push({
         id: `line-${Date.now()}-5`,
-        designation: "Formation equipe exploitation",
+        designation: "Formation équipe exploitation",
         quantity: "4",
         unitPrice: "120",
         vatRate: defaultVat,
@@ -268,7 +268,7 @@ export default function FacturationPage() {
     const refClient = (text.includes("atlas") ? "ATLAS" : text.includes("delta") ? "DELTA" : "OMEGA");
     setPurchaseOrderRef(`PO-${refClient}-${Math.floor(1000 + Math.random() * 9000)}`);
     if (hasUrgent) {
-      setNotes("Dossier prioritaire. Merci de valider la facture en priorite.");
+      setNotes("Dossier prioritaire. Merci de valider la facture en priorité.");
     }
   }
 
@@ -283,7 +283,7 @@ export default function FacturationPage() {
       {
         role: "assistant",
         content:
-          "Brouillon facture prepare: client, echeances et lignes detectees. Tu peux corriger puis generer l'apercu.",
+          "Brouillon de facture préparé : client, échéances et lignes détectées. Tu peux corriger puis générer l'aperçu.",
       },
     ]);
     setChatInput("");
@@ -353,20 +353,28 @@ export default function FacturationPage() {
   return (
     <div className="space-y-7">
       <div>
-        <p className="ni-label">Finance operationnelle</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Creation facture</h1>
+        <p className="ni-label">Facture</p>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Facturation</h1>
         <p className="ni-page-lead mt-2 max-w-3xl">
-          Partez d&apos;un brief texte ou vocal simule : l&apos;assistant remplit le formulaire, vous verifiez les lignes HT/TVA puis
-          ouvrez l&apos;apercu PDF cote droit. Parfait pour illustrer Omega SA ou tout autre client industriel.
+          Reprenez une offre ou un projet terminé, vérifiez les lignes et préparez un aperçu de facture.
         </p>
       </div>
+
+      <section className="grid gap-3 md:grid-cols-4">
+        {["Source", "Lignes", "Vérification", "Aperçu"].map((step, index) => (
+          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+            <p className="ni-label">Étape {index + 1}</p>
+            <p className="mt-1 font-semibold text-foreground">{step}</p>
+          </div>
+        ))}
+      </section>
 
       <section className="grid gap-4 md:grid-cols-4">
         {[
           { label: "Client actif", value: clientName || "N/A" },
           { label: "Numero facture", value: invoiceNumber || "N/A" },
           { label: "Total TTC", value: `${totals.ttcTotal.toFixed(2)} ${currency}` },
-          { label: "Echeance", value: dueDate || "N/A" },
+          { label: "Échéance", value: dueDate || "N/A" },
         ].map((item) => (
           <Card key={item.label} className="rounded-xl border-border bg-card/90 shadow-sm">
             <CardContent className="p-4">
@@ -379,10 +387,9 @@ export default function FacturationPage() {
 
       <Card className="rounded-xl border-border bg-card/90 shadow-sm">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base tracking-tight">Assistant IA facture</CardTitle>
+          <CardTitle className="text-base tracking-tight">Source de la facture</CardTitle>
           <p className="text-xs text-muted-foreground">
-            Saisissez un brief naturel, dictes-le ou collez un extrait client : le chat simule l&apos;extraction des lignes et des
-            montants.
+            Collez une offre validée ou décrivez le projet terminé : l&apos;outil aide à remplir les lignes à vérifier.
           </p>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -406,7 +413,7 @@ export default function FacturationPage() {
                 rows={2}
                 value={chatInput}
                 onChange={(e) => setChatInput(e.target.value)}
-                placeholder="Decris ta facture. Exemple: Facture Atlas SA, 2 cameras a 650 CHF, 6h installation a 140 CHF, TVA 8.1%, paiement 15 jours."
+                placeholder="Ex. : Facture pour 3 postes NI'One ESD, installation incluse, TVA 8.1%, paiement 30 jours."
                 className="min-h-[58px] border-0 p-2 shadow-none focus-visible:ring-0"
               />
               {!isListening ? (
@@ -415,8 +422,8 @@ export default function FacturationPage() {
                   variant="outline"
                   onClick={startVoiceInput}
                   className="h-10 w-10 rounded-sm p-0"
-                  aria-label="Demarrer le micro"
-                  title="Demarrer le micro"
+                  aria-label="Démarrer le micro"
+                  title="Démarrer le micro"
                 >
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-4 w-4" aria-hidden>
                     <path d="M12 3a3 3 0 00-3 3v6a3 3 0 106 0V6a3 3 0 00-3-3z" />
@@ -430,8 +437,8 @@ export default function FacturationPage() {
                   variant="outline"
                   onClick={stopVoiceInput}
                   className="h-10 w-10 rounded-sm p-0"
-                  aria-label="Arreter le micro"
-                  title="Arreter le micro"
+                  aria-label="Arrêter le micro"
+                  title="Arrêter le micro"
                 >
                   <svg viewBox="0 0 24 24" fill="currentColor" className="h-3.5 w-3.5" aria-hidden>
                     <rect x="6" y="6" width="12" height="12" rx="1.5" />
@@ -439,11 +446,11 @@ export default function FacturationPage() {
                 </Button>
               )}
               <Button onClick={() => handleAssistantMessage()} className="h-10 rounded-sm">
-                Envoyer le brief a l&apos;IA
+                Remplir depuis cette source
               </Button>
             </div>
             <p className="mt-1 px-2 text-xs text-muted-foreground">
-              {voiceStatus || "Clique sur Micro, parle, corrige le texte si besoin, puis clique Envoyer."}
+              {voiceStatus || "Vous pouvez dicter, corriger le texte, puis remplir les champs à vérifier."}
             </p>
           </div>
         </CardContent>
@@ -452,10 +459,9 @@ export default function FacturationPage() {
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1.3fr_1fr]">
         <Card className="rounded-xl border-border bg-card/90 shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base tracking-tight">Formulaire facture detaille</CardTitle>
+            <CardTitle className="text-base tracking-tight">Lignes à vérifier</CardTitle>
             <p className="text-xs text-muted-foreground">
-              Chaque bloc regroupe une etape logique : client, references, lignes, ajustements. Les totaux se mettent a jour
-              automatiquement (demo).
+              Client, references, lignes et totaux : chaque bloc reste modifiable avant validation.
             </p>
           </CardHeader>
           <CardContent className="space-y-5">
@@ -479,7 +485,7 @@ export default function FacturationPage() {
             </div>
 
             <div className="space-y-3 rounded-lg border border-border bg-muted/40 p-4">
-              <p className="ni-label">Reference facture</p>
+              <p className="ni-label">Référence facture</p>
               <div className="grid grid-cols-3 gap-3">
               <div className="space-y-1.5">
                 <Label>Numero de facture</Label>
@@ -490,7 +496,7 @@ export default function FacturationPage() {
                 <Input type="date" value={issueDate} onChange={(e) => setIssueDate(e.target.value)} />
               </div>
               <div className="space-y-1.5">
-                <Label>Date echeance</Label>
+                <Label>Date échéance</Label>
                 <Input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
               </div>
             </div>
@@ -535,7 +541,7 @@ export default function FacturationPage() {
                           <Input
                             value={line.designation}
                             onChange={(e) => updateLine(line.id, { designation: e.target.value })}
-                            placeholder="Ex: Maintenance preventive"
+                            placeholder="Ex: Poste de travail NI'One ESD"
                           />
                         </div>
                         <div>
@@ -596,7 +602,7 @@ export default function FacturationPage() {
             </div>
 
             <Button onClick={() => setGenerated(true)} className="w-full rounded-md text-sm font-semibold">
-              Mettre a jour l&apos;apercu PDF
+              Mettre à jour l&apos;aperçu PDF
             </Button>
           </CardContent>
         </Card>
@@ -604,29 +610,29 @@ export default function FacturationPage() {
         <Card className="rounded-xl border-border bg-card/95 shadow-sm xl:sticky xl:top-6 xl:self-start">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between gap-2">
-              <CardTitle className="text-base tracking-tight">Apercu facture</CardTitle>
+              <CardTitle className="text-base tracking-tight">Aperçu facture</CardTitle>
               <Button variant="outline" className="rounded-md text-xs">
-                Telecharger le PDF (demo)
+                Telecharger le PDF
               </Button>
             </div>
             <p className="text-xs text-muted-foreground">
-              Rendu proche du papier NI : montrez-le en plein ecran pendant la reunion commerciale.
+              Rendu proche du papier NI : à relire avant export ou envoi au client.
             </p>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-foreground">
             {!generated ? (
               <p className="text-muted-foreground">
-                Renseignez le formulaire puis cliquez sur &quot;Mettre a jour l&apos;apercu PDF&quot; pour afficher la facture ici.
+                Renseignez le formulaire puis cliquez sur &quot;Mettre à jour l&apos;aperçu PDF&quot; pour afficher la facture ici.
               </p>
             ) : (
               <div className="rounded-lg border border-border bg-muted/30 p-3">
-                <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#252525] shadow-sm">
+                <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#696969] shadow-sm">
                   <div className="mb-6 flex items-start justify-between border-b border-zinc-200 pb-4">
                     <div>
                       <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Facture</p>
                       <p className="mt-1 text-xl font-semibold">#{invoiceNumber}</p>
                       <p className="mt-1 text-xs text-zinc-500">Emission: {issueDate}</p>
-                      <p className="text-xs text-zinc-500">Echeance: {dueDate}</p>
+                      <p className="text-xs text-zinc-500">Échéance : {dueDate}</p>
                     </div>
                     <div className="text-right text-sm">
                       <div className="mb-2 flex justify-end">

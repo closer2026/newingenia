@@ -7,11 +7,10 @@ export default function VeillePage() {
   return (
     <div className="space-y-7">
       <div>
-        <p className="ni-label">Intelligence</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Veille marche & salons</h1>
+        <p className="ni-label">Infos utiles</p>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Veille</h1>
         <p className="ni-page-lead mt-2 max-w-4xl">
-          Synthese demo pour la direction : salons (SIAMS), fournisseur cle (Bosch Rexroth), tendance secteur. En production :
-          resume hebdo + alertes ciblees.
+          Regroupez les nouveautés fournisseurs, salons, tendances ou opportunités à surveiller.
         </p>
       </div>
 
@@ -27,7 +26,7 @@ export default function VeillePage() {
               Du 21 au 24 avril. Vos clients sont probablement presents. Opportunite de rencontres terrain.
             </p>
             <Button variant="outline" size="sm" className="mt-3 rounded-sm border-border">
-              Ouvrir la liste des exposants (demo)
+              Ouvrir la liste des exposants
             </Button>
           </div>
 
@@ -35,7 +34,7 @@ export default function VeillePage() {
             <p className="font-medium text-foreground">Bosch Rexroth</p>
             <p className="mt-1 text-muted-foreground">Nouveau catalogue profiles aluminium Q2 2026.</p>
             <Button variant="outline" size="sm" className="mt-3 rounded-sm border-border">
-              Envoyer le PDF vers Recherche docs (demo)
+              Envoyer le PDF vers les documents
             </Button>
           </div>
 

@@ -37,7 +37,7 @@ export function ChatbotWidget() {
         {
           role: "assistant",
           content:
-            "Merci pour votre message. Je vous propose de verifier d'abord le module concerne, puis je peux vous guider et escalader la demande si necessaire.",
+            "Merci pour votre message. Je vous propose de vérifier d'abord le module concerné, puis je peux vous guider et escalader la demande si nécessaire.",
         },
       ]);
       setLoading(false);
@@ -57,7 +57,7 @@ export function ChatbotWidget() {
             >
               <div className="flex items-center justify-between border-b border-border px-4 py-3">
                 <div>
-                  <p className="ni-label">Support IA</p>
+                  <p className="ni-label">Aide</p>
                   <p className="text-sm font-semibold text-popover-foreground">Assistance plateforme</p>
                 </div>
                 <Button size="icon" variant="ghost" className="h-8 w-8 rounded-md" onClick={() => setOpen(false)}>
@@ -78,7 +78,7 @@ export function ChatbotWidget() {
                     {message.content}
                   </div>
                 ))}
-                {loading ? <p className="text-xs text-muted-foreground">L&apos;agent IA redige une reponse...</p> : null}
+                {loading ? <p className="text-xs text-muted-foreground">Préparation de la réponse...</p> : null}
               </div>
 
               <div className="flex items-center gap-2 border-t border-border p-3">

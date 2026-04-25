@@ -7,13 +7,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { cn } from "@/lib/utils";
 
 const matrix: [string, boolean, boolean, boolean, boolean][] = [
-  ["Parcours demo", true, true, true, true],
-  ["Recherche docs", true, true, true, false],
-  ["Redaction offres", true, true, false, false],
-  ["Réunion IA", true, true, false, false],
-  ["Redaction emails", true, true, true, false],
-  ["Triage emails", true, false, false, false],
-  ["Gestion des roles", true, false, false, false],
+  ["Parcours de présentation", true, true, true, true],
+  ["Recherche technique", true, true, true, false],
+  ["Offres clients", true, true, false, false],
+  ["Emails clients", true, true, true, false],
+  ["Priorisation emails", true, false, false, false],
+  ["Accès & rôles", true, false, false, false],
 ];
 
 export function RolesMatrix() {
@@ -24,7 +23,7 @@ export function RolesMatrix() {
           <p className="ni-label">Administration</p>
           <CardTitle className="text-base tracking-tight">Matrice des permissions</CardTitle>
           <p className="text-xs text-muted-foreground">
-            Chaque point vert indique un acces lecture/ecriture ; gris = pas d&apos;acces pour ce role (donnees demo).
+            Chaque point vert indique un accès lecture/écriture ; gris = pas d&apos;accès pour ce rôle.
           </p>
         </CardHeader>
         <CardContent>
@@ -47,15 +46,15 @@ export function RolesMatrix() {
         <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
           <div>
             <CardTitle className="text-base tracking-tight">Utilisateurs actifs</CardTitle>
-            <p className="text-xs text-muted-foreground">Comptes fictifs pour illustrer les roles Admin / Manager / Technicien.</p>
+            <p className="text-xs text-muted-foreground">Comptes de présentation pour illustrer les rôles Admin / Manager / Technicien.</p>
           </div>
           <Button size="sm">
-            Inviter un collaborateur (demo)
+            Inviter un collaborateur
           </Button>
         </CardHeader>
         <CardContent>
           <Table>
-            <TableHeader><TableRow><TableHead>Nom</TableHead><TableHead>Role</TableHead><TableHead>Email</TableHead><TableHead>Derniere connexion</TableHead><TableHead>Actions</TableHead></TableRow></TableHeader>
+            <TableHeader><TableRow><TableHead>Nom</TableHead><TableHead>Rôle</TableHead><TableHead>Email</TableHead><TableHead>Dernière connexion</TableHead><TableHead>Actions</TableHead></TableRow></TableHeader>
             <TableBody>
               {users.map((user) => (
                 <TableRow key={user.email}>

@@ -21,16 +21,16 @@ export function EmailForm({
   demoMessage?: string;
 }) {
   const [loading, setLoading] = useState(false);
-  const [recipient, setRecipient] = useState("Marc Leroy · Cartier SA");
-  const [email, setEmail] = useState("marc.leroy@cartier.com");
-  const [subject, setSubject] = useState("Confirmation commande postes de travail");
-  const [message, setMessage] = useState("Confirmer le planning, les quantites et la date d'installation.");
+  const [recipient, setRecipient] = useState("Claire Martin · Manufacture Horlogère Delta");
+  const [email, setEmail] = useState("claire.martin@delta-horlogerie.ch");
+  const [subject, setSubject] = useState("Votre offre pour 3 postes NI'One ESD");
+  const [message, setMessage] = useState("Envoyer l'offre, rappeler les options ESD et proposer un point de validation.");
 
   useEffect(() => {
     if (!demoCompany && !demoContact) return;
     setRecipient(`${demoContact ?? "Contact"} · ${demoCompany ?? "Entreprise"}`);
-    setEmail("contact@client-demo.ch");
-    setSubject(`Suite a votre demande - ${demoCompany ?? "projet"}`);
+    setEmail("contact@client.ch");
+    setSubject(`Suite à votre demande - ${demoCompany ?? "projet"}`);
     setMessage(
       demoMessage
         ? `Reprendre le contexte du lead, confirmer la proposition commerciale et proposer un point de validation. Message initial : ${demoMessage}`
@@ -43,17 +43,17 @@ export function EmailForm({
     setTimeout(() => {
       setLoading(false);
       onGenerate();
-      toast.success("Email genere");
+      toast.success("Brouillon email préparé");
     }, 1500);
   };
 
   return (
     <Card className="ni-surface rounded-lg">
       <CardHeader className="pb-2">
-        <p className="ni-label">Assistant redaction</p>
-        <CardTitle className="text-base tracking-tight">Nouvel email</CardTitle>
+        <p className="ni-label">Email client</p>
+        <CardTitle className="text-base tracking-tight">Brouillon à préparer</CardTitle>
         <p className="text-xs text-muted-foreground">
-          Indiquez le destinataire et l&apos;intention : l&apos;apercu a droite se met a jour apres generation (demo).
+          Indiquez le destinataire et l&apos;intention : l&apos;aperçu à droite se met à jour après préparation.
         </p>
       </CardHeader>
       <CardContent className="space-y-5">
@@ -61,14 +61,14 @@ export function EmailForm({
         <div className="ni-field"><Label>Email destinataire</Label><Input value={email} onChange={(event) => setEmail(event.target.value)} /></div>
         <div className="ni-field"><Label>Objet</Label><Input value={subject} onChange={(event) => setSubject(event.target.value)} /></div>
         <div className="ni-field">
-          <Label>Message cle a transmettre</Label>
+          <Label>Message clé à transmettre</Label>
           <Textarea value={message} onChange={(event) => setMessage(event.target.value)} />
         </div>
         <div className="ni-field"><Label>Ton</Label><div className="flex gap-2 text-xs"><span className="rounded-sm bg-primary px-3 py-1 text-primary-foreground">Professionnel</span><span className="rounded-sm border border-border bg-card px-3 py-1 text-foreground">Cordial</span><span className="rounded-sm border border-border bg-card px-3 py-1 text-foreground">Formel</span><span className="rounded-sm border border-border bg-card px-3 py-1 text-foreground">Bref</span></div></div>
-        <div className="ni-field"><Label>Langue</Label><Select defaultValue="fr"><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="fr">Francais</SelectItem><SelectItem value="de">Allemand</SelectItem><SelectItem value="en">Anglais</SelectItem><SelectItem value="it">Italien</SelectItem></SelectContent></Select></div>
+        <div className="ni-field"><Label>Langue</Label><Select defaultValue="fr"><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="fr">Français</SelectItem><SelectItem value="de">Allemand</SelectItem><SelectItem value="en">Anglais</SelectItem><SelectItem value="it">Italien</SelectItem></SelectContent></Select></div>
         <div className="ni-field"><Label>Signature</Label><Select defaultValue="arnaud"><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="arnaud">Arnaud Dupont</SelectItem><SelectItem value="marc">Marc Lambert</SelectItem><SelectItem value="sophie">Sophie Favre</SelectItem></SelectContent></Select></div>
         <Button onClick={generate} className="w-full rounded-sm">
-          {loading ? "Redaction en cours..." : "Generer le brouillon email"}
+          {loading ? "Préparation en cours..." : "Préparer le brouillon email"}
         </Button>
       </CardContent>
     </Card>

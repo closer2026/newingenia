@@ -20,9 +20,9 @@ const requests: IncomingRequest[] = [
   {
     id: "REQ-1209",
     contact: "Claire Martin",
-    company: "Atelier Delta",
+    company: "Manufacture Horlogere Delta",
     message:
-      "Bonjour, nous voulons moderniser notre ligne de production et connecter nos equipements a un suivi centralise. Pouvez-vous proposer une approche et un budget indicatif ?",
+      "Bonjour, nous cherchons 3 postes de travail modulaires pour une ligne horlogère. Il nous faut une surface ESD, un éclairage intégré et des rangements outils. Pouvez-vous nous proposer une configuration et un budget indicatif ?",
   },
   {
     id: "REQ-1210",
@@ -51,12 +51,13 @@ export default function DemandesEntrantesPage() {
     const text = [
       `Demande ${selected.id} - ${selected.company}`,
       "",
-      "Le prospect souhaite cadrer un projet de transformation operationnelle avec:",
-      "- une phase d'audit terrain",
-      "- une proposition de solution pragmatique",
-      "- une estimation budget et planning.",
+      "Le client souhaite préparer un projet de postes de travail modulaires avec :",
+      "- 3 postes pour une ligne horlogere",
+      "- surface ESD",
+      "- éclairage intégré",
+      "- rangements outils.",
       "",
-      "Niveau d'urgence estime: eleve (demande explicite de cadrage rapide).",
+      "Informations à vérifier : dimensions, charge maximale, délai souhaité et contraintes d'installation.",
     ].join("\n");
     setReformulation(text);
     setSent(false);
@@ -67,24 +68,24 @@ export default function DemandesEntrantesPage() {
       `Bonjour ${selected.contact},`,
       "",
       "Merci pour votre message et pour la confiance accordee.",
-      "Nous pouvons vous proposer un cadrage en 3 etapes: diagnostic, recommandation et plan d'execution.",
+      "Nous pouvons vous proposer une première configuration NI'One avec surface ESD, éclairage et rangements adaptés à votre ligne.",
       "",
-      `Contexte integre: ${responseContext.trim() || "Aucun contexte supplementaire fourni."}`,
+      `Contexte intégré : ${responseContext.trim() || "Aucun contexte supplémentaire fourni."}`,
       "",
-      "Si cela vous convient, nous pouvons organiser un point de 30 minutes cette semaine pour aligner priorites et contraintes.",
+      "Si cela vous convient, nous pouvons organiser un point de 30 minutes cette semaine pour valider les dimensions, les charges et le délai attendu.",
       "",
       "Bien cordialement,",
-      "Equipe New Ingenia",
+      "Équipe New Ingenia",
     ].join("\n");
 
     const followUp = [
       `Bonjour ${selected.contact},`,
       "",
-      "Je me permets une courte relance suite a notre proposition de cadrage.",
-      "Souhaitez-vous que nous reservions un créneau pour lancer l'analyse initiale ?",
+      "Je me permets une courte relance au sujet de votre besoin en postes de travail modulaires.",
+      "Souhaitez-vous que nous réservions un créneau pour valider les dimensions et préparer une première offre ?",
       "",
-      "Bien a vous,",
-      "Equipe New Ingenia",
+      "Bien à vous,",
+      "Équipe New Ingenia",
     ].join("\n");
 
     setResponseDraft(response);
@@ -108,19 +109,27 @@ export default function DemandesEntrantesPage() {
   return (
     <div className="space-y-7">
       <div>
-        <p className="ni-label">Leads formulaire</p>
+        <p className="ni-label">Demande client</p>
         <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Demandes entrantes</h1>
         <p className="ni-page-lead mt-2">
-          Selectionnez un lead a gauche : a droite, l&apos;IA propose reformulation, email de reponse et relance J+3. Ajustez le texte
-          puis simulez l&apos;envoi — ideal pour montrer le gain de temps commercial.
+          Collez ou ouvrez une demande client. L&apos;outil résume le besoin, repère ce qu&apos;il manque et prépare la prochaine étape.
         </p>
+      </div>
+
+      <div className="grid gap-3 md:grid-cols-4">
+        {["Demande reçue", "Besoin résumé", "Infos manquantes", "Réponse ou offre"].map((step, index) => (
+          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+            <p className="ni-label">Étape {index + 1}</p>
+            <p className="mt-1 font-semibold text-foreground">{step}</p>
+          </div>
+        ))}
       </div>
 
       <div className="grid grid-cols-3 gap-5">
         <Card className="rounded-sm border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base tracking-tight">Liste des demandes</CardTitle>
-            <p className="text-xs text-muted-foreground">Cliquez une ligne pour charger sa fiche detaillee.</p>
+            <CardTitle className="text-base tracking-tight">Demandes à traiter</CardTitle>
+            <p className="text-xs text-muted-foreground">Cliquez une ligne pour lire le message et préparer la suite.</p>
           </CardHeader>
           <CardContent className="space-y-2">
             {requests.map((req) => (
@@ -157,8 +166,8 @@ export default function DemandesEntrantesPage() {
                 <p className="mt-1 font-medium text-foreground">Nouveau</p>
               </div>
               <div className="rounded-sm border border-border bg-muted/30 p-2 text-xs">
-                <p className="ni-label">Score IA</p>
-                <p className="mt-1 font-medium text-foreground">7 / 10</p>
+                <p className="ni-label">Besoin clair</p>
+                <p className="mt-1 font-medium text-foreground">A completer</p>
               </div>
               <div className="rounded-sm border border-border bg-muted/30 p-2 text-xs">
                 <p className="ni-label">Urgence</p>
@@ -178,11 +187,11 @@ export default function DemandesEntrantesPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Button onClick={generateReformulation} variant="outline" className="w-full rounded-sm">
-                  Generer la reformulation IA
+                  Resumer le besoin
                 </Button>
                 <Textarea
                   rows={8}
-                  placeholder="La reformulation IA apparait ici..."
+                  placeholder="Le résumé du besoin apparaît ici..."
                   value={reformulation}
                   onChange={(e) => setReformulation(e.target.value)}
                 />
@@ -192,24 +201,24 @@ export default function DemandesEntrantesPage() {
                 <Label>Consignes pour l&apos;email</Label>
                 <Textarea
                   rows={4}
-                  placeholder="Ex. : proposer un call 30 min jeudi, mentionner delai 6 semaines, rappeler garantie 2 ans."
+                  placeholder="Ex. : demander dimensions, charge maximale, délai, contraintes d'installation."
                   value={responseContext}
                   onChange={(e) => setResponseContext(e.target.value)}
                 />
                 <Button onClick={generateResponse} className="w-full rounded-sm">
-                  Generer reponse + relance J+3
+                  Préparer réponse + relance
                 </Button>
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <Label>Reponse proposee</Label>
+                <Label>Réponse proposée</Label>
                 <Textarea
                   rows={8}
                   value={responseDraft}
                   onChange={(e) => setResponseDraft(e.target.value)}
-                  placeholder="La reponse IA apparait ici..."
+                  placeholder="Le brouillon de réponse apparaît ici..."
                 />
               </div>
               <div>
@@ -218,7 +227,7 @@ export default function DemandesEntrantesPage() {
                   rows={8}
                   value={followUpDraft}
                   onChange={(e) => setFollowUpDraft(e.target.value)}
-                  placeholder="La relance IA apparait ici..."
+                  placeholder="Le brouillon de relance apparait ici..."
                 />
               </div>
             </div>
@@ -229,23 +238,23 @@ export default function DemandesEntrantesPage() {
                 onClick={() => setSent(true)}
                 className="rounded-sm"
               >
-                Simuler l&apos;envoi au client
+                Marquer comme prêt à envoyer
               </Button>
               <Link
                 href="/dashboard/redaction-offres?from=lead"
                 onClick={startOfferFlow}
                 className="rounded-2xl border border-border bg-card px-3 py-2 text-xs font-semibold text-foreground transition hover:-translate-y-0.5 hover:bg-muted"
               >
-                Créer l&apos;offre depuis ce lead
+                Créer l&apos;offre depuis cette demande
               </Link>
               {sent ? (
                 <p className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 dark:text-emerald-300">
-                  Envoi simule : le commercial verrait ici la confirmation d&apos;envoi et l&apos;horodatage.
+                  Message prêt : le commercial peut encore relire et ajuster avant envoi.
                 </p>
               ) : null}
               {flowStarted ? (
                 <p className="inline-flex items-center gap-1 text-xs font-medium text-foreground">
-                  Parcours demo initialisé : l&apos;offre reprend ce lead.
+                  Offre preparee : la page suivante reprend cette demande.
                 </p>
               ) : null}
             </div>

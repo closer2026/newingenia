@@ -9,7 +9,6 @@ import {
   FileText,
   Loader2,
   Mail,
-  RefreshCw,
   RotateCw,
   Share2,
   Sparkles,
@@ -25,7 +24,6 @@ type CreativeType = "photo" | "mise-en-situation" | "video" | "360";
 type StyleType = "industriel" | "premium" | "technique" | "marketing";
 
 const mockMain = (seed: string) => `https://picsum.photos/seed/${seed}/880/560`;
-const mockVariant = (seed: string, n: number) => `https://picsum.photos/seed/${seed}v${n}/280/200`;
 const marketingVideoSrc = "/videos/video-exemple.mp4";
 const productPhotoSrc = "/images/ni-one.jpg";
 
@@ -52,7 +50,6 @@ export default function StudioMarketingPage() {
   );
   const [generating, setGenerating] = useState(false);
   const [mainVisual, setMainVisual] = useState<string | null>(null);
-  const [variants, setVariants] = useState<string[]>([]);
   const [toast, setToast] = useState<string | null>(null);
 
   useEffect(() => {
@@ -66,17 +63,11 @@ export default function StudioMarketingPage() {
     window.setTimeout(() => setToast(null), 2600);
   }
 
-  function runGeneration(extraVariantsOnly = false) {
+  function runGeneration() {
     const base = `ni${creativeType}${styleType}${Date.now()}`;
     setGenerating(true);
     window.setTimeout(() => {
-      if (!extraVariantsOnly) {
-        setMainVisual(mockMain(base));
-        setVariants([mockVariant(base, 1), mockVariant(base, 2), mockVariant(base, 3)]);
-      } else if (mainVisual) {
-        const vBase = `${base}var`;
-        setVariants([mockVariant(vBase, 1), mockVariant(vBase, 2), mockVariant(vBase, 3)]);
-      }
+      setMainVisual(mockMain(base));
       setGenerating(false);
     }, 2200);
   }
@@ -97,11 +88,10 @@ export default function StudioMarketingPage() {
         transition={{ duration: 0.4 }}
         className="relative"
       >
-        <p className="ni-label">Creation visuelle</p>
+        <p className="ni-label">Visuel produit</p>
         <h1 className="mt-2 text-3xl font-semibold tracking-tight text-foreground">Studio Marketing</h1>
         <p className="ni-page-lead mt-2 max-w-3xl">
-          Brief + style : generez un visuel principal et trois variantes pour LinkedIn, un devis ou un salon. Les images
-          ci-dessous sont des placeholders (demo).
+          Préparez une image ou une idée de visuel pour une offre, LinkedIn ou une présentation client.
         </p>
         <div className="mt-5 flex flex-wrap gap-2">
           {quickPresets.map((preset) => (
@@ -120,6 +110,15 @@ export default function StudioMarketingPage() {
         </div>
       </motion.header>
 
+      <div className="relative grid gap-3 md:grid-cols-4">
+        {["Produit", "Usage", "Style", "Visuel"].map((step, index) => (
+          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+            <p className="ni-label">Étape {index + 1}</p>
+            <p className="mt-1 font-semibold text-foreground">{step}</p>
+          </div>
+        ))}
+      </div>
+
       <div className="relative grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)_minmax(0,0.95fr)]">
         {/* Colonne gauche — input */}
         <motion.div
@@ -129,9 +128,9 @@ export default function StudioMarketingPage() {
         >
           <Card className="overflow-hidden rounded-xl border-border bg-card/90 shadow-sm backdrop-blur-sm">
             <CardHeader className="border-b border-border/80 pb-3">
-              <CardTitle className="text-base tracking-tight">Brief créatif</CardTitle>
+              <CardTitle className="text-base tracking-tight">Brief visuel</CardTitle>
               <p className="text-xs text-muted-foreground">
-                Decrivez le produit et l&apos;ambiance : les listes ci-dessous structurent le prompt envoye a l&apos;IA en version reelle.
+                Decrivez le produit, l&apos;usage et le style attendu pour un support commercial New Ingenia.
               </p>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
@@ -153,12 +152,12 @@ export default function StudioMarketingPage() {
                 />
                 {uploadPreview ? (
                   <div className="mt-3">
-                    <p className="mb-1 text-xs text-muted-foreground">Apercu image</p>
+                    <p className="mb-1 text-xs text-muted-foreground">Aperçu image</p>
                     <div className="relative inline-block">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={uploadPreview}
-                        alt="Apercu upload"
+                        alt="Aperçu upload"
                         className="h-20 w-20 rounded-lg border border-border object-cover"
                       />
                       <button
@@ -173,7 +172,7 @@ export default function StudioMarketingPage() {
                     </div>
                   </div>
                 ) : (
-                  <p className="text-xs text-muted-foreground">Importez une photo de référence (maquette).</p>
+                  <p className="text-xs text-muted-foreground">Importez une photo de référence si vous en avez une.</p>
                 )}
               </div>
 
@@ -188,7 +187,7 @@ export default function StudioMarketingPage() {
                   className="min-h-[100px] resize-y rounded-lg text-sm"
                 />
                 <p className="text-xs text-muted-foreground">
-                  Ce texte guide l&apos;IA pour affiner le visuel (maquette, pas de génération réelle).
+                  Ce texte précise le rendu à obtenir avant validation par l&apos;équipe.
                 </p>
               </div>
 
@@ -288,7 +287,7 @@ export default function StudioMarketingPage() {
                       className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-background/85 backdrop-blur-sm"
                     >
                       <Loader2 className="h-10 w-10 animate-spin text-primary" />
-                      <p className="text-sm font-medium text-foreground">IA en cours de génération...</p>
+                      <p className="text-sm font-medium text-foreground">Preparation du visuel...</p>
                       <p className="max-w-xs text-center text-xs text-muted-foreground">
                         Application du style {styleType} · {materiau} · {fond}
                       </p>
@@ -327,7 +326,7 @@ export default function StudioMarketingPage() {
                     className="relative h-full min-h-[280px] w-full"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={productPhotoSrc} alt="Apercu produit NI One" className="h-full w-full object-cover" />
+                    <img src={productPhotoSrc} alt="Aperçu produit NI One" className="h-full w-full object-cover" />
                   </motion.div>
                 ) : null}
 
@@ -349,7 +348,7 @@ export default function StudioMarketingPage() {
                     <img src={mainVisual} alt="Visuel genere" className="h-full w-full object-cover" />
                     {creativeType === "360" ? (
                       <span className="absolute bottom-3 right-3 rounded-full bg-background/90 px-3 py-1 text-xs font-semibold shadow">
-                        360° interactif (simulation)
+                        360° interactif
                       </span>
                     ) : null}
                   </motion.div>
@@ -357,18 +356,9 @@ export default function StudioMarketingPage() {
               </div>
 
               <div className="flex flex-wrap gap-2">
-                <Button className="flex-1 rounded-lg" onClick={() => runGeneration(false)} disabled={generating}>
+                <Button className="flex-1 rounded-lg" onClick={runGeneration} disabled={generating}>
                   {generating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4" />}
-                  Generer le visuel principal
-                </Button>
-                <Button
-                  variant="outline"
-                  className="flex-1 rounded-lg"
-                  onClick={() => runGeneration(true)}
-                  disabled={generating || !mainVisual}
-                >
-                  <RefreshCw className="mr-2 h-4 w-4" />
-                  Regenerer les 3 variantes
+                  Préparer le visuel principal
                 </Button>
               </div>
             </CardContent>
@@ -384,14 +374,14 @@ export default function StudioMarketingPage() {
           <Card className="overflow-hidden rounded-xl border-border bg-card/90 shadow-sm backdrop-blur-sm">
             <CardHeader className="border-b border-border/80 pb-3">
               <CardTitle className="text-base tracking-tight">Actions</CardTitle>
-              <p className="text-xs text-muted-foreground">Une fois le visuel choisi, montrez comment il rejoint les autres modules.</p>
+              <p className="text-xs text-muted-foreground">Une fois le visuel choisi, montrez comment il peut servir commercialement.</p>
             </CardHeader>
             <CardContent className="flex flex-col gap-2 pt-4">
               <Button
                 variant="outline"
                 className="justify-start rounded-lg"
                 disabled={!mainVisual}
-                onClick={() => showToast("Téléchargement simulé · fichier prêt")}
+                onClick={() => showToast("Visuel prêt à télécharger")}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Télécharger
@@ -400,7 +390,7 @@ export default function StudioMarketingPage() {
                 variant="outline"
                 className="justify-start rounded-lg"
                 disabled={!mainVisual}
-                onClick={() => showToast("Ajouté au brouillon devis (simulation)")}
+                onClick={() => showToast("Ajoute au brouillon d'offre")}
               >
                 <FileText className="mr-2 h-4 w-4" />
                 Utiliser dans devis
@@ -409,7 +399,7 @@ export default function StudioMarketingPage() {
                 variant="outline"
                 className="justify-start rounded-lg"
                 disabled={!mainVisual}
-                onClick={() => showToast("Image copiée vers le module LinkedIn (simulation)")}
+                onClick={() => showToast("Image preparee pour LinkedIn")}
               >
                 <Share2 className="mr-2 h-4 w-4" />
                 Utiliser dans LinkedIn
@@ -418,7 +408,7 @@ export default function StudioMarketingPage() {
                 variant="outline"
                 className="justify-start rounded-lg"
                 disabled={!mainVisual}
-                onClick={() => showToast("Email client préparé (simulation)")}
+                onClick={() => showToast("Email client préparé")}
               >
                 <Mail className="mr-2 h-4 w-4" />
                 Envoyer au client
@@ -427,49 +417,6 @@ export default function StudioMarketingPage() {
           </Card>
         </motion.div>
       </div>
-
-      {/* Section basse — variantes */}
-      <motion.section
-        initial={{ opacity: 0, y: 14 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.4 }}
-      >
-        <div className="mb-4 flex items-center justify-between gap-3">
-          <div>
-            <h2 className="text-lg font-semibold tracking-tight">Variantes generees</h2>
-            <p className="text-xs text-muted-foreground">Trois declinaisons de prompt pour comparer cadrage et ambiance.</p>
-          </div>
-          <span className="shrink-0 text-xs text-muted-foreground">3 propositions (demo)</span>
-        </div>
-        <div className="grid gap-4 md:grid-cols-3">
-          {[0, 1, 2].map((i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 + i * 0.06, duration: 0.35 }}
-              className="overflow-hidden rounded-xl border border-border bg-card shadow-sm"
-            >
-              <div className="aspect-[4/3] bg-muted/50">
-                {variants[i] ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img src={variants[i]} alt={`Variante ${i + 1}`} className="h-full w-full object-cover" />
-                ) : (
-                  <div className="flex h-full items-center justify-center text-xs text-muted-foreground">
-                    En attente de génération
-                  </div>
-                )}
-              </div>
-              <div className="border-t border-border px-3 py-2">
-                <p className="text-xs font-medium text-foreground">Variante {i + 1}</p>
-                <p className="text-[11px] text-muted-foreground">
-                  {variants[i] ? `${styleType} · ${ambiance}` : "—"}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
 
       <AnimatePresence>
         {toast ? (

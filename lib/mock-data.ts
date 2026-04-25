@@ -1,4 +1,4 @@
-import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box, Sparkles, Radar, Route } from "lucide-react";
+import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box, Sparkles, Radar, Route, Building2 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ModuleKey } from "./roles";
 
@@ -13,36 +13,37 @@ export type NavItem = {
 
 export const navItems: NavItem[] = [
   { key: "dashboard", label: "Tableau de bord", href: "/dashboard", icon: Home },
-  { key: "demo", label: "Parcours demo", href: "/dashboard/demo", icon: Route },
-  { key: "taches", label: "Taches", href: "/dashboard/taches", icon: FileText },
+  { key: "demo", label: "Parcours de présentation", href: "/dashboard/demo", icon: Route },
+  { key: "taches", label: "Tâches", href: "/dashboard/taches", icon: FileText },
   { label: "Commercial", section: true },
   { key: "demandes-entrantes", label: "Demandes entrantes", href: "/dashboard/demandes-entrantes", icon: Inbox },
   {
     key: "recherche-docs",
-    label: "Recherche docs",
+    label: "Recherche technique",
     href: "/dashboard/recherche-docs",
     icon: Search,
   },
   {
     key: "redaction-offres",
-    label: "Redaction offres",
+    label: "Offres clients",
     href: "/dashboard/redaction-offres",
     icon: FileText,
   },
-  { key: "facturation", label: "Creation facture", href: "/dashboard/facturation", icon: FileText },
+  { key: "facturation", label: "Facturation", href: "/dashboard/facturation", icon: FileText },
   {
     key: "redaction-emails",
-    label: "Redaction emails",
+    label: "Emails clients",
     href: "/dashboard/redaction-emails",
     icon: Mail,
   },
   {
     key: "triage-emails",
-    label: "Triage emails",
+    label: "Priorisation emails",
     href: "/dashboard/triage-emails",
     icon: Inbox,
   },
-  { key: "linkedin", label: "Linkedin", href: "/dashboard/linkedin", icon: Mail },
+  { key: "linkedin", label: "Communication LinkedIn", href: "/dashboard/linkedin", icon: Mail },
+  { key: "fiches-clients", label: "Fiches clients", href: "/dashboard/fiches-clients", icon: Building2 },
   { label: "Technique", section: true },
   {
     key: "studio-visuel",
@@ -51,19 +52,19 @@ export const navItems: NavItem[] = [
     icon: Box,
   },
   { key: "reunion-ia", label: "Réunion IA", href: "/dashboard/reunion-ia", icon: Mic },
-  { label: "Creation", section: true },
+  { label: "Création", section: true },
   {
     key: "studio-marketing",
-    label: "Studio marketing",
+    label: "Studio Marketing",
     href: "/dashboard/studio-marketing",
     icon: Sparkles,
   },
-  { label: "Intelligence", section: true },
+  { label: "Informations utiles", section: true },
   { key: "veille", label: "Veille", href: "/dashboard/veille", icon: Radar },
   { label: "Admin", section: true },
   {
     key: "gestion-roles",
-    label: "Gestion des roles",
+    label: "Accès & rôles",
     href: "/dashboard/gestion-roles",
     icon: Shield,
     adminOnly: true,

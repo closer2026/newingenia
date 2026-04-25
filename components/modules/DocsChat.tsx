@@ -10,10 +10,9 @@ import { Badge } from "@/components/ui/badge";
 type Message = { role: "ia" | "user"; content: string };
 
 const initialMessages: Message[] = [
-  { role: "ia", content: "Bonjour ! Je peux rechercher dans tous les catalogues Bosch Rexroth et New Ingenia. Que cherchez-vous ?" },
-  { role: "user", content: "Profile pour charge de 80kg sur 1.2m horizontal" },
-  { role: "ia", content: "Pour affiner : avez-vous une contrainte sur la largeur ?" },
-  { role: "user", content: "Non, pas de contrainte" },
+  { role: "ia", content: "Bonjour. Posez une question technique, je retrouve les documents utiles et les sources à vérifier." },
+  { role: "user", content: "Quelle structure choisir pour un poste de travail modulaire avec charge élevée et surface ESD ?" },
+  { role: "ia", content: "Je recommande de vérifier les profilés série 45x45 renforcés et la fiche NI'One ESD. Source principale : Catalogue Structure, page 47." },
 ];
 
 export function DocsChat() {
@@ -33,7 +32,7 @@ export function DocsChat() {
         {
           role: "ia",
           content:
-            "Reference proposee: 3 842 990 026. Convient pour 80kg sur 1.2m. Verification disponible dans Catalogue Structure.pdf p.47.",
+            "Référence proposée : profilé 45x45 renforcé, à vérifier avec la charge exacte et la longueur du poste. Source : Catalogue Structure p.47 et fiche NI'One ESD.",
         },
       ]);
       setTyping(false);
@@ -44,13 +43,13 @@ export function DocsChat() {
     <div className="ni-surface flex h-[680px] flex-col rounded-lg">
       <div className="flex items-center justify-between border-b border-border px-5 py-4">
         <div>
-          <p className="ni-label">Module IA</p>
-          <h2 className="font-semibold tracking-tight text-foreground">Recherche documentation</h2>
+          <p className="ni-label">Document technique</p>
+          <h2 className="font-semibold tracking-tight text-foreground">Recherche technique</h2>
           <p className="mt-1 max-w-xl text-xs leading-relaxed text-muted-foreground">
-            Posez une question technique : la reponse cite toujours un document et une page (conversation demo prechargee + simulation).
+            Posez une question. L&apos;outil retrouve les documents utiles et affiche les sources.
           </p>
         </div>
-        <Badge className="rounded-md border border-border bg-muted text-foreground">12 catalogues indexes (demo)</Badge>
+        <Badge className="rounded-md border border-border bg-muted text-foreground">Documents sources disponibles</Badge>
       </div>
       <ScrollArea className="flex-1 px-5 py-4">
         <div className="space-y-3">
@@ -64,9 +63,9 @@ export function DocsChat() {
               }`}
             >
               {msg.content}
-              {msg.content.includes("Reference proposee") ? (
+              {msg.content.includes("Référence proposée") ? (
                 <div className="mt-2 flex items-center gap-2">
-                  <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Trouve · p.47</Badge>
+                  <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Source trouvee · p.47</Badge>
                   <Badge variant="outline" className="rounded-sm">
                     Catalogue Structure.pdf · p.47
                   </Badge>
@@ -74,18 +73,18 @@ export function DocsChat() {
               ) : null}
             </div>
           ))}
-          {typing ? <p className="text-sm text-muted-foreground">IA est en train d&apos;ecrire...</p> : null}
+          {typing ? <p className="text-sm text-muted-foreground">Recherche dans les sources...</p> : null}
         </div>
       </ScrollArea>
       <div className="border-t border-border p-4">
         <div className="flex items-center gap-2">
-          <Button size="icon" variant="outline" className="rounded-sm" type="button" title="Joindre un fichier (demo)" aria-label="Joindre un fichier (demo)">
+          <Button size="icon" variant="outline" className="rounded-sm" type="button" title="Joindre un fichier" aria-label="Joindre un fichier">
             <Paperclip className="h-4 w-4" />
           </Button>
           <Input
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder="Ex. : quelle reference pour 120 kg sur 2 m ?"
+            placeholder="Ex. : quelle structure pour 120 kg sur 2 m avec surface ESD ?"
             className="rounded-sm"
           />
           <Button onClick={send} className="rounded-sm px-3" aria-label="Envoyer la question">
@@ -94,7 +93,7 @@ export function DocsChat() {
           </Button>
         </div>
         <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-          L&apos;agent reformule ou demande une precision avant de citer une reference — comportement attendu en production.
+          L&apos;outil peut demander une précision avant de proposer une référence à vérifier.
         </p>
       </div>
     </div>

@@ -26,15 +26,15 @@ export function OffrePreview({ generated }: { generated: boolean }) {
                 <p>Validite: 30 jours</p>
               </div>
             </div>
-            <p className="font-medium text-[#252525]">Destinataire : Omega SA</p>
+            <p className="font-medium text-[#696969]">Destinataire : Manufacture Horlogere Delta</p>
             <p className="mt-2 text-xs text-zinc-700">
-              Madame, Monsieur, suite a votre demande, nous vous transmettons notre proposition pour la fourniture
-              et l&apos;integration d&apos;un poste de travail ergonomique avec options ESD.
+              Madame, Monsieur, suite à votre demande, nous vous transmettons notre proposition pour la fourniture
+              et l&apos;intégration de 3 postes NI&apos;One avec surface ESD, éclairage intégré et rangements outils.
             </p>
             <div className="mt-4 space-y-2 rounded-md border border-zinc-200 bg-zinc-50 p-3 text-xs text-zinc-800">
               <p className="font-semibold">Perimetre propose</p>
-              <p>• Poste de travail NI&apos;One avec profile 45x45 renforce</p>
-              <p>• Surface ESD et support outils integre</p>
+              <p>• 3 postes de travail NI&apos;One avec profile 45x45 renforce</p>
+              <p>• Surface ESD et support outils intégré</p>
               <p>• Installation sur site et mise en service</p>
             </div>
           </>
@@ -44,7 +44,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
         title: "Page 2 · Detail technique & budget",
         content: (
           <>
-            <p className="mb-3 text-sm font-semibold text-[#252525]">Detail des lignes</p>
+            <p className="mb-3 text-sm font-semibold text-[#696969]">Detail des lignes</p>
             <div className="overflow-hidden rounded-md border border-zinc-200">
               <div className="grid grid-cols-[2fr_0.6fr_1fr] bg-zinc-100 px-3 py-2 text-xs font-semibold text-zinc-700">
                 <p>Designation</p>
@@ -52,9 +52,9 @@ export function OffrePreview({ generated }: { generated: boolean }) {
                 <p className="text-right">Montant CHF</p>
               </div>
               {[
-                ["Ref 3 842 990 026 · Profile 45x45 renforce", "4", "2'950"],
-                ["Ref 3 842 993 110 · Surface ESD", "1", "1'200"],
-                ["Integration & mise en service", "1", "980"],
+                ["3 postes NI'One · structure 45x45 renforcee", "3", "14'700"],
+                ["Surface ESD + éclairage intégré", "3", "4'200"],
+                ["Rangements outils + installation sur site", "1", "2'650"],
               ].map((line) => (
                 <div key={line[0]} className="grid grid-cols-[2fr_0.6fr_1fr] border-t border-zinc-200 px-3 py-2 text-xs text-zinc-800">
                   <p>{line[0]}</p>
@@ -64,11 +64,11 @@ export function OffrePreview({ generated }: { generated: boolean }) {
               ))}
             </div>
             <div className="mt-4 ml-auto w-56 space-y-1 text-xs">
-              <div className="flex justify-between"><span className="text-zinc-600">Sous-total</span><span>5&apos;130 CHF</span></div>
-              <div className="flex justify-between"><span className="text-zinc-600">TVA 8.1%</span><span>415.53 CHF</span></div>
-              <div className="flex justify-between border-t border-zinc-300 pt-1 font-semibold"><span>Total TTC</span><span>5&apos;545.53 CHF</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">Sous-total</span><span>21&apos;550 CHF</span></div>
+              <div className="flex justify-between"><span className="text-zinc-600">TVA 8.1%</span><span>1&apos;745.55 CHF</span></div>
+              <div className="flex justify-between border-t border-zinc-300 pt-1 font-semibold"><span>Total TTC</span><span>23&apos;295.55 CHF</span></div>
             </div>
-            <p className="mt-4 text-xs text-zinc-600">Delai estime: fin mai 2026 · Garantie: 24 mois</p>
+            <p className="mt-4 text-xs text-zinc-600">Délai estimé : 6 semaines après validation · Garantie : 24 mois</p>
           </>
         ),
       },
@@ -76,23 +76,23 @@ export function OffrePreview({ generated }: { generated: boolean }) {
         title: "Page 3 · Conditions & signature",
         content: (
           <>
-            <p className="mb-3 text-sm font-semibold text-[#252525]">Conditions commerciales</p>
+            <p className="mb-3 text-sm font-semibold text-[#696969]">Conditions commerciales</p>
             <div className="space-y-2 text-xs text-zinc-700">
-              <p>• Paiement a 30 jours fin de mois.</p>
+              <p>• Paiement à 30 jours fin de mois.</p>
               <p>• Offre valable 30 jours des la date d&apos;emission.</p>
               <p>• Demarrage apres validation ecrite de la commande.</p>
               <p>• Installation incluse sur site client (Suisse romande).</p>
             </div>
             <div className="mt-6 rounded-md border border-zinc-200 bg-zinc-50 p-3 text-xs text-zinc-700">
-              <p className="font-semibold text-zinc-800">Prochaine etape</p>
-              <p className="mt-1">Validation client puis planification atelier et installation.</p>
+              <p className="font-semibold text-zinc-800">Prochaine étape</p>
+              <p className="mt-1">Validation client puis planification atelier, controle technique et installation.</p>
             </div>
             <div className="mt-10 flex items-end justify-between text-xs text-zinc-700">
               <div>
                 <p className="font-semibold text-zinc-800">Arnaud Dupont</p>
                 <p>Direction · New Ingenia SA</p>
               </div>
-              <p>Signature electronique (simulation)</p>
+              <p>Signature client</p>
             </div>
           </>
         ),
@@ -108,12 +108,12 @@ export function OffrePreview({ generated }: { generated: boolean }) {
     <Card className="ni-surface h-full rounded-xl">
       <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
         <div>
-          <CardTitle className="text-base tracking-tight">Apercu de l&apos;offre</CardTitle>
+          <CardTitle className="text-base tracking-tight">Aperçu de l&apos;offre</CardTitle>
           <p className="text-xs text-muted-foreground">
             Parcourez les 3 pages comme un PDF : intro client, detail technique, conditions.
           </p>
         </div>
-        <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Genere par IA</Badge>
+        <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Base à relire</Badge>
       </CardHeader>
       <CardContent className="space-y-4">
         <motion.div
@@ -122,7 +122,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           className="rounded-lg border border-border bg-muted/30 p-3 text-sm"
         >
-          <div className="mx-auto w-full max-w-[720px] rounded-md border border-zinc-200 bg-white p-7 text-[#252525] shadow-sm">
+          <div className="mx-auto w-full max-w-[720px] rounded-md border border-zinc-200 bg-white p-7 text-[#696969] shadow-sm">
             <div className="mb-4 flex items-center justify-between">
               <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">{pages[activePage]?.title}</p>
               <p className="text-xs text-zinc-500">Page {activePage + 1} / {totalPages}</p>
@@ -142,7 +142,7 @@ export function OffrePreview({ generated }: { generated: boolean }) {
             <ChevronLeft className="mr-1 h-4 w-4" />
             Page precedente
           </Button>
-          <p className="text-xs text-muted-foreground">Pages 1 a 3 du PDF NI</p>
+          <p className="text-xs text-muted-foreground">Pages 1 à 3 du PDF NI</p>
           <Button
             size="sm"
             variant="outline"
@@ -156,19 +156,19 @@ export function OffrePreview({ generated }: { generated: boolean }) {
         </div>
         <div className="flex flex-wrap gap-2">
           <Button size="sm" className="rounded-sm">
-            Telecharger le PDF (demo)
+            Telecharger le PDF
           </Button>
           <Button size="sm" variant="outline" className="rounded-sm">
-            Simuler l&apos;envoi par email
+            Préparer l&apos;email
           </Button>
           <Button size="sm" variant="outline" className="rounded-sm">
-            Regenerer le contenu
+            Revoir le contenu
           </Button>
         </div>
         <p className="text-xs text-muted-foreground">
           {generated
-            ? "Apercu synchronise avec le formulaire (valeurs demo)."
-            : "Cliquez sur « Generer le PDF avec l'IA (demo) » dans le formulaire de gauche pour remplir cette zone."}
+            ? "Aperçu prêt à relire avec les informations du projet."
+            : "Cliquez sur « Préparer la base d'offre » dans le formulaire de gauche pour remplir cette zone."}
         </p>
       </CardContent>
     </Card>

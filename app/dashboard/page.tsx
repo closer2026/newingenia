@@ -15,69 +15,75 @@ import { roleSubtitle, ROLE_LABELS } from "@/lib/roles";
 const modules = [
   {
     key: "taches",
-    title: "Taches",
+    title: "Tâches",
     href: "/dashboard/taches",
-    description: "File unique des prochaines actions : chaque ligne ouvre le module source (facture, demande, post, etc.).",
+    description: "Centraliser les relances, validations et actions issues des demandes, emails, réunions et projets.",
   },
   {
     key: "facturation",
-    title: "Creation facture",
+    title: "Facturation",
     href: "/dashboard/facturation",
-    description: "Brief texte ou vocal simule, lignes HT/TVA, apercu PDF : ideal pour montrer le flux facture Omega.",
+    description: "Reprendre une offre ou un projet terminé, vérifier les lignes et préparer un aperçu de facture.",
   },
   {
     key: "linkedin",
-    title: "Linkedin",
+    title: "Communication LinkedIn",
     href: "/dashboard/linkedin",
-    description: "Rediger un post B2B a partir d'un contexte, valider le brouillon puis simuler la publication page entreprise.",
+    description: "Transformer une livraison, une photo ou une actualité New Ingenia en brouillon de publication.",
   },
   {
     key: "demandes-entrantes",
     title: "Demandes entrantes",
     href: "/dashboard/demandes-entrantes",
-    description: "Leads du site : message brut, analyse IA, reponse + relance J+3 pretes a envoyer ou a ajuster.",
+    description: "Résumer une demande, voir ce qu'il manque et préparer une réponse ou une offre.",
   },
   {
     key: "recherche-docs",
-    title: "Recherche docs",
+    title: "Recherche technique",
     href: "/dashboard/recherche-docs",
-    description: "Chat sur catalogues Bosch Rexroth / NI : reponse avec reference produit et extrait de page (demo conversationnelle).",
+    description: "Chercher dans les documents techniques, catalogues, anciennes offres ou procédures.",
   },
   {
     key: "redaction-offres",
-    title: "Redaction offres",
+    title: "Offres clients",
     href: "/dashboard/redaction-offres",
-    description: "Formulaire projet + apercu PDF 3 pages : montrez une offre type poste NI'One / options ESD en quelques clics.",
+    description: "Structurer le besoin, ajouter les options techniques et préparer une base d'offre à relire.",
   },
   {
     key: "reunion-ia",
     title: "Réunion IA",
     href: "/dashboard/reunion-ia",
-    description: "Enregistrement simule, resume, decisions et liens vers taches / email de compte-rendu.",
+    description: "Transformer des notes de réunion en décisions, tâches et email de compte-rendu.",
   },
   {
     key: "redaction-emails",
-    title: "Redaction emails",
+    title: "Emails clients",
     href: "/dashboard/redaction-emails",
-    description: "Emails metier (offre, relance, confirmation) avec ton NI et signature predefinie.",
+    description: "Préparer un brouillon professionnel pour envoyer une offre, relancer ou confirmer une décision.",
+  },
+  {
+    key: "fiches-clients",
+    title: "Fiches clients",
+    href: "/dashboard/fiches-clients",
+    description: "Retrouver les contacts, offres, projets et dernières interactions d'un client.",
   },
   {
     key: "studio-visuel",
     title: "Studio 3D",
     href: "/dashboard/studio-visuel",
-    description: "Viewer 3D des modeles demo (GLB) + parcours generation simulee pour illustrer Tripo / integration future.",
+    description: "Afficher un premier aperçu visuel pour aider un client à se projeter.",
   },
   {
     key: "studio-marketing",
-    title: "Studio marketing",
+    title: "Studio Marketing",
     href: "/dashboard/studio-marketing",
-    description: "Visuels 2D type catalogue : brief, variantes et actions vers devis ou LinkedIn (maquette).",
+    description: "Préparer une image ou une idée de visuel pour une offre, LinkedIn ou une présentation client.",
   },
   {
     key: "veille",
     title: "Veille",
     href: "/dashboard/veille",
-    description: "Synthese SIAMS / Bosch Rexroth / secteur : ce que la direction lit chaque lundi (contenu demo).",
+    description: "Regrouper les nouveautés fournisseurs, salons, tendances ou opportunités à surveiller.",
   },
 ] as const;
 
@@ -86,16 +92,22 @@ export default function DashboardPage() {
   const [moduleHelp, setModuleHelp] = useState<ToolHelp | undefined>();
   const demoScenarios = [
     {
-      title: "Scenario 1 · Demande vers offre",
-      description: "Montrer le fil commercial : qualification du lead, reponse prete, puis creation d'offre.",
-      steps: ["Demandes entrantes", "Generer reponse + relance", "Creer l'offre"],
+      title: "Un client demande un poste de travail",
+      description: "Montrer comment une demande client est resumee, completee puis transformee en prochaine action.",
+      steps: ["Demande reçue", "Besoin résumé", "Infos manquantes", "Offre possible"],
       links: ["/dashboard/demandes-entrantes", "/dashboard/redaction-offres"],
     },
     {
-      title: "Scenario 2 · Reunion vers taches",
-      description: "Illustrer la prise de notes automatique : resume, decisions, puis suivi dans la file des taches.",
-      steps: ["Reunion IA", "Lecture resume / decisions", "Module Taches"],
-      links: ["/dashboard/reunion-ia", "/dashboard/taches"],
+      title: "L'équipe prépare une offre",
+      description: "Partir du besoin client, choisir les options NI'One puis afficher une base d'offre claire.",
+      steps: ["Besoin client", "Options techniques", "Aperçu offre", "Email d'envoi"],
+      links: ["/dashboard/redaction-offres", "/dashboard/redaction-emails"],
+    },
+    {
+      title: "La relance client est suivie",
+      description: "Retrouver l'historique client, préparer l'action suivante et garder une trace claire.",
+      steps: ["Historique", "Point ouvert", "Action", "Relance"],
+      links: ["/dashboard/fiches-clients", "/dashboard/taches"],
     },
   ] as const;
 
@@ -107,30 +119,30 @@ export default function DashboardPage() {
         className="ni-surface overflow-hidden"
       >
         <div className="grid grid-cols-5">
-          <div className="relative col-span-3 overflow-hidden bg-[#252525] px-9 py-11 text-white">
+          <div className="relative col-span-3 overflow-hidden bg-[#696969] px-9 py-11 text-white">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_10%,rgba(255,255,255,0.18),transparent_30%),radial-gradient(circle_at_80%_80%,rgba(255,255,255,0.10),transparent_28%)]" />
             <div className="relative">
               <p className="ni-label text-white/62">NI · Workspace IA</p>
-              <h1 className="mt-5 max-w-xl text-4xl font-semibold leading-tight tracking-[-0.035em]">
-                Votre cockpit operations : une seule interface pour tout le cycle commercial et technique.
+              <h1 className="mt-5 max-w-2xl text-4xl font-semibold leading-tight tracking-[-0.035em]">
+                Une maquette pour montrer comment l&apos;IA peut simplifier le quotidien de New Ingenia
               </h1>
               <p className="mt-5 max-w-xl text-sm leading-7 text-white/72">
-                Bonjour Arnaud. Chaque tuile ouvre un module concret (demande web, offre, facture, docs, 3D, veille).
-                Les chiffres ci-dessous sont des donnees de demonstration pour le pitch client.
+                Demandes clients, offres, documents techniques, emails, projets et visuels : chaque page montre un exemple
+                concret que l&apos;on pourrait adapter à vos vrais processus.
               </p>
               <div className="mt-8 flex gap-3">
                 <Link
                   href="/dashboard/demo"
-                  className="rounded-2xl bg-white px-4 py-2.5 text-sm font-semibold text-[#252525] shadow-[0_18px_42px_-24px_rgba(255,255,255,0.75)] transition hover:-translate-y-0.5"
+                  className="rounded-2xl bg-white px-4 py-2.5 text-sm font-semibold text-[#696969] shadow-[0_18px_42px_-24px_rgba(255,255,255,0.75)] transition hover:-translate-y-0.5"
                 >
-                  Lancer le parcours demo
+                  Voir les exemples
                 </Link>
                 <button
                   type="button"
                   onClick={() => setModuleHelp(getToolHelp("/dashboard"))}
                   className="rounded-2xl border border-white/16 bg-white/8 px-4 py-2.5 text-sm font-medium text-white/80 backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/12"
                 >
-                  Comprendre la plateforme
+                  Comprendre cette maquette
                 </button>
               </div>
             </div>
@@ -140,25 +152,46 @@ export default function DashboardPage() {
             <p className="mt-5 text-3xl font-semibold tracking-tight text-foreground">21 avril</p>
             <p className="mt-3 text-sm leading-6 text-muted-foreground">{roleSubtitle(role)}</p>
             <Badge className="mt-7 rounded-2xl border border-border/80 bg-card/70 px-3 py-1.5 text-foreground shadow-sm">
-              Role actif: {ROLE_LABELS[role]}
+              Rôle actif: {ROLE_LABELS[role]}
             </Badge>
           </div>
         </div>
       </motion.section>
 
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-base tracking-tight">Comment lire cette maquette ?</CardTitle>
+        </CardHeader>
+        <CardContent className="text-sm leading-7 text-muted-foreground">
+          Le but n&apos;est pas de présenter un logiciel finalisé, mais de montrer des idées concrètes. Chaque exemple part d&apos;une
+          situation réelle : un client écrit, une offre doit être préparée, une information technique est recherchée, un projet
+          doit être suivi ou un visuel produit doit être créé.
+        </CardContent>
+      </Card>
+
       <section className="grid grid-cols-4 gap-4">
         {[
-          { label: "Demandes traitees", value: "128", trend: "+14% vs mois precedent", hint: "Formulaire site + qualification" },
-          { label: "Docs analyses", value: "2 480", trend: "+8% vs mois precedent", hint: "Pages catalogue interrogees" },
-          { label: "Actions automatisees", value: "946", trend: "+22% vs mois precedent", hint: "Relances, resumes, brouillons" },
-          { label: "Temps economise", value: "186 h", trend: "Estime ce mois", hint: "Base sur le volume d'actions IA" },
-        ].map((kpi) => (
-          <Card key={kpi.label} className="hover:-translate-y-1 hover:shadow-[0_28px_70px_-50px_rgba(37,37,37,0.48)]">
+          {
+            title: "Répondre plus vite aux clients",
+            text: "Résumer une demande, voir ce qu'il manque et préparer une réponse ou une offre.",
+          },
+          {
+            title: "Préparer les offres plus facilement",
+            text: "Structurer le besoin, ajouter les options techniques et préparer une base d'offre à relire.",
+          },
+          {
+            title: "Retrouver les bonnes informations",
+            text: "Chercher dans les documents techniques, catalogues, anciennes offres ou procédures.",
+          },
+          {
+            title: "Suivre les clients et les relances",
+            text: "Voir l'historique client, les actions à faire et les prochaines relances.",
+          },
+        ].map((item) => (
+          <Card key={item.title} className="hover:-translate-y-1 hover:shadow-[0_28px_70px_-50px_rgba(105,105,105,0.48)]">
             <CardContent className="px-4 py-4">
-              <p className="ni-label">{kpi.label}</p>
-              <p className="mt-3 text-3xl font-semibold tracking-tight text-foreground">{kpi.value}</p>
-              <p className="mt-1 text-xs font-medium text-foreground">{kpi.trend}</p>
-              <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground">{kpi.hint}</p>
+              <p className="text-sm font-semibold text-foreground">{item.title}</p>
+              <p className="mt-3 text-xs leading-6 text-muted-foreground">{item.text}</p>
             </CardContent>
           </Card>
         ))}
@@ -166,26 +199,26 @@ export default function DashboardPage() {
 
       <Card className="border-amber-200/80 bg-amber-50/70 shadow-[0_22px_55px_-45px_rgba(180,83,9,0.65)] dark:border-amber-300/35 dark:bg-amber-400/12">
         <CardContent className="px-4 py-3 text-sm leading-relaxed text-amber-900 dark:text-amber-100">
-          <span className="font-semibold">Action requise :</span> 2 demandes web non traitees depuis plus de 4 h. Ouvrez le module
-          Demandes entrantes pour qualifier et envoyer la reponse proposee.
+          <span className="font-semibold">Action à vérifier :</span> 2 demandes clients attendent une réponse. Ouvrez
+          “Demandes entrantes” pour résumer le besoin et préparer la suite.
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base tracking-tight">Resume IA du jour</CardTitle>
-          <p className="text-xs text-muted-foreground">Synthese automatique du matin (demo) : ce que le comite lit en 20 secondes.</p>
+          <CardTitle className="text-base tracking-tight">Résumé du jour</CardTitle>
+          <p className="text-xs text-muted-foreground">Une lecture courte pour savoir ce qui demande une décision.</p>
         </CardHeader>
         <CardContent className="text-sm leading-relaxed text-muted-foreground">
-          Hier : 3 nouvelles demandes web qualifiees. Offre Helio Industrie bloquee en validation interne depuis 2 jours.
-          Reunion Cartier SA : 2 actions assignees encore ouvertes dans le module Taches.
+          Hier : 3 nouvelles demandes clients à qualifier. Une offre pour postes NI&apos;One attend une validation interne.
+          Réunion client horloger : 2 actions restent ouvertes avant relance.
         </CardContent>
       </Card>
 
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base tracking-tight">Parcours demo guide</CardTitle>
-          <p className="text-xs text-muted-foreground">Trois histoires courtes a presenter en reunion sans improviser.</p>
+          <CardTitle className="text-base tracking-tight">3 exemples à montrer pendant le rendez-vous</CardTitle>
+          <p className="text-xs text-muted-foreground">Trois histoires simples, basées sur des situations crédibles New Ingenia.</p>
         </CardHeader>
         <CardContent className="grid grid-cols-3 gap-4">
           {demoScenarios.map((scenario) => (
@@ -215,10 +248,10 @@ export default function DashboardPage() {
       </Card>
 
       <div>
-        <p className="ni-label">Modules IA</p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Acces direct aux assistants</h2>
+        <p className="ni-label">Pages à explorer</p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Exemples concrets à explorer</h2>
         <p className="ni-page-lead mt-2">
-          Chaque carte ouvre un ecran autonome. Survolez la description pour savoir quoi dire au client en une phrase.
+          Chaque carte part d&apos;un cas métier simple : demande client, offre, document technique, projet, email ou visuel.
         </p>
       </div>
 
@@ -231,7 +264,7 @@ export default function DashboardPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.08, duration: 0.35 }}
             >
-              <Card className="overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/86 hover:shadow-[0_30px_80px_-52px_rgba(37,37,37,0.55)]">
+              <Card className="overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-foreground/15 hover:bg-card/86 hover:shadow-[0_30px_80px_-52px_rgba(105,105,105,0.55)]">
                 <CardHeader className="pb-2">
                   <CardTitle className="flex items-start justify-between gap-3 text-base tracking-tight">
                     <span>{module.title}</span>
@@ -265,24 +298,24 @@ export default function DashboardPage() {
 
       <Card>
         <CardHeader className="pb-2">
-          <CardTitle className="text-base tracking-tight">Activite recente</CardTitle>
-          <p className="text-xs text-muted-foreground">Fil demo des dernieres actions IA (ordre chronologique inverse).</p>
+          <CardTitle className="text-base tracking-tight">Activité récente</CardTitle>
+          <p className="text-xs text-muted-foreground">Exemples d&apos;actions que la maquette pourrait aider à préparer.</p>
         </CardHeader>
         <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
           <p>
-            <span className="font-medium text-foreground">Recherche docs</span> · convoyeur inox ligne 3 · reference catalogue citee · il y a 35 min
+            <span className="font-medium text-foreground">Info technique</span> · poste NI&apos;One ESD · référence catalogue citée · il y a 35 min
           </p>
           <p>
-            <span className="font-medium text-foreground">Triage emails</span> · 42 messages classes (urgent / a traiter / info) · il y a 1 h
+            <span className="font-medium text-foreground">Emails importants</span> · demandes clients et messages à traiter · il y a 1 h
           </p>
           <p>
-            <span className="font-medium text-foreground">Offre commerciale</span> · Helio Industrie · brouillon PDF genere · il y a 2 h
+            <span className="font-medium text-foreground">Offre client</span> · postes modulaires NI&apos;One · brouillon préparé · il y a 2 h
           </p>
           <p>
-            <span className="font-medium text-foreground">Reunion IA</span> · atelier production · resume + 3 taches extraites · il y a 3 h
+            <span className="font-medium text-foreground">Réunion client</span> · configuration validée · 3 tâches à suivre · il y a 3 h
           </p>
           <p>
-            <span className="font-medium text-foreground">Veille</span> · SIAMS 2026 · brief secteur mis a jour · il y a 4 h
+            <span className="font-medium text-foreground">Infos utiles</span> · salon industriel · opportunité commerciale · il y a 4 h
           </p>
         </CardContent>
       </Card>
@@ -290,14 +323,14 @@ export default function DashboardPage() {
       <section className="grid gap-5 lg:grid-cols-3">
         <Card className="lg:col-span-2">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base tracking-tight">Agents automatises</CardTitle>
-            <p className="text-xs text-muted-foreground">Etat des workflows qui tournent en arriere-plan (donnees de demonstration).</p>
+            <CardTitle className="text-base tracking-tight">Chemins visibles</CardTitle>
+            <p className="text-xs text-muted-foreground">Chaque ligne montre une situation, l&apos;aide proposée et le résultat attendu.</p>
           </CardHeader>
           <CardContent className="space-y-4">
             {[
-              { name: "Qualification demandes entrantes", status: "Actif", progress: 82, detail: "Score + resume + tache « repondre »" },
-              { name: "Extraction actions depuis reunions", status: "Actif", progress: 64, detail: "Resume, decisions, taches assignees" },
-              { name: "Preparation des offres standard", status: "En attente", progress: 31, detail: "Gabarits NI en file d'attente" },
+              { name: "Demande client", status: "À vérifier", progress: 82, detail: "Résumé du besoin, infos manquantes, prochaine action" },
+              { name: "Réunion client", status: "À suivre", progress: 64, detail: "Décisions, tâches, email de compte-rendu" },
+              { name: "Offre NI'One", status: "À relire", progress: 31, detail: "Options techniques, délais, conditions" },
             ].map((flow) => (
               <div key={flow.name} className="ni-soft-panel p-4">
                 <div className="mb-2 flex items-center justify-between text-sm">
@@ -315,15 +348,15 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader className="pb-2">
-            <CardTitle className="text-base tracking-tight">Raccourcis utiles en demo</CardTitle>
-            <p className="text-xs text-muted-foreground">Un clic = module cible. Meme libelles que dans la navigation.</p>
+            <CardTitle className="text-base tracking-tight">Raccourcis utiles</CardTitle>
+            <p className="text-xs text-muted-foreground">Ouvrir rapidement les exemples les plus parlants en rendez-vous.</p>
           </CardHeader>
           <CardContent className="space-y-2">
             {[
-              { href: "/dashboard/taches", label: "Voir la file des taches" },
-              { href: "/dashboard/triage-emails", label: "Ouvrir le triage emails" },
-              { href: "/dashboard/redaction-offres", label: "Rediger une nouvelle offre" },
-              { href: "/dashboard/studio-visuel", label: "Ouvrir le Studio 3D" },
+              { href: "/dashboard/demandes-entrantes", label: "Demandes entrantes" },
+              { href: "/dashboard/redaction-offres", label: "Offres clients" },
+              { href: "/dashboard/fiches-clients", label: "Fiches clients" },
+              { href: "/dashboard/studio-visuel", label: "Studio 3D" },
             ].map((action) => (
               <Link
                 key={action.href}

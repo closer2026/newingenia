@@ -14,11 +14,13 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
   return (
     <aside
       className={cn(
-        "sticky top-0 flex h-screen shrink-0 flex-col overflow-y-auto border-r border-border/70 bg-sidebar py-6 shadow-[20px_0_70px_-55px_rgba(37,37,37,0.7)] backdrop-blur-xl transition-[width,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        "sticky top-0 flex h-screen shrink-0 flex-col overflow-y-auto border-r border-border/70 bg-sidebar py-6 shadow-[20px_0_70px_-55px_rgba(105,105,105,0.7)] backdrop-blur-xl transition-[width,padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
         collapsed ? "w-[84px] px-2" : "w-[248px] px-4"
       )}
     >
-      <NiLogo compact />
+      <div className={cn("flex", collapsed ? "justify-center" : "justify-start")}>
+        <NiLogo compact large />
+      </div>
 
       <div
         className={cn(
@@ -68,7 +70,7 @@ export function Sidebar({ collapsed = false }: { collapsed?: boolean }) {
                   "group flex items-center justify-between rounded-2xl border px-3 py-2.5 text-xs font-medium transition-all duration-300",
                   collapsed && "justify-center px-2",
                   isActive
-                    ? "border-sidebar-primary bg-sidebar-primary text-sidebar-primary-foreground shadow-[0_16px_36px_-28px_rgba(37,37,37,0.8)]"
+                    ? "border-sidebar-primary bg-sidebar-primary text-sidebar-primary-foreground shadow-[0_16px_36px_-28px_rgba(105,105,105,0.8)]"
                     : "border-transparent text-muted-foreground hover:border-border/80 hover:bg-card/70 hover:text-foreground hover:shadow-sm"
                 )}
                 title={item.label}

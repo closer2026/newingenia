@@ -10,8 +10,8 @@ import { readDemoFlow, type DemoFlow } from "@/lib/demo-flow";
 const tasks = [
   {
     id: "FAC-2026-041",
-    title: "Facturation Q2 - Client Omega SA",
-    description: "Creer la facture du lot avril et verifier les conditions de paiement.",
+    title: "Facture - postes NI'One Delta",
+    description: "Vérifier les lignes de facture issues de l'offre validée.",
     due: "Aujourd'hui, 16:00",
     status: "a_faire",
     href: "/dashboard/facturation",
@@ -19,8 +19,8 @@ const tasks = [
   },
   {
     id: "LI-POST-129",
-    title: "Post Linkedin - Etude de cas atelier",
-    description: "Uploader media, definir contexte et valider la version IA avant publication.",
+    title: "Post LinkedIn - poste NI'One",
+    description: "Relire le brouillon de publication et valider le visuel produit.",
     due: "Demain, 10:30",
     status: "en_cours",
     href: "/dashboard/linkedin",
@@ -28,8 +28,8 @@ const tasks = [
   },
   {
     id: "INB-REQ-771",
-    title: "Repondre a une nouvelle demande projet",
-    description: "Verifier la reformulation IA, generer reponse et planifier la relance.",
+    title: "Répondre à une nouvelle demande projet",
+    description: "Vérifier le résumé du besoin, préparer la réponse et planifier la relance.",
     due: "Demain, 14:00",
     status: "a_faire",
     href: "/dashboard/demandes-entrantes",
@@ -61,7 +61,7 @@ export default function TachesPage() {
         id: `DEMO-${flow.leadId}`,
         title: `Relance commerciale - ${flow.company}`,
         description:
-          "Action creee automatiquement depuis le parcours demo apres generation de l'offre et de l'email de suivi.",
+          "Action creee depuis l'offre et l'email de suivi : relancer le client apres validation interne.",
         due: "Aujourd'hui, 17:30",
         status: "en_cours",
         href: "/dashboard/redaction-emails",
@@ -75,18 +75,17 @@ export default function TachesPage() {
     <div className="space-y-7">
       <DemoFlowStatus flow={flow} onReset={() => setFlow(null)} />
       <div>
-        <p className="ni-label">Execution quotidienne</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">File des taches</h1>
+        <p className="ni-label">Actions</p>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Tâches</h1>
         <p className="ni-page-lead mt-2">
-          Chaque ligne indique d&apos;ou vient l&apos;action (badge FACT / INB / LI) et renvoie vers le bon ecran. Les compteurs sont des
-          valeurs demo pour le pitch.
+          Centralisez les tâches issues des demandes, emails, réunions et projets.
         </p>
       </div>
 
       <Card className="rounded-sm border-border bg-card shadow-sm">
         <CardContent className="grid grid-cols-3 gap-3 px-4 py-5 text-sm">
           <div>
-            <p className="ni-label">Taches du jour</p>
+            <p className="ni-label">Tâches du jour</p>
             <p className="mt-1 text-xl font-semibold text-foreground">12</p>
           </div>
           <div>
@@ -122,7 +121,7 @@ export default function TachesPage() {
                 <p className="text-sm text-muted-foreground">{task.description}</p>
                 <div className="flex items-center justify-between">
                   <p className="inline-flex items-center gap-1 text-xs text-muted-foreground">
-                    Echeance: {task.due}
+                    Échéance: {task.due}
                   </p>
                   <Link
                     href={task.href}

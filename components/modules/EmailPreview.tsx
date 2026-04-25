@@ -11,10 +11,10 @@ export function EmailPreview({ generated }: { generated: boolean }) {
     <Card className="ni-surface rounded-lg">
       <CardHeader className="flex-row items-center justify-between space-y-0 pb-2">
         <div>
-          <CardTitle className="text-base tracking-tight">Apercu email</CardTitle>
-          <p className="text-xs text-muted-foreground">Format NI : en-tete, destinataire, corps et signature.</p>
+          <CardTitle className="text-base tracking-tight">Aperçu email</CardTitle>
+          <p className="text-xs text-muted-foreground">Format NI : destinataire, message clair et signature.</p>
         </div>
-        <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Genere par IA · Professionnel</Badge>
+        <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Brouillon à relire</Badge>
       </CardHeader>
       <CardContent className="space-y-4">
         <motion.div
@@ -25,22 +25,22 @@ export function EmailPreview({ generated }: { generated: boolean }) {
         >
           <div className="rounded-t-md bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground">NI · New Ingenia SA</div>
           <div className="space-y-2 p-4 text-sm text-foreground">
-            <p><strong>A:</strong> Marc Leroy · Cartier SA</p>
-            <p><strong>Objet:</strong> Confirmation commande postes de travail</p>
-            <p>Bonjour Monsieur Leroy,</p>
-            <p>Nous confirmons la prise en charge de votre commande de postes de travail NI&apos;One, avec integration surface ESD. La livraison est planifiee pour fin mai 2026, sous reserve de validation finale du plan.</p>
+            <p><strong>A:</strong> Claire Martin · Manufacture Horlogere Delta</p>
+            <p><strong>Objet:</strong> Votre offre pour 3 postes NI&apos;One ESD</p>
+            <p>Bonjour Madame Martin,</p>
+            <p>Veuillez trouver ci-joint notre proposition pour 3 postes NI&apos;One avec surface ESD, éclairage intégré et rangements outils. Nous vous proposons un point de 30 minutes pour valider les dimensions, la charge maximale et le délai souhaité.</p>
             <p>Cordialement,<br />Arnaud Dupont<br />Direction · New Ingenia SA<br />+41 32 420 76 80</p>
           </div>
         </motion.div>
         <div className="flex flex-wrap gap-2">
           <Button size="sm" className="rounded-sm">
-            Simuler l&apos;envoi
+            Marquer comme prêt à envoyer
           </Button>
           <Button size="sm" variant="outline" className="rounded-sm" onClick={() => toast.success("Texte copie dans le presse-papier")}>
             Copier le corps
           </Button>
           <Button size="sm" variant="outline" className="rounded-sm">
-            Regenerer avec un autre ton
+            Adapter le ton
           </Button>
           <Button size="sm" variant="outline" className="rounded-sm">
             Editer manuellement

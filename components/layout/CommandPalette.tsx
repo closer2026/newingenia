@@ -40,7 +40,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-[#252525]/35 p-8 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-[#696969]/35 p-8 backdrop-blur-sm">
       <div className="w-full max-w-2xl rounded-xl border border-border bg-popover shadow-2xl">
         <div className="flex items-center gap-2 border-b border-border px-4 py-3">
           <Search className="h-4 w-4 text-muted-foreground" />
@@ -48,7 +48,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
             autoFocus
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Rechercher une page, un module, une action..."
+            placeholder="Rechercher une page, un client, une action..."
             className="w-full bg-transparent text-sm text-popover-foreground outline-none placeholder:text-muted-foreground"
           />
           <span className="rounded border border-border px-1.5 py-0.5 text-[10px] text-muted-foreground">ESC</span>

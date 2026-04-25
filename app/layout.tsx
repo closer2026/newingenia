@@ -12,9 +12,11 @@ export const metadata: Metadata = {
   title: "NI · Workspace IA",
   description: "Plateforme IA privee de New Ingenia SA",
   icons: {
-    icon: "/ni-logo-neg.png",
-    shortcut: "/ni-logo-neg.png",
-    apple: "/ni-logo-neg.png",
+    icon: [
+      { url: "/favicon.ico?v=4", type: "image/x-icon" },
+    ],
+    shortcut: "/favicon.ico?v=4",
+    apple: "/favicon.ico?v=4",
   },
 };
 

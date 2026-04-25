@@ -86,9 +86,9 @@ export default function StudioVisuelPage() {
   }
 
   const helperText = useMemo(() => {
-    if (state === "loading") return "Generation visuelle en cours...";
-    if (state === "result") return "Modele pret pour presentation client.";
-    return "Configurez la demande puis lancez la generation simulee.";
+    if (state === "loading") return "Génération visuelle en cours...";
+    if (state === "result") return "Modèle prêt pour présentation client.";
+    return "Configurez la demande puis préparez l'aperçu.";
   }, [state]);
 
   const handleGenerate = () => {
@@ -230,60 +230,61 @@ export default function StudioVisuelPage() {
   return (
     <div className="space-y-7">
       <div>
-        <p className="ni-label">Visual intelligence</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Studio 3D (Tripo)</h1>
+        <p className="ni-label">Aperçu 3D</p>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Studio 3D</h1>
         <p className="ni-page-lead mt-2 max-w-4xl">
-          Parcours demo : consignes a gauche, viewer WebGL au centre, fiche produit a droite. Les fichiers .glb sont fournis dans
-          le depot pour montrer le rendu reel sans API Tripo.
+          Affichez un premier aperçu visuel pour aider un client à se projeter.
         </p>
       </div>
 
-      <Card className="rounded-sm border-border bg-[linear-gradient(135deg,var(--color-card)_0%,var(--color-muted)_100%)] shadow-sm">
-        <CardContent className="px-6 py-5 text-sm leading-relaxed text-muted-foreground">
-          <span className="font-medium text-foreground">Comment pitcher ce module :</span> import photo ou prompt texte, generation
-          simulee avec barre de progression, puis export GLB / capture pour une offre ou une presentation technique.
-        </CardContent>
-      </Card>
+      <div className="grid gap-3 md:grid-cols-4">
+        {["Produit", "Vue", "Validation", "Support client"].map((step, index) => (
+          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+            <p className="ni-label">Étape {index + 1}</p>
+            <p className="mt-1 font-semibold text-foreground">{step}</p>
+          </div>
+        ))}
+      </div>
 
       <div className="grid grid-cols-[1.1fr_2fr_1fr] gap-5">
         <Card className="rounded-sm border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base tracking-tight">Consignes de generation</CardTitle>
-            <p className="text-xs text-muted-foreground">Choisissez le mode, importez si besoin, puis lancez la simulation de calcul.</p>
+            <CardTitle className="text-base tracking-tight">Idée à montrer</CardTitle>
+            <p className="text-xs text-muted-foreground">Choisissez un produit ou une vue pour expliquer rapidement l&apos;idée au client.</p>
           </CardHeader>
           <CardContent className="space-y-4">
             <div>
               <div className="mb-2 flex items-center justify-between">
-                <p className="ni-label">Mode de generation</p>
+                <p className="ni-label">Point de depart</p>
                 <span className="rounded-sm border border-border bg-muted px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-                  IA Assist
+                  Aide visuelle
                 </span>
               </div>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Button
                   type="button"
                   size="sm"
                   variant={generationMode === "prompt" ? "default" : "outline"}
-                  className={`h-12 rounded-sm px-3 text-xs ${
+                  className={`h-12 min-w-[132px] flex-1 rounded-sm px-3 text-xs ${
                     generationMode === "prompt" ? "border-transparent" : "border-border"
                   }`}
                   onClick={() => setGenerationMode("prompt")}
                 >
-                  <span className="flex items-center gap-1.5">
+                  <span className="flex items-center justify-center gap-1.5 whitespace-nowrap">
                     <MessageSquareText className="h-3.5 w-3.5" />
-                    Prompt
+                    Description
                   </span>
                 </Button>
                 <Button
                   type="button"
                   size="sm"
                   variant={generationMode === "single-image" ? "default" : "outline"}
-                  className={`h-12 rounded-sm px-4 text-[11px] ${
+                  className={`h-12 min-w-[132px] flex-1 rounded-sm px-3 text-[11px] ${
                     generationMode === "single-image" ? "border-transparent" : "border-border"
                   }`}
                   onClick={() => setGenerationMode("single-image")}
                 >
-                  <span className="flex items-center gap-1.5">
+                  <span className="flex items-center justify-center gap-1.5 whitespace-nowrap">
                     <Images className="h-3.5 w-3.5" />
                     Image unique
                   </span>
@@ -292,14 +293,14 @@ export default function StudioVisuelPage() {
                   type="button"
                   size="sm"
                   variant={generationMode === "four-views" ? "default" : "outline"}
-                  className={`h-12 rounded-sm px-3 text-xs ${
+                  className={`h-12 min-w-[132px] flex-1 rounded-sm px-3 text-xs ${
                     generationMode === "four-views" ? "border-transparent" : "border-border"
                   }`}
                   onClick={() => setGenerationMode("four-views")}
                 >
-                  <span className="flex items-center gap-1.5">
+                  <span className="flex items-center justify-center gap-1.5 whitespace-nowrap">
                     <Sparkles className="h-3.5 w-3.5" />
-                    4 vues
+                    4 vues produit
                   </span>
                 </Button>
               </div>
@@ -314,7 +315,7 @@ export default function StudioVisuelPage() {
 
             {generationMode === "single-image" ? (
               <div className="rounded-sm border border-border bg-muted/30 p-3">
-                <p className="ni-label mb-2">Upload image</p>
+                <p className="ni-label mb-2">Image de référence</p>
                 <Input
                   ref={singleImageInputRef}
                   type="file"
@@ -331,10 +332,10 @@ export default function StudioVisuelPage() {
                 />
                 {singleImagePreview ? (
                   <div className="mt-3">
-                    <p className="mb-1 text-xs text-muted-foreground">Apercu image</p>
+                    <p className="mb-1 text-xs text-muted-foreground">Aperçu image</p>
                     <div className="relative inline-block">
                       {/* eslint-disable-next-line @next/next/no-img-element -- blob URL preview for maquette */}
-                      <img src={singleImagePreview} alt="Apercu upload" className="h-20 w-20 rounded-sm border border-border object-cover" />
+                      <img src={singleImagePreview} alt="Aperçu upload" className="h-20 w-20 rounded-sm border border-border object-cover" />
                       <button
                         type="button"
                         onClick={clearSingleImage}
@@ -352,7 +353,7 @@ export default function StudioVisuelPage() {
 
             {generationMode === "four-views" ? (
               <div className="space-y-2 rounded-sm border border-border bg-muted/30 p-3">
-                <p className="ni-label mb-1">Upload 4 vues produit</p>
+                <p className="ni-label mb-1">4 vues produit</p>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="mb-1 text-xs text-muted-foreground">Front</p>
@@ -507,7 +508,7 @@ export default function StudioVisuelPage() {
               </select>
             </div>
             <Button onClick={handleGenerate} className="w-full rounded-sm">
-              Lancer la generation simulee
+              Préparer l&apos;aperçu
             </Button>
             <div className="rounded-sm border border-border bg-muted/60 p-3">
               <div className="mb-2 flex items-center justify-between">
@@ -525,8 +526,8 @@ export default function StudioVisuelPage() {
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <CardTitle className="text-base tracking-tight">Viewer 3D</CardTitle>
-                <p className="text-xs text-muted-foreground">Modeles fournis : changez le preset pour montrer plusieurs produits.</p>
+                <CardTitle className="text-base tracking-tight">Aperçu 3D</CardTitle>
+                <p className="text-xs text-muted-foreground">Changez de produit pour montrer une configuration ou une idée au client.</p>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {productOptions.map((option) => (
@@ -555,7 +556,7 @@ export default function StudioVisuelPage() {
                 }}
                 key={`${selectedProduct.label}-${selectedProduct.model}-${modelRevision}`}
                 src={selectedProduct.model}
-                alt={`Modele ${selectedProduct.label}`}
+                alt={`Modèle ${selectedProduct.label}`}
                 camera-orbit={cameraState.orbit}
                 camera-target={cameraState.target}
                 field-of-view={cameraState.fov}
@@ -582,7 +583,7 @@ export default function StudioVisuelPage() {
               />
               {state === "loading" ? (
                 <div className="absolute inset-0 flex items-center justify-center bg-background/70 text-sm text-muted-foreground">
-                  Generation en cours...
+                  Préparation de l&apos;aperçu...
                 </div>
               ) : null}
             </div>
@@ -618,8 +619,8 @@ export default function StudioVisuelPage() {
 
         <Card className="rounded-sm border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base tracking-tight">Fiche produit rapide</CardTitle>
-            <p className="text-xs text-muted-foreground">Synthese demo : statut, type et actions d&apos;export pour cloturer la slide.</p>
+            <CardTitle className="text-base tracking-tight">Fiche rapide</CardTitle>
+            <p className="text-xs text-muted-foreground">Ce que l&apos;équipe vérifie avant de l&apos;utiliser dans une offre.</p>
           </CardHeader>
           <CardContent className="space-y-4 text-sm">
             <p className="flex justify-between text-muted-foreground">
@@ -629,21 +630,21 @@ export default function StudioVisuelPage() {
             <p className="flex justify-between text-muted-foreground">
               <span>Statut</span>
               <span className="rounded-sm border border-[#cde6d5] bg-[#eef8f1] px-2 py-0.5 text-xs text-[#2e6a42]">
-                Pret pour presentation
+                Prêt pour présentation
               </span>
             </p>
             <p className="flex justify-between text-muted-foreground">
               <span>Type</span>
-              <span className="text-foreground">Demonstration</span>
+              <span className="text-foreground">Poste NI&apos;One personnalise</span>
             </p>
             <div className="space-y-2 pt-2">
               <Button variant="outline" className="w-full rounded-sm border-border">
-                Telecharger une capture PNG (demo)
+                Telecharger une capture PNG
               </Button>
               <Button variant="outline" className="w-full rounded-sm border-border">
-                Copier le lien du viewer (demo)
+                Copier le lien de l&apos;aperçu
               </Button>
-              <Button className="w-full rounded-sm">Inserer dans une offre (demo)</Button>
+              <Button className="w-full rounded-sm">Inserer dans une offre</Button>
             </div>
           </CardContent>
         </Card>

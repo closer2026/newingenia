@@ -16,9 +16,9 @@ export default function ParametresPage() {
     <div className="space-y-7">
       <div>
         <p className="ni-label">Configuration</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Parametres workspace</h1>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Paramètres workspace</h1>
         <p className="ni-page-lead mt-2">
-          Reglages visuels et preferences de notification pour la demo. Les changements restent dans le navigateur (pas de
+          Réglages visuels et préférences de notification. Les changements restent dans le navigateur (pas de
           sauvegarde serveur).
         </p>
       </div>
@@ -41,7 +41,7 @@ export default function ParametresPage() {
               <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Email</p>
               <p className="mt-1 font-medium text-foreground">arnaud.dupont@newingenia.ch</p>
             </div>
-            <Button className="rounded-md">Enregistrer les infos profil (demo)</Button>
+            <Button className="rounded-md">Enregistrer les infos profil</Button>
           </CardContent>
         </Card>
 
@@ -51,7 +51,7 @@ export default function ParametresPage() {
               {theme === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
               Apparence de la plateforme
             </CardTitle>
-            <p className="text-xs text-muted-foreground">Choisissez le contraste adapte a la salle de reunion ou au bureau.</p>
+            <p className="text-xs text-muted-foreground">Choisissez le contraste adapté à la salle de réunion ou au bureau.</p>
           </CardHeader>
           <CardContent className="space-y-4 text-sm text-muted-foreground">
             <p>Selectionnez le theme principal de votre environnement de travail.</p>
@@ -85,7 +85,7 @@ export default function ParametresPage() {
             <Bell className="h-4 w-4" />
             Notifications internes
           </CardTitle>
-          <p className="text-xs text-muted-foreground">Interrupteurs demo : montrez quels rappels automatiques existent dans le produit cible.</p>
+          <p className="text-xs text-muted-foreground">Montrez quels rappels pourraient aider l&apos;équipe au quotidien.</p>
         </CardHeader>
         <CardContent className="grid gap-3 text-sm text-muted-foreground md:grid-cols-3">
           {[
@@ -95,12 +95,12 @@ export default function ParametresPage() {
               onToggle: () => setNotificationsEnabled((value) => !value),
             },
             {
-              label: "Syntheses quotidiennes des modules IA",
+              label: "Resumes quotidiens des pages importantes",
               enabled: digestEnabled,
               onToggle: () => setDigestEnabled((value) => !value),
             },
             {
-              label: "Rappels actions reunion a traiter",
+              label: "Rappels actions réunion à traiter",
               enabled: autoSummaryEnabled,
               onToggle: () => setAutoSummaryEnabled((value) => !value),
             },
@@ -131,8 +131,8 @@ export default function ParametresPage() {
           </CardTitle>
         </CardHeader>
         <CardContent className="text-sm leading-relaxed text-muted-foreground">
-          Compte administrateur unique pour cette maquette : sert a montrer l&apos;integralite des ecrans sans gerer plusieurs
-          logins techniques pendant la presentation.
+          Compte administrateur unique pour cette maquette : sert à montrer l&apos;intégralité des écrans sans gérer plusieurs
+          logins techniques pendant la présentation.
         </CardContent>
       </Card>
     </div>

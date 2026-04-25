@@ -12,6 +12,7 @@ export type ModuleKey =
   | "reunion-ia"
   | "redaction-emails"
   | "triage-emails"
+  | "fiches-clients"
   | "studio-visuel"
   | "studio-marketing"
   | "veille"
@@ -45,6 +46,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "reunion-ia": true,
     "redaction-emails": true,
     "triage-emails": true,
+    "fiches-clients": true,
     "studio-visuel": true,
     "studio-marketing": true,
     veille: true,
@@ -63,6 +65,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "reunion-ia": true,
     "redaction-emails": true,
     "triage-emails": false,
+    "fiches-clients": true,
     "studio-visuel": true,
     "studio-marketing": true,
     veille: true,
@@ -81,6 +84,7 @@ export const PERMISSIONS: PermissionMatrix = {
     "reunion-ia": false,
     "redaction-emails": false,
     "triage-emails": false,
+    "fiches-clients": false,
     "studio-visuel": true,
     "studio-marketing": true,
     veille: false,
@@ -90,10 +94,10 @@ export const PERMISSIONS: PermissionMatrix = {
 };
 
 export const roleSubtitle = (role: AppRole) => {
-  if (role === "admin") return "Acces complet · Tous les modules disponibles";
+  if (role === "admin") return "Accès complet · Tous les modules disponibles";
   if (role === "manager")
-    return "Acces manager · Modules operationnels disponibles";
-  return "Acces technicien · Recherche documentaire uniquement";
+    return "Accès manager · Modules opérationnels disponibles";
+  return "Accès technicien · Recherche documentaire uniquement";
 };
 
 export const canAccess = (role: AppRole, module: ModuleKey) =>

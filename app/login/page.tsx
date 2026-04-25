@@ -28,10 +28,10 @@ export default function LoginPage() {
           <CardContent className="space-y-5 p-7">
             <NiLogo />
             <div>
-              <p className="ni-label">Espace securise</p>
+              <p className="ni-label">Espace sécurisé</p>
               <h1 className="mt-1 text-xl font-semibold tracking-tight text-foreground">Connexion collaborateurs</h1>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Acces au workspace interne NI : demandes, offres, facturation et assistants IA (maquette de demonstration).
+                Accès au workspace interne NI : demandes, offres, facturation, documents, projets et visuels.
               </p>
             </div>
             <div className="space-y-3">
@@ -44,7 +44,7 @@ export default function LoginPage() {
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Acceder au tableau de bord"}
             </Button>
             <p className="text-center text-xs leading-relaxed text-muted-foreground">
-              Acces reserve aux collaborateurs New Ingenia SA. Les identifiants sont pre-remplis pour la demo.
+              Accès réservé aux collaborateurs New Ingenia SA. Les identifiants sont préremplis pour la présentation.
             </p>
           </CardContent>
         </Card>

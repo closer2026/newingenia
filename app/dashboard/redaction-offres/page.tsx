@@ -29,6 +29,21 @@ export default function RedactionOffresPage() {
 
   return (
     <div className="space-y-5">
+      <div>
+        <p className="ni-label">Offre client</p>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Offres clients</h1>
+        <p className="ni-page-lead mt-2">
+          Partez d&apos;une demande client, completez les informations importantes et preparez une base d&apos;offre claire.
+        </p>
+      </div>
+      <div className="grid gap-3 md:grid-cols-4">
+        {["Besoin client", "Options techniques", "Aperçu offre", "Email d'envoi"].map((step, index) => (
+          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+            <p className="ni-label">Étape {index + 1}</p>
+            <p className="mt-1 font-semibold text-foreground">{step}</p>
+          </div>
+        ))}
+      </div>
       <DemoFlowStatus flow={flow} onReset={() => setFlow(null)} />
       {generated && flow ? (
         <div className="ni-soft-panel flex items-center justify-between gap-4 p-4">

@@ -18,7 +18,7 @@ export function ToolContextBar() {
     <div className="mb-5 flex justify-end">
       <Button type="button" variant="outline" size="sm" onClick={() => setOpen(true)}>
         <CircleHelp className="h-3.5 w-3.5" />
-        Explications ?
+        Comprendre ce module
       </Button>
       <ToolHelpDialog help={help} open={open} onClose={() => setOpen(false)} />
     </div>

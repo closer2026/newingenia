@@ -51,8 +51,8 @@ export function Topbar({
 
   return (
     <>
-      <header className="flex h-[72px] items-center gap-4 border-b border-border/70 bg-background/68 px-6 shadow-[0_18px_60px_-50px_rgba(37,37,37,0.65)] backdrop-blur-xl xl:px-8">
-        <div className="flex min-w-56 items-center gap-2">
+      <header className="flex h-[72px] items-center gap-4 border-b border-border/70 bg-background/68 px-6 shadow-[0_18px_60px_-50px_rgba(105,105,105,0.65)] backdrop-blur-xl xl:px-8">
+        <div className="flex min-w-72 items-center gap-2">
           <Button
             size="icon"
             variant="ghost"
@@ -63,8 +63,8 @@ export function Topbar({
             {sidebarCollapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
           </Button>
           <div>
-          <p className="ni-label">Vous etes ici</p>
-          <p className="text-sm font-semibold tracking-tight text-foreground">{breadcrumb}</p>
+            <p className="ni-label">Vous etes ici</p>
+            <p className="text-sm font-semibold tracking-tight text-foreground">{breadcrumb}</p>
           </div>
         </div>
         <div className="flex flex-1 items-center justify-end gap-3">
@@ -81,15 +81,28 @@ export function Topbar({
             </span>
           </button>
 
+          {toolHelp ? (
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setOpenHelp(true)}
+              className="hidden h-10 rounded-2xl bg-card/62 text-xs shadow-sm backdrop-blur xl:inline-flex"
+              title="Comprendre ce module"
+              aria-label="Comprendre ce module"
+            >
+              <CircleHelp className="h-3.5 w-3.5" />
+              Comprendre ce module
+            </Button>
+          ) : null}
           <div className="flex h-11 items-center gap-2 rounded-2xl border border-border/75 bg-card/62 px-2 shadow-sm backdrop-blur">
             {toolHelp ? (
               <Button
                 size="icon"
                 variant="ghost"
                 onClick={() => setOpenHelp(true)}
-                className="h-9 w-9 rounded-xl text-muted-foreground"
-                title="Comprendre cet outil"
-                aria-label="Comprendre cet outil"
+                className="h-9 w-9 rounded-xl text-muted-foreground xl:hidden"
+                title="Comprendre ce module"
+                aria-label="Comprendre ce module"
               >
                 <CircleHelp className="h-4 w-4" />
               </Button>
@@ -119,8 +132,8 @@ export function Topbar({
                   </p>
                   <div className="space-y-2">
                     {[
-                      "12 demandes entrantes a qualifier",
-                      "Reunion production: synthese disponible",
+                      "12 demandes entrantes à qualifier",
+                      "Réunion production : synthèse disponible",
                       "Offre Helio Industrie prete pour validation",
                     ].map((item) => (
                       <div key={item} className="rounded-xl border border-border/75 bg-card/70 px-3 py-2 text-sm text-popover-foreground">

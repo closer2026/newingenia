@@ -35,7 +35,7 @@ export function DemoFlowStatus({
     <Card className="border-foreground/10 bg-card/78">
       <CardContent className="flex items-center justify-between gap-5 px-5 py-4">
         <div className="min-w-0">
-          <p className="ni-label">Parcours demo actif</p>
+          <p className="ni-label">Parcours de présentation actif</p>
           <p className="mt-2 text-sm font-semibold text-foreground">
             {flow.company} · {flow.contact}
           </p>
@@ -76,7 +76,7 @@ export function DemoFlowStatus({
             type="button"
             variant="ghost"
             size="icon-sm"
-            title="Réinitialiser la démo"
+            title="Reinitialiser le parcours"
             onClick={() => {
               clearDemoFlow();
               onReset?.();

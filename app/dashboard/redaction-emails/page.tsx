@@ -29,13 +29,20 @@ export default function RedactionEmailsPage() {
 
   return (
     <div className="space-y-5">
+      <div>
+        <p className="ni-label">Email client</p>
+        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Emails clients</h1>
+        <p className="ni-page-lead mt-2">
+          Choisissez le contexte. L&apos;outil prépare un brouillon professionnel que vous pouvez modifier.
+        </p>
+      </div>
       <DemoFlowStatus flow={flow} onReset={() => setFlow(null)} />
       {generated && flow ? (
         <div className="ni-soft-panel flex items-center justify-between gap-4 p-4">
           <div>
             <p className="text-sm font-semibold text-foreground">Email de suivi prêt pour {flow.company}</p>
             <p className="mt-1 text-xs text-muted-foreground">
-              Dernière étape demo : créer une action de suivi dans la file des tâches.
+              Dernière étape : créer une action de suivi dans la liste des tâches.
             </p>
           </div>
           <Link

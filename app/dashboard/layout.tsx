@@ -10,21 +10,22 @@ import { ToolContextBar } from "@/components/layout/ToolContextBar";
 
 const labels: Record<string, string> = {
   "/dashboard": "Tableau de bord",
-  "/dashboard/demo": "Parcours demo",
-  "/dashboard/taches": "Taches",
-  "/dashboard/facturation": "Creation facture",
-  "/dashboard/linkedin": "Linkedin",
+  "/dashboard/demo": "Parcours de présentation",
+  "/dashboard/taches": "Tâches",
+  "/dashboard/facturation": "Facturation",
+  "/dashboard/linkedin": "Communication LinkedIn",
   "/dashboard/demandes-entrantes": "Demandes entrantes",
-  "/dashboard/recherche-docs": "Recherche docs",
-  "/dashboard/redaction-offres": "Redaction offres",
+  "/dashboard/recherche-docs": "Recherche technique",
+  "/dashboard/redaction-offres": "Offres clients",
   "/dashboard/reunion-ia": "Réunion IA",
-  "/dashboard/redaction-emails": "Redaction emails",
-  "/dashboard/triage-emails": "Triage emails",
+  "/dashboard/redaction-emails": "Emails clients",
+  "/dashboard/triage-emails": "Priorisation emails",
+  "/dashboard/fiches-clients": "Fiches clients",
   "/dashboard/studio-visuel": "Studio 3D",
-  "/dashboard/studio-marketing": "Studio marketing",
+  "/dashboard/studio-marketing": "Studio Marketing",
   "/dashboard/veille": "Veille",
-  "/dashboard/gestion-roles": "Gestion des roles",
-  "/dashboard/parametres": "Parametres",
+  "/dashboard/gestion-roles": "Accès & rôles",
+  "/dashboard/parametres": "Paramètres",
 };
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -36,7 +37,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <div className="mx-auto flex min-h-screen w-full min-w-[1280px]">
         <Sidebar collapsed={sidebarCollapsed} />
         <div className="relative flex min-h-screen flex-1 flex-col overflow-x-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(37,37,37,0.10),transparent_30%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.85),transparent_26%),linear-gradient(135deg,rgba(255,255,255,0.55),transparent_36%)] dark:bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.05),transparent_26%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(105,105,105,0.10),transparent_30%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.85),transparent_26%),linear-gradient(135deg,rgba(255,255,255,0.55),transparent_36%)] dark:bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.05),transparent_26%)]" />
           <Topbar
             breadcrumb={labels[pathname] ?? "Tableau de bord"}
             sidebarCollapsed={sidebarCollapsed}
