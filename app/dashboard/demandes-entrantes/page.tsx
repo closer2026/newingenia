@@ -118,7 +118,7 @@ export default function DemandesEntrantesPage() {
 
       <div className="grid gap-3 md:grid-cols-4">
         {["Demande reçue", "Besoin résumé", "Infos manquantes", "Réponse ou offre"].map((step, index) => (
-          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+          <div key={step} className="rounded-2xl border border-border bg-card/94 px-4 py-3 text-sm shadow-sm">
             <p className="ni-label">Étape {index + 1}</p>
             <p className="mt-1 font-semibold text-foreground">{step}</p>
           </div>
@@ -126,7 +126,7 @@ export default function DemandesEntrantesPage() {
       </div>
 
       <div className="grid grid-cols-3 gap-5">
-        <Card className="rounded-sm border-border bg-card shadow-sm">
+        <Card className="rounded-xl border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-base tracking-tight">Demandes à traiter</CardTitle>
             <p className="text-xs text-muted-foreground">Cliquez une ligne pour lire le message et préparer la suite.</p>
@@ -139,7 +139,7 @@ export default function DemandesEntrantesPage() {
                   setSelectedId(req.id);
                   setSent(false);
                 }}
-                className={`w-full rounded-sm border px-3 py-2 text-left text-xs transition ${
+                className={`w-full rounded-xl border px-3 py-2 text-left text-xs transition ${
                   req.id === selectedId
                     ? "border-primary bg-primary text-primary-foreground"
                     : "border-border bg-card text-foreground hover:bg-muted"
@@ -152,24 +152,24 @@ export default function DemandesEntrantesPage() {
           </CardContent>
         </Card>
 
-        <Card className="col-span-2 rounded-sm border-border bg-card shadow-sm">
+        <Card className="col-span-2 rounded-xl border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base tracking-tight">Fiche demande · {selected.company}</CardTitle>
-              <Badge className="rounded-sm border border-border bg-muted text-muted-foreground">{selected.id}</Badge>
+              <Badge className="rounded-xl border border-border bg-muted text-muted-foreground">{selected.id}</Badge>
             </div>
           </CardHeader>
           <CardContent className="space-y-5">
             <div className="grid grid-cols-4 gap-2">
-              <div className="rounded-sm border border-border bg-muted/30 p-2 text-xs">
+              <div className="rounded-xl border border-border bg-muted/52 p-2 text-xs">
                 <p className="ni-label">Statut</p>
                 <p className="mt-1 font-medium text-foreground">Nouveau</p>
               </div>
-              <div className="rounded-sm border border-border bg-muted/30 p-2 text-xs">
+              <div className="rounded-xl border border-border bg-muted/52 p-2 text-xs">
                 <p className="ni-label">Besoin clair</p>
                 <p className="mt-1 font-medium text-foreground">A completer</p>
               </div>
-              <div className="rounded-sm border border-border bg-muted/30 p-2 text-xs">
+              <div className="rounded-xl border border-border bg-muted/52 p-2 text-xs">
                 <p className="ni-label">Urgence</p>
                 <p className="mt-1 font-medium text-foreground">Normale</p>
               </div>
@@ -186,7 +186,7 @@ export default function DemandesEntrantesPage() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Button onClick={generateReformulation} variant="outline" className="w-full rounded-sm">
+                <Button onClick={generateReformulation} variant="outline" className="w-full rounded-xl">
                   Resumer le besoin
                 </Button>
                 <Textarea
@@ -205,7 +205,7 @@ export default function DemandesEntrantesPage() {
                   value={responseContext}
                   onChange={(e) => setResponseContext(e.target.value)}
                 />
-                <Button onClick={generateResponse} className="w-full rounded-sm">
+                <Button onClick={generateResponse} className="w-full rounded-xl">
                   Préparer réponse + relance
                 </Button>
               </div>
@@ -236,7 +236,7 @@ export default function DemandesEntrantesPage() {
               <Button
                 disabled={!responseDraft.trim()}
                 onClick={() => setSent(true)}
-                className="rounded-sm"
+                className="rounded-xl"
               >
                 Marquer comme prêt à envoyer
               </Button>

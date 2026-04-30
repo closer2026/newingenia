@@ -20,17 +20,17 @@ export function PdfViewer() {
           <br />
           Charge statique recommandee jusqu&apos;a 80 kg sur 1.2 m.
           <br />
-          <span className="rounded-sm bg-[#f0a500] px-1.5 py-0.5 text-[#252525]">Référence 3 842 990 026, section renforcée.</span>
+          <span className="rounded-md bg-amber-200/90 px-1.5 py-0.5 text-foreground">Référence 3 842 990 026, section renforcée.</span>
         </div>
-        <Button variant="outline" className="w-full rounded-sm">
+        <Button variant="outline" className="w-full rounded-xl">
           Ouvrir le document source
         </Button>
         <div className="space-y-2">
           <p className="text-sm font-medium">Autres references suggerees</p>
           <div className="flex flex-wrap gap-2">
-            <Badge variant="outline" className="rounded-sm">Catalogue Profiles BR 2024</Badge>
-            <Badge variant="outline" className="rounded-sm">NI&apos;One fiche technique</Badge>
-            <Badge variant="outline" className="rounded-sm">Manuel montage profiles</Badge>
+            <Badge variant="outline" className="rounded-xl">Catalogue Profiles BR 2024</Badge>
+            <Badge variant="outline" className="rounded-xl">NI&apos;One fiche technique</Badge>
+            <Badge variant="outline" className="rounded-xl">Manuel montage profiles</Badge>
           </div>
         </div>
       </CardContent>

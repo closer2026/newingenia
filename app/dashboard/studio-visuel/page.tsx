@@ -239,7 +239,7 @@ export default function StudioVisuelPage() {
 
       <div className="grid gap-3 md:grid-cols-4">
         {["Produit", "Vue", "Validation", "Support client"].map((step, index) => (
-          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+          <div key={step} className="rounded-2xl border border-border bg-card/94 px-4 py-3 text-sm shadow-sm">
             <p className="ni-label">Étape {index + 1}</p>
             <p className="mt-1 font-semibold text-foreground">{step}</p>
           </div>
@@ -247,7 +247,7 @@ export default function StudioVisuelPage() {
       </div>
 
       <div className="grid grid-cols-[1.1fr_2fr_1fr] gap-5">
-        <Card className="rounded-sm border-border bg-card shadow-sm">
+        <Card className="rounded-xl border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-base tracking-tight">Idée à montrer</CardTitle>
             <p className="text-xs text-muted-foreground">Choisissez un produit ou une vue pour expliquer rapidement l&apos;idée au client.</p>
@@ -256,7 +256,7 @@ export default function StudioVisuelPage() {
             <div>
               <div className="mb-2 flex items-center justify-between">
                 <p className="ni-label">Point de depart</p>
-                <span className="rounded-sm border border-border bg-muted px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                <span className="rounded-xl border border-border bg-muted px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
                   Aide visuelle
                 </span>
               </div>
@@ -265,7 +265,7 @@ export default function StudioVisuelPage() {
                   type="button"
                   size="sm"
                   variant={generationMode === "prompt" ? "default" : "outline"}
-                  className={`h-12 min-w-[132px] flex-1 rounded-sm px-3 text-xs ${
+                  className={`h-12 min-w-[132px] flex-1 rounded-xl px-3 text-xs ${
                     generationMode === "prompt" ? "border-transparent" : "border-border"
                   }`}
                   onClick={() => setGenerationMode("prompt")}
@@ -279,7 +279,7 @@ export default function StudioVisuelPage() {
                   type="button"
                   size="sm"
                   variant={generationMode === "single-image" ? "default" : "outline"}
-                  className={`h-12 min-w-[132px] flex-1 rounded-sm px-3 text-[11px] ${
+                  className={`h-12 min-w-[132px] flex-1 rounded-xl px-3 text-[11px] ${
                     generationMode === "single-image" ? "border-transparent" : "border-border"
                   }`}
                   onClick={() => setGenerationMode("single-image")}
@@ -293,7 +293,7 @@ export default function StudioVisuelPage() {
                   type="button"
                   size="sm"
                   variant={generationMode === "four-views" ? "default" : "outline"}
-                  className={`h-12 min-w-[132px] flex-1 rounded-sm px-3 text-xs ${
+                  className={`h-12 min-w-[132px] flex-1 rounded-xl px-3 text-xs ${
                     generationMode === "four-views" ? "border-transparent" : "border-border"
                   }`}
                   onClick={() => setGenerationMode("four-views")}
@@ -307,20 +307,20 @@ export default function StudioVisuelPage() {
             </div>
 
             {generationMode === "prompt" ? (
-              <div className="rounded-sm border border-border bg-muted/30 p-3">
+              <div className="rounded-xl border border-border bg-muted/52 p-3">
                 <p className="ni-label mb-2">Decrivez le produit</p>
-                <Textarea value={prompt} onChange={(event) => setPrompt(event.target.value)} className="min-h-24 rounded-sm" />
+                <Textarea value={prompt} onChange={(event) => setPrompt(event.target.value)} className="min-h-24 rounded-xl" />
               </div>
             ) : null}
 
             {generationMode === "single-image" ? (
-              <div className="rounded-sm border border-border bg-muted/30 p-3">
+              <div className="rounded-xl border border-border bg-muted/52 p-3">
                 <p className="ni-label mb-2">Image de référence</p>
                 <Input
                   ref={singleImageInputRef}
                   type="file"
                   accept="image/*"
-                  className="rounded-sm"
+                  className="rounded-xl"
                   onChange={(event) => {
                     const file = event.target.files?.[0];
                     if (!file) return;
@@ -335,7 +335,7 @@ export default function StudioVisuelPage() {
                     <p className="mb-1 text-xs text-muted-foreground">Aperçu image</p>
                     <div className="relative inline-block">
                       {/* eslint-disable-next-line @next/next/no-img-element -- blob URL preview for maquette */}
-                      <img src={singleImagePreview} alt="Aperçu upload" className="h-20 w-20 rounded-sm border border-border object-cover" />
+                      <img src={singleImagePreview} alt="Aperçu upload" className="h-20 w-20 rounded-xl border border-border object-cover" />
                       <button
                         type="button"
                         onClick={clearSingleImage}
@@ -352,7 +352,7 @@ export default function StudioVisuelPage() {
             ) : null}
 
             {generationMode === "four-views" ? (
-              <div className="space-y-2 rounded-sm border border-border bg-muted/30 p-3">
+              <div className="space-y-2 rounded-xl border border-border bg-muted/52 p-3">
                 <p className="ni-label mb-1">4 vues produit</p>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
@@ -363,7 +363,7 @@ export default function StudioVisuelPage() {
                       }}
                       type="file"
                       accept="image/*"
-                      className="rounded-sm"
+                      className="rounded-xl"
                       onChange={(event) => {
                         const file = event.target.files?.[0];
                         if (!file) return;
@@ -376,7 +376,7 @@ export default function StudioVisuelPage() {
                     {viewsPreview.front ? (
                       <div className="relative mt-2 inline-block">
                         {/* eslint-disable-next-line @next/next/no-img-element -- blob URL preview for maquette */}
-                        <img src={viewsPreview.front} alt="Front preview" className="h-14 w-14 rounded-sm border border-border object-cover" />
+                        <img src={viewsPreview.front} alt="Front preview" className="h-14 w-14 rounded-xl border border-border object-cover" />
                         <button
                           type="button"
                           onClick={() => clearViewImage("front")}
@@ -397,7 +397,7 @@ export default function StudioVisuelPage() {
                       }}
                       type="file"
                       accept="image/*"
-                      className="rounded-sm"
+                      className="rounded-xl"
                       onChange={(event) => {
                         const file = event.target.files?.[0];
                         if (!file) return;
@@ -410,7 +410,7 @@ export default function StudioVisuelPage() {
                     {viewsPreview.back ? (
                       <div className="relative mt-2 inline-block">
                         {/* eslint-disable-next-line @next/next/no-img-element -- blob URL preview for maquette */}
-                        <img src={viewsPreview.back} alt="Back preview" className="h-14 w-14 rounded-sm border border-border object-cover" />
+                        <img src={viewsPreview.back} alt="Back preview" className="h-14 w-14 rounded-xl border border-border object-cover" />
                         <button
                           type="button"
                           onClick={() => clearViewImage("back")}
@@ -431,7 +431,7 @@ export default function StudioVisuelPage() {
                       }}
                       type="file"
                       accept="image/*"
-                      className="rounded-sm"
+                      className="rounded-xl"
                       onChange={(event) => {
                         const file = event.target.files?.[0];
                         if (!file) return;
@@ -444,7 +444,7 @@ export default function StudioVisuelPage() {
                     {viewsPreview.left ? (
                       <div className="relative mt-2 inline-block">
                         {/* eslint-disable-next-line @next/next/no-img-element -- blob URL preview for maquette */}
-                        <img src={viewsPreview.left} alt="Left preview" className="h-14 w-14 rounded-sm border border-border object-cover" />
+                        <img src={viewsPreview.left} alt="Left preview" className="h-14 w-14 rounded-xl border border-border object-cover" />
                         <button
                           type="button"
                           onClick={() => clearViewImage("left")}
@@ -465,7 +465,7 @@ export default function StudioVisuelPage() {
                       }}
                       type="file"
                       accept="image/*"
-                      className="rounded-sm"
+                      className="rounded-xl"
                       onChange={(event) => {
                         const file = event.target.files?.[0];
                         if (!file) return;
@@ -478,7 +478,7 @@ export default function StudioVisuelPage() {
                     {viewsPreview.right ? (
                       <div className="relative mt-2 inline-block">
                         {/* eslint-disable-next-line @next/next/no-img-element -- blob URL preview for maquette */}
-                        <img src={viewsPreview.right} alt="Right preview" className="h-14 w-14 rounded-sm border border-border object-cover" />
+                        <img src={viewsPreview.right} alt="Right preview" className="h-14 w-14 rounded-xl border border-border object-cover" />
                         <button
                           type="button"
                           onClick={() => clearViewImage("right")}
@@ -499,7 +499,7 @@ export default function StudioVisuelPage() {
               <select
                 value={productType}
                 onChange={(event) => setProductType(event.target.value)}
-                className="h-10 w-full rounded-sm border border-border bg-card px-3 text-sm text-foreground"
+                className="h-10 w-full rounded-xl border border-border bg-card px-3 text-sm text-foreground"
               >
                 <option>Equipement industriel</option>
                 <option>Poste de travail</option>
@@ -507,10 +507,10 @@ export default function StudioVisuelPage() {
                 <option>Chassis technique</option>
               </select>
             </div>
-            <Button onClick={handleGenerate} className="w-full rounded-sm">
+            <Button onClick={handleGenerate} className="w-full rounded-xl">
               Préparer l&apos;aperçu
             </Button>
-            <div className="rounded-sm border border-border bg-muted/60 p-3">
+            <div className="rounded-xl border border-border bg-muted/60 p-3">
               <div className="mb-2 flex items-center justify-between">
                 <p className="text-xs text-muted-foreground">{helperText}</p>
                 <p className="text-xs font-medium text-foreground">{progress}%</p>
@@ -522,7 +522,7 @@ export default function StudioVisuelPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-sm border-border bg-card shadow-sm">
+        <Card className="rounded-xl border-border bg-card shadow-sm">
           <CardHeader className="pb-3">
             <div className="flex items-center justify-between gap-3">
               <div>
@@ -536,7 +536,7 @@ export default function StudioVisuelPage() {
                     onClick={() => setSelectedProduct(option)}
                     size="sm"
                     variant={selectedProduct.label === option.label ? "default" : "outline"}
-                    className={`h-7 rounded-sm px-2.5 text-xs ${
+                    className={`h-7 rounded-xl px-2.5 text-xs ${
                       selectedProduct.label === option.label
                         ? "bg-primary text-primary-foreground hover:opacity-90"
                         : "border-border text-muted-foreground"
@@ -549,7 +549,7 @@ export default function StudioVisuelPage() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="relative overflow-hidden rounded-sm border border-border bg-muted">
+            <div className="relative overflow-hidden rounded-xl border border-border bg-muted">
               <model-viewer
                 ref={(element) => {
                   viewerRef.current = element;
@@ -587,7 +587,7 @@ export default function StudioVisuelPage() {
                 </div>
               ) : null}
             </div>
-            <div className="mt-3 rounded-sm border border-border bg-muted p-3">
+            <div className="mt-3 rounded-xl border border-border bg-muted p-3">
               <p className="ni-label mb-2">Mode affichage</p>
               <div className="grid grid-cols-2 gap-2">
                 <Button
@@ -597,7 +597,7 @@ export default function StudioVisuelPage() {
                     setViewMode("solid");
                     void applyMaterialMode("solid");
                   }}
-                  className={viewMode === "solid" ? "rounded-sm" : "rounded-sm border-border"}
+                  className={viewMode === "solid" ? "rounded-xl" : "rounded-xl border-border"}
                 >
                   Vue volumes (mat)
                 </Button>
@@ -608,7 +608,7 @@ export default function StudioVisuelPage() {
                     setViewMode("textured");
                     setModelRevision((value) => value + 1);
                   }}
-                  className={viewMode === "textured" ? "rounded-sm" : "rounded-sm border-border"}
+                  className={viewMode === "textured" ? "rounded-xl" : "rounded-xl border-border"}
                 >
                   Vue textures
                 </Button>
@@ -617,7 +617,7 @@ export default function StudioVisuelPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-sm border-border bg-card shadow-sm">
+        <Card className="rounded-xl border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-base tracking-tight">Fiche rapide</CardTitle>
             <p className="text-xs text-muted-foreground">Ce que l&apos;équipe vérifie avant de l&apos;utiliser dans une offre.</p>
@@ -629,7 +629,7 @@ export default function StudioVisuelPage() {
             </p>
             <p className="flex justify-between text-muted-foreground">
               <span>Statut</span>
-              <span className="rounded-sm border border-[#cde6d5] bg-[#eef8f1] px-2 py-0.5 text-xs text-[#2e6a42]">
+              <span className="rounded-xl border border-[#cde6d5] bg-[#eef8f1] px-2 py-0.5 text-xs text-[#2e6a42]">
                 Prêt pour présentation
               </span>
             </p>
@@ -638,13 +638,13 @@ export default function StudioVisuelPage() {
               <span className="text-foreground">Poste NI&apos;One personnalise</span>
             </p>
             <div className="space-y-2 pt-2">
-              <Button variant="outline" className="w-full rounded-sm border-border">
+              <Button variant="outline" className="w-full rounded-xl border-border">
                 Telecharger une capture PNG
               </Button>
-              <Button variant="outline" className="w-full rounded-sm border-border">
+              <Button variant="outline" className="w-full rounded-xl border-border">
                 Copier le lien de l&apos;aperçu
               </Button>
-              <Button className="w-full rounded-sm">Inserer dans une offre</Button>
+              <Button className="w-full rounded-xl">Inserer dans une offre</Button>
             </div>
           </CardContent>
         </Card>

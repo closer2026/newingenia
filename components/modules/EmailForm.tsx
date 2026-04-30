@@ -64,10 +64,10 @@ export function EmailForm({
           <Label>Message clé à transmettre</Label>
           <Textarea value={message} onChange={(event) => setMessage(event.target.value)} />
         </div>
-        <div className="ni-field"><Label>Ton</Label><div className="flex gap-2 text-xs"><span className="rounded-sm bg-primary px-3 py-1 text-primary-foreground">Professionnel</span><span className="rounded-sm border border-border bg-card px-3 py-1 text-foreground">Cordial</span><span className="rounded-sm border border-border bg-card px-3 py-1 text-foreground">Formel</span><span className="rounded-sm border border-border bg-card px-3 py-1 text-foreground">Bref</span></div></div>
+        <div className="ni-field"><Label>Ton</Label><div className="flex gap-2 text-xs"><span className="rounded-xl bg-primary px-3 py-1 text-primary-foreground">Professionnel</span><span className="rounded-xl border border-border bg-card px-3 py-1 text-foreground">Cordial</span><span className="rounded-xl border border-border bg-card px-3 py-1 text-foreground">Formel</span><span className="rounded-xl border border-border bg-card px-3 py-1 text-foreground">Bref</span></div></div>
         <div className="ni-field"><Label>Langue</Label><Select defaultValue="fr"><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="fr">Français</SelectItem><SelectItem value="de">Allemand</SelectItem><SelectItem value="en">Anglais</SelectItem><SelectItem value="it">Italien</SelectItem></SelectContent></Select></div>
         <div className="ni-field"><Label>Signature</Label><Select defaultValue="arnaud"><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="arnaud">Arnaud Dupont</SelectItem><SelectItem value="marc">Marc Lambert</SelectItem><SelectItem value="sophie">Sophie Favre</SelectItem></SelectContent></Select></div>
-        <Button onClick={generate} className="w-full rounded-sm">
+        <Button onClick={generate} className="w-full rounded-xl">
           {loading ? "Préparation en cours..." : "Préparer le brouillon email"}
         </Button>
       </CardContent>

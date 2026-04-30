@@ -33,16 +33,16 @@ export function EmailPreview({ generated }: { generated: boolean }) {
           </div>
         </motion.div>
         <div className="flex flex-wrap gap-2">
-          <Button size="sm" className="rounded-sm">
+          <Button size="sm" className="rounded-xl">
             Marquer comme prêt à envoyer
           </Button>
-          <Button size="sm" variant="outline" className="rounded-sm" onClick={() => toast.success("Texte copie dans le presse-papier")}>
+          <Button size="sm" variant="outline" className="rounded-xl" onClick={() => toast.success("Texte copie dans le presse-papier")}>
             Copier le corps
           </Button>
-          <Button size="sm" variant="outline" className="rounded-sm">
+          <Button size="sm" variant="outline" className="rounded-xl">
             Adapter le ton
           </Button>
-          <Button size="sm" variant="outline" className="rounded-sm">
+          <Button size="sm" variant="outline" className="rounded-xl">
             Editer manuellement
           </Button>
         </div>

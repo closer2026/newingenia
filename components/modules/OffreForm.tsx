@@ -44,7 +44,7 @@ export function OffreForm({
   };
 
   return (
-    <Card className="ni-surface rounded-sm">
+    <Card className="ni-surface rounded-[1.25rem] border-white/80">
       <CardHeader className="pb-2">
         <p className="ni-label">Offre client</p>
         <CardTitle className="text-base tracking-tight">Base d&apos;offre</CardTitle>
@@ -73,14 +73,14 @@ export function OffreForm({
         </div>
         <div className="ni-field"><Label>Contraintes specifiques</Label><Textarea /></div>
         <div className="ni-field"><Label>Délai souhaité</Label><Input type="date" /></div>
-        <div className="rounded-2xl border border-dashed border-border bg-muted/40 p-4 text-center text-sm leading-relaxed text-muted-foreground">
+        <div className="rounded-2xl border border-dashed border-border bg-muted/58 p-4 text-center text-sm leading-relaxed text-muted-foreground">
           Piece jointe possible : plan, photo de ligne ou cahier des charges client.
         </div>
         {loading ? <Progress value={progress} /> : null}
-        <Button onClick={generate} className="w-full rounded-sm bg-[#252525] hover:bg-[#1e1e1e]">
+        <Button onClick={generate} className="w-full rounded-2xl">
           Préparer la base d&apos;offre
         </Button>
-        <Button variant="outline" className="w-full rounded-sm">
+        <Button variant="outline" className="w-full rounded-2xl border-border/70 bg-white/84 backdrop-blur-sm">
           Sauvegarder le brouillon localement
         </Button>
       </CardContent>

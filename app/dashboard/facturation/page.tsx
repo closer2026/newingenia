@@ -362,7 +362,7 @@ export default function FacturationPage() {
 
       <section className="grid gap-3 md:grid-cols-4">
         {["Source", "Lignes", "Vérification", "Aperçu"].map((step, index) => (
-          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+          <div key={step} className="rounded-2xl border border-border bg-card/94 px-4 py-3 text-sm shadow-sm">
             <p className="ni-label">Étape {index + 1}</p>
             <p className="mt-1 font-semibold text-foreground">{step}</p>
           </div>
@@ -376,7 +376,7 @@ export default function FacturationPage() {
           { label: "Total TTC", value: `${totals.ttcTotal.toFixed(2)} ${currency}` },
           { label: "Échéance", value: dueDate || "N/A" },
         ].map((item) => (
-          <Card key={item.label} className="rounded-xl border-border bg-card/90 shadow-sm">
+          <Card key={item.label} className="rounded-xl border-border bg-card/97 shadow-sm">
             <CardContent className="p-4">
               <p className="ni-label">{item.label}</p>
               <p className="mt-2 text-sm font-semibold text-foreground">{item.value}</p>
@@ -385,7 +385,7 @@ export default function FacturationPage() {
         ))}
       </section>
 
-      <Card className="rounded-xl border-border bg-card/90 shadow-sm">
+      <Card className="rounded-xl border-border bg-card/97 shadow-sm">
         <CardHeader className="pb-2">
           <CardTitle className="text-base tracking-tight">Source de la facture</CardTitle>
           <p className="text-xs text-muted-foreground">
@@ -397,7 +397,7 @@ export default function FacturationPage() {
             {chatMessages.map((message, idx) => (
               <div
                 key={`${message.role}-${idx}`}
-                className={`rounded-sm px-3 py-2 text-sm ${
+                className={`rounded-xl px-3 py-2 text-sm ${
                   message.role === "assistant"
                     ? "bg-card text-foreground"
                     : "bg-primary text-primary-foreground"
@@ -421,7 +421,7 @@ export default function FacturationPage() {
                   type="button"
                   variant="outline"
                   onClick={startVoiceInput}
-                  className="h-10 w-10 rounded-sm p-0"
+                  className="h-10 w-10 rounded-xl p-0"
                   aria-label="Démarrer le micro"
                   title="Démarrer le micro"
                 >
@@ -436,7 +436,7 @@ export default function FacturationPage() {
                   type="button"
                   variant="outline"
                   onClick={stopVoiceInput}
-                  className="h-10 w-10 rounded-sm p-0"
+                  className="h-10 w-10 rounded-xl p-0"
                   aria-label="Arrêter le micro"
                   title="Arrêter le micro"
                 >
@@ -445,7 +445,7 @@ export default function FacturationPage() {
                   </svg>
                 </Button>
               )}
-              <Button onClick={() => handleAssistantMessage()} className="h-10 rounded-sm">
+              <Button onClick={() => handleAssistantMessage()} className="h-10 rounded-xl">
                 Remplir depuis cette source
               </Button>
             </div>
@@ -457,7 +457,7 @@ export default function FacturationPage() {
       </Card>
 
       <div className="grid grid-cols-1 gap-5 xl:grid-cols-[1.3fr_1fr]">
-        <Card className="rounded-xl border-border bg-card/90 shadow-sm">
+        <Card className="rounded-xl border-border bg-card/97 shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-base tracking-tight">Lignes à vérifier</CardTitle>
             <p className="text-xs text-muted-foreground">
@@ -465,7 +465,7 @@ export default function FacturationPage() {
             </p>
           </CardHeader>
           <CardContent className="space-y-5">
-            <div className="space-y-3 rounded-lg border border-border bg-muted/40 p-4">
+            <div className="space-y-3 rounded-lg border border-border bg-muted/58 p-4">
               <p className="ni-label">Client</p>
               <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
@@ -484,7 +484,7 @@ export default function FacturationPage() {
             </div>
             </div>
 
-            <div className="space-y-3 rounded-lg border border-border bg-muted/40 p-4">
+            <div className="space-y-3 rounded-lg border border-border bg-muted/58 p-4">
               <p className="ni-label">Référence facture</p>
               <div className="grid grid-cols-3 gap-3">
               <div className="space-y-1.5">
@@ -517,7 +517,7 @@ export default function FacturationPage() {
             </div>
             </div>
 
-            <div className="space-y-1.5 rounded-lg border border-border bg-muted/40 p-4">
+            <div className="space-y-1.5 rounded-lg border border-border bg-muted/58 p-4">
               <div className="mb-2 flex items-center justify-between">
                 <Label className="text-sm font-semibold">Lignes de facturation (produits/services)</Label>
                 <Button type="button" variant="outline" className="rounded-md" onClick={addLine}>
@@ -582,7 +582,7 @@ export default function FacturationPage() {
               </div>
             </div>
 
-            <div className="space-y-3 rounded-lg border border-border bg-muted/40 p-4">
+            <div className="space-y-3 rounded-lg border border-border bg-muted/58 p-4">
               <p className="ni-label">Ajustements</p>
               <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
@@ -607,7 +607,7 @@ export default function FacturationPage() {
           </CardContent>
         </Card>
 
-        <Card className="rounded-xl border-border bg-card/95 shadow-sm xl:sticky xl:top-6 xl:self-start">
+        <Card className="rounded-xl border-border bg-card/97 shadow-sm xl:sticky xl:top-6 xl:self-start">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between gap-2">
               <CardTitle className="text-base tracking-tight">Aperçu facture</CardTitle>
@@ -625,8 +625,8 @@ export default function FacturationPage() {
                 Renseignez le formulaire puis cliquez sur &quot;Mettre à jour l&apos;aperçu PDF&quot; pour afficher la facture ici.
               </p>
             ) : (
-              <div className="rounded-lg border border-border bg-muted/30 p-3">
-                <div className="mx-auto w-full max-w-[640px] rounded-md border border-zinc-200 bg-white p-7 text-[#252525] shadow-sm">
+              <div className="rounded-lg border border-border bg-muted/50 p-3">
+                <div className="mx-auto w-full max-w-[640px] rounded-xl border border-zinc-200/90 bg-white p-7 text-foreground shadow-[0_20px_50px_-36px_rgba(45,55,70,0.3)] ring-1 ring-black/[0.04]">
                   <div className="mb-6 flex items-start justify-between border-b border-zinc-200 pb-4">
                     <div>
                       <p className="text-xs uppercase tracking-[0.16em] text-zinc-500">Facture</p>

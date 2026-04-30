@@ -131,7 +131,7 @@ export const toolHelpByPath: Record<string, ToolHelp> = {
     nextSteps: "Il faudrait connecter les photos produits, la charte, les modèles visuels et les canaux de diffusion.",
   },
   "/dashboard/reunion-ia": {
-    title: "Réunion IA",
+    title: "Réunion",
     eyebrow: "Réunion",
     purpose: "Ce module aide à transformer des notes de réunion en résumé, décisions et tâches.",
     example: "Réunion client sur validation d'une configuration NI'One et délai de livraison.",

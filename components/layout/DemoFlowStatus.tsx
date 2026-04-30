@@ -32,7 +32,7 @@ export function DemoFlowStatus({
   const currentRank = stageRank[flow.stage];
 
   return (
-    <Card className="border-foreground/10 bg-card/78">
+    <Card className="border-[var(--ni-border)] bg-card/94">
       <CardContent className="flex items-center justify-between gap-5 px-5 py-4">
         <div className="min-w-0">
           <p className="ni-label">Parcours de présentation actif</p>
@@ -50,10 +50,10 @@ export function DemoFlowStatus({
             return (
               <div key={step.key} className="flex items-center gap-2">
                 <span
-                  className={`flex h-7 items-center gap-1.5 rounded-xl border px-2 text-[11px] font-semibold ${
+                  className={`flex h-7 items-center gap-1.5 rounded-full border px-2.5 text-[11px] font-semibold ${
                     done
-                      ? "border-foreground bg-foreground text-background"
-                      : "border-border bg-muted/55 text-muted-foreground"
+                      ? "border-primary/30 bg-primary text-primary-foreground shadow-sm"
+                      : "border-border bg-white/84 text-muted-foreground dark:bg-muted/58"
                   }`}
                 >
                   {done ? <CheckCircle2 className="h-3 w-3" /> : <Circle className="h-3 w-3" />}
@@ -68,7 +68,7 @@ export function DemoFlowStatus({
         <div className="flex shrink-0 gap-2">
           <Link
             href="/dashboard/demo"
-            className="inline-flex h-8 items-center justify-center rounded-xl border border-border/80 bg-card/70 px-3 text-[0.8rem] font-semibold text-foreground shadow-sm transition hover:-translate-y-0.5 hover:bg-card"
+            className="inline-flex h-8 items-center justify-center rounded-xl border border-border/80 bg-card/88 px-3 text-[0.8rem] font-semibold text-foreground shadow-sm transition hover:-translate-y-0.5 hover:bg-card"
           >
             Voir le fil
           </Link>

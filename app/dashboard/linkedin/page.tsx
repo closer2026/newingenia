@@ -52,7 +52,7 @@ export default function LinkedinPage() {
       </div>
 
       <div className="grid grid-cols-2 gap-5">
-        <Card className="rounded-sm border-border bg-card shadow-sm">
+        <Card className="rounded-xl border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
             <CardTitle className="text-base tracking-tight">Brief de publication</CardTitle>
             <p className="text-xs text-muted-foreground">
@@ -92,18 +92,18 @@ export default function LinkedinPage() {
               />
             </div>
 
-            <Button disabled={!canGenerate} onClick={generatePost} className="w-full rounded-sm">
+            <Button disabled={!canGenerate} onClick={generatePost} className="w-full rounded-xl">
               Préparer le brouillon
             </Button>
           </CardContent>
         </Card>
 
-        <Card className="rounded-sm border-border bg-card shadow-sm">
+        <Card className="rounded-xl border-border bg-card shadow-sm">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
               <CardTitle className="text-base tracking-tight">Brouillon genere</CardTitle>
               {generatedPost ? (
-                <Badge className="rounded-sm border border-border bg-muted text-muted-foreground">
+                <Badge className="rounded-xl border border-border bg-muted text-muted-foreground">
                   Brouillon prêt
                 </Badge>
               ) : null}
@@ -128,14 +128,14 @@ export default function LinkedinPage() {
                   setValidated(true);
                   setPublished(false);
                 }}
-                className="rounded-sm"
+                className="rounded-xl"
               >
                 Marquer comme valide
               </Button>
               <Button
                 disabled={!validated}
                 onClick={() => setPublished(true)}
-                className="rounded-sm"
+                className="rounded-xl"
               >
                 Marquer comme prêt à publier
               </Button>

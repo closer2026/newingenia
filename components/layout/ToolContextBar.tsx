@@ -15,9 +15,9 @@ export function ToolContextBar() {
   if (!help || pathname === "/dashboard") return null;
 
   return (
-    <div className="mb-5 flex justify-end">
-      <Button type="button" variant="outline" size="sm" onClick={() => setOpen(true)}>
-        <CircleHelp className="h-3.5 w-3.5" />
+    <div className="mb-6 flex justify-end">
+      <Button type="button" variant="ghost" size="sm" onClick={() => setOpen(true)} className="ni-module-help h-9 shadow-none">
+        <CircleHelp className="h-3.5 w-3.5 text-[var(--ni-accent)]" />
         Comprendre ce module
       </Button>
       <ToolHelpDialog help={help} open={open} onClose={() => setOpen(false)} />

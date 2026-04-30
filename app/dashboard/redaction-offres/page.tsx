@@ -4,7 +4,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { PageHeader } from "@/components/layout/PageHeader";
+import { SubtleGridBackground } from "@/components/decorative/technical-decorations";
 import { DemoFlowStatus } from "@/components/layout/DemoFlowStatus";
 import { OffreForm } from "@/components/modules/OffreForm";
 import { OffrePreview } from "@/components/modules/OffrePreview";
@@ -27,20 +28,30 @@ export default function RedactionOffresPage() {
     }
   }
 
+  const steps = ["Besoin client", "Options techniques", "Aperçu offre", "Email d'envoi"] as const;
+
   return (
-    <div className="space-y-5">
-      <div>
-        <p className="ni-label">Offre client</p>
-        <h1 className="mt-2 text-2xl font-semibold tracking-tight text-foreground">Offres clients</h1>
-        <p className="ni-page-lead mt-2">
-          Partez d&apos;une demande client, completez les informations importantes et preparez une base d&apos;offre claire.
-        </p>
+    <div className="relative space-y-6">
+      <div className="pointer-events-none absolute -right-4 top-0 h-40 w-52 overflow-hidden rounded-3xl opacity-35">
+        <SubtleGridBackground />
       </div>
-      <div className="grid gap-3 md:grid-cols-4">
-        {["Besoin client", "Options techniques", "Aperçu offre", "Email d'envoi"].map((step, index) => (
-          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+      <PageHeader
+        label="Offre client"
+        title="Offres clients"
+        lead="Partez d'une demande client, complétez les informations importantes et préparez une base d'offre claire."
+      />
+      <div className="relative grid gap-3 md:grid-cols-4">
+        {steps.map((step, index) => (
+          <div
+            key={step}
+            className={`rounded-2xl border px-4 py-3.5 text-sm shadow-[var(--ni-shadow-soft)] transition ${
+              index === 2
+                ? "border-[color-mix(in_srgb,var(--ni-accent)_30%,transparent)] bg-white/92 backdrop-blur-sm dark:bg-card/90"
+                : "border-border/60 bg-white/84 backdrop-blur-sm dark:bg-card/85"
+            }`}
+          >
             <p className="ni-label">Étape {index + 1}</p>
-            <p className="mt-1 font-semibold text-foreground">{step}</p>
+            <p className="mt-1.5 font-semibold text-foreground">{step}</p>
           </div>
         ))}
       </div>

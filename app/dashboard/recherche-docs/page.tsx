@@ -17,7 +17,7 @@ export default function RechercheDocsPage() {
 
       <div className="grid gap-3 md:grid-cols-4">
         {["Question", "Sources", "Réponse", "Vérification"].map((step, index) => (
-          <div key={step} className="rounded-2xl border border-border bg-card/80 px-4 py-3 text-sm shadow-sm">
+          <div key={step} className="rounded-2xl border border-border bg-card/94 px-4 py-3 text-sm shadow-sm">
             <p className="ni-label">Étape {index + 1}</p>
             <p className="mt-1 font-semibold text-foreground">{step}</p>
           </div>

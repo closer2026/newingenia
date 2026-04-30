@@ -56,7 +56,7 @@ export function DocsChat() {
           {messages.map((msg, idx) => (
             <div
               key={idx}
-              className={`max-w-[88%] rounded-sm border px-3 py-2.5 text-sm ${
+              className={`max-w-[88%] rounded-xl border px-3 py-2.5 text-sm ${
                 msg.role === "user"
                   ? "ml-auto border-primary bg-primary text-primary-foreground"
                   : "border-border bg-muted text-foreground"
@@ -66,7 +66,7 @@ export function DocsChat() {
               {msg.content.includes("Référence proposée") ? (
                 <div className="mt-2 flex items-center gap-2">
                   <Badge className="rounded-xl border border-emerald-200 bg-emerald-100 text-emerald-700 dark:border-emerald-300/30 dark:bg-emerald-500/14 dark:text-emerald-200">Source trouvee · p.47</Badge>
-                  <Badge variant="outline" className="rounded-sm">
+                  <Badge variant="outline" className="rounded-xl">
                     Catalogue Structure.pdf · p.47
                   </Badge>
                 </div>
@@ -78,16 +78,16 @@ export function DocsChat() {
       </ScrollArea>
       <div className="border-t border-border p-4">
         <div className="flex items-center gap-2">
-          <Button size="icon" variant="outline" className="rounded-sm" type="button" title="Joindre un fichier" aria-label="Joindre un fichier">
+          <Button size="icon" variant="outline" className="rounded-xl" type="button" title="Joindre un fichier" aria-label="Joindre un fichier">
             <Paperclip className="h-4 w-4" />
           </Button>
           <Input
             value={value}
             onChange={(e) => setValue(e.target.value)}
             placeholder="Ex. : quelle structure pour 120 kg sur 2 m avec surface ESD ?"
-            className="rounded-sm"
+            className="rounded-xl"
           />
-          <Button onClick={send} className="rounded-sm px-3" aria-label="Envoyer la question">
+          <Button onClick={send} className="rounded-xl px-3" aria-label="Envoyer la question">
             <Send className="mr-1.5 h-4 w-4" />
             Envoyer
           </Button>

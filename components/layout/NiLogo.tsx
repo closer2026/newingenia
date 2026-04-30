@@ -23,8 +23,8 @@ export function NiLogo({
       </div>
       {!compact ? (
         <div>
-          <p className="text-sm font-semibold tracking-tight text-[#252525]">NI · Workspace IA</p>
-          <p className="text-xs uppercase tracking-[0.18em] text-[#777777]">New Ingenia SA</p>
+          <p className="text-sm font-semibold tracking-tight text-foreground">NI · Workspace IA</p>
+          <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">New Ingenia SA</p>
         </div>
       ) : null}
     </div>

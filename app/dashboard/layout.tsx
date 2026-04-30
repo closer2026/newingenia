@@ -17,7 +17,7 @@ const labels: Record<string, string> = {
   "/dashboard/demandes-entrantes": "Demandes entrantes",
   "/dashboard/recherche-docs": "Recherche technique",
   "/dashboard/redaction-offres": "Offres clients",
-  "/dashboard/reunion-ia": "Réunion IA",
+  "/dashboard/reunion-ia": "Réunion",
   "/dashboard/redaction-emails": "Emails clients",
   "/dashboard/triage-emails": "Priorisation emails",
   "/dashboard/fiches-clients": "Fiches clients",
@@ -31,26 +31,43 @@ const labels: Record<string, string> = {
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const sidebarWidth = sidebarCollapsed ? "80px" : "240px";
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-dvh">
       <DashboardEntryIntro />
-      <div className="mx-auto flex min-h-screen w-full min-w-[1280px]">
+      <aside
+        className="fixed left-0 top-0 z-40 h-dvh transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ width: sidebarWidth }}
+      >
         <Sidebar collapsed={sidebarCollapsed} />
-        <div className="relative flex min-h-screen flex-1 flex-col overflow-x-hidden">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(37,37,37,0.10),transparent_30%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.85),transparent_26%),linear-gradient(135deg,rgba(255,255,255,0.55),transparent_36%)] dark:bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.05),transparent_26%)]" />
+      </aside>
+      <div
+        className="relative flex min-h-dvh min-w-0 flex-col transition-[padding] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ paddingLeft: sidebarWidth }}
+      >
+        <div
+          className="pointer-events-none absolute right-0 top-0 h-[360px] w-[420px] opacity-[0.16]"
+          aria-hidden
+        >
+          <div className="absolute right-8 top-6 h-56 w-56 rotate-45 rounded-[2rem] border border-[#677991]/35" />
+          <div className="absolute right-20 top-20 h-40 w-40 rotate-45 rounded-[1.6rem] border border-[#677991]/30" />
+          <div className="absolute right-3 top-32 h-px w-72 bg-[#677991]/30" />
+          <div className="absolute right-36 top-0 h-72 w-px bg-[#677991]/20" />
+        </div>
+        <div className="sticky top-0 z-20">
           <Topbar
             breadcrumb={labels[pathname] ?? "Tableau de bord"}
             sidebarCollapsed={sidebarCollapsed}
             onToggleSidebar={() => setSidebarCollapsed((value) => !value)}
           />
-          <main className="relative z-10 flex-1 px-8 py-9">
-            <div className="mx-auto w-full max-w-[1320px]">
-              <ToolContextBar />
-              {children}
-            </div>
-          </main>
-          <ChatbotWidget />
         </div>
+        <main className="relative z-10 flex-1 px-5 py-7 sm:px-7 sm:py-8">
+          <div className="mx-auto w-full max-w-[1280px]">
+            <ToolContextBar />
+            {children}
+          </div>
+        </main>
+        <ChatbotWidget />
       </div>
     </div>
   );

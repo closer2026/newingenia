@@ -1,4 +1,4 @@
-import { Home, Inbox, Mail, Mic, Search, Shield, FileText, Box, Sparkles, Radar, Route, Building2 } from "lucide-react";
+import { Home, Inbox, Mail, Mic, Search, FileText, Box, Route, Building2, Sparkles } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ModuleKey } from "./roles";
 
@@ -51,23 +51,13 @@ export const navItems: NavItem[] = [
     href: "/dashboard/studio-visuel",
     icon: Box,
   },
-  { key: "reunion-ia", label: "Réunion IA", href: "/dashboard/reunion-ia", icon: Mic },
+  { key: "reunion-ia", label: "Réunion", href: "/dashboard/reunion-ia", icon: Mic },
   { label: "Création", section: true },
   {
     key: "studio-marketing",
     label: "Studio Marketing",
     href: "/dashboard/studio-marketing",
     icon: Sparkles,
-  },
-  { label: "Informations utiles", section: true },
-  { key: "veille", label: "Veille", href: "/dashboard/veille", icon: Radar },
-  { label: "Admin", section: true },
-  {
-    key: "gestion-roles",
-    label: "Accès & rôles",
-    href: "/dashboard/gestion-roles",
-    icon: Shield,
-    adminOnly: true,
   },
 ];
 

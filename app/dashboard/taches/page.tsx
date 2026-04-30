@@ -82,7 +82,7 @@ export default function TachesPage() {
         </p>
       </div>
 
-      <Card className="rounded-sm border-border bg-card shadow-sm">
+      <Card className="rounded-xl border-border bg-card shadow-sm">
         <CardContent className="grid grid-cols-3 gap-3 px-4 py-5 text-sm">
           <div>
             <p className="ni-label">Tâches du jour</p>
@@ -103,7 +103,7 @@ export default function TachesPage() {
         {displayedTasks.map((task) => {
           const isInProgress = task.status === "en_cours";
           return (
-            <Card key={task.id} className="rounded-sm border-border bg-card shadow-sm">
+            <Card key={task.id} className="rounded-xl border-border bg-card shadow-sm">
               <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-4">
                   <CardTitle className="flex items-center gap-2 text-base tracking-tight">
@@ -125,7 +125,7 @@ export default function TachesPage() {
                   </p>
                   <Link
                     href={task.href}
-                    className="inline-flex items-center gap-1 rounded-sm border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground transition hover:bg-muted"
+                    className="inline-flex items-center gap-1 rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground transition hover:bg-muted"
                   >
                     Ouvrir le module source
                   </Link>

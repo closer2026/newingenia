@@ -22,7 +22,7 @@ const buckets = [
   {
     title: "Info",
     count: 28,
-    tone: "border-border bg-muted/40 text-foreground",
+    tone: "border-border bg-muted/58 text-foreground",
     example: "Bosch Rexroth — « Nouveau catalogue profiles aluminium 2026 »",
     actions: ["Archiver", "Ajouter aux docs"],
   },
@@ -46,11 +46,11 @@ export default function TriageEmailsPage() {
         </p>
       </div>
 
-      <Card className="rounded-sm border-border bg-card shadow-sm">
+      <Card className="rounded-xl border-border bg-card shadow-sm">
         <CardHeader className="pb-2">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <CardTitle className="text-base tracking-tight">Messages classés par priorité</CardTitle>
-            <Badge variant="outline" className="rounded-sm text-xs font-normal">
+            <Badge variant="outline" className="rounded-xl text-xs font-normal">
               47 emails · urgents, à traiter ou info
             </Badge>
           </div>
@@ -60,10 +60,10 @@ export default function TriageEmailsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-wrap gap-2">
-            <Button size="sm" className="rounded-sm">
+            <Button size="sm" className="rounded-xl">
               Analyser tout le lot
             </Button>
-            <Button size="sm" variant="outline" className="rounded-sm border-border">
+            <Button size="sm" variant="outline" className="rounded-xl border-border">
               Archiver tout le bloc Info
             </Button>
           </div>
@@ -72,14 +72,14 @@ export default function TriageEmailsPage() {
               <div key={bucket.title} className={`rounded-2xl border p-4 shadow-sm ${bucket.tone}`}>
                 <div className="flex items-center justify-between gap-2">
                   <p className="text-sm font-semibold">{bucket.title}</p>
-                  <span className="rounded-xl border border-border/60 bg-background/60 px-2 py-0.5 text-xs font-medium dark:bg-white/8">
+                  <span className="rounded-xl border border-border/60 bg-background/78 px-2 py-0.5 text-xs font-medium dark:bg-white/12">
                     {bucket.count} mails
                   </span>
                 </div>
                 <p className="mt-2 text-xs leading-relaxed opacity-90">{bucket.example}</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {bucket.actions.map((label) => (
-                    <Button key={label} size="sm" variant="outline" className="h-8 rounded-sm border-border text-xs">
+                    <Button key={label} size="sm" variant="outline" className="h-8 rounded-xl border-border text-xs">
                       {label}
                     </Button>
                   ))}

@@ -28,12 +28,12 @@ export default function FichesClientsPage() {
             <p className="text-xs text-muted-foreground">Client horloger · Projet postes de travail modulaires</p>
           </CardHeader>
           <CardContent className="space-y-4 text-sm">
-            <div className="rounded-2xl border border-border bg-muted/40 p-4">
+            <div className="rounded-2xl border border-border bg-muted/58 p-4">
               <p className="ni-label">Contact principal</p>
               <p className="mt-2 font-semibold text-foreground">Claire Martin</p>
               <p className="text-muted-foreground">Responsable methodes · claire.martin@delta-horlogerie.ch</p>
             </div>
-            <div className="rounded-2xl border border-border bg-muted/40 p-4">
+            <div className="rounded-2xl border border-border bg-muted/58 p-4">
               <p className="ni-label">Point ouvert</p>
               <p className="mt-2 text-muted-foreground">Valider dimensions, charge maximale et délai souhaité avant offre finale.</p>
             </div>
@@ -53,8 +53,8 @@ export default function FichesClientsPage() {
           </CardHeader>
           <CardContent className="space-y-3">
             {timeline.map((item, index) => (
-              <div key={item} className="flex gap-3 rounded-2xl border border-border bg-card/80 p-4 text-sm">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-foreground text-xs font-semibold text-background">
+              <div key={item} className="flex gap-3 rounded-2xl border border-border bg-card/94 p-4 text-sm">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
                   {index + 1}
                 </span>
                 <p className="leading-6 text-muted-foreground">{item}</p>
