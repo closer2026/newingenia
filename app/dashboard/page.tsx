@@ -3,7 +3,17 @@
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, CheckCircle2, ChevronRight, CircleHelp, FileText, Inbox, Mail, Mic } from "lucide-react";
+import {
+  ArrowUpRight,
+  BadgeCheck,
+  CheckCircle2,
+  ChevronRight,
+  CircleHelp,
+  FileText,
+  Inbox,
+  Mail,
+  Mic,
+} from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -17,6 +27,7 @@ const kpis = [
   { label: "Offres envoyées", value: "12", hint: "Ce mois-ci", href: "/dashboard/redaction-offres" },
   { label: "Tâches à faire", value: "5", hint: "À planifier", href: "/dashboard/taches" },
   { label: "Emails à traiter", value: "4", hint: "Priorisés", href: "/dashboard/triage-emails" },
+  { label: "À valider", value: "3", hint: "En attente", href: "/dashboard/validations" },
   { label: "Points de suivi", value: "2", hint: "Cette semaine", href: "/dashboard/reunion-ia" },
 ] as const;
 
@@ -35,10 +46,25 @@ const aReprendre = [
   },
 ] as const;
 
-const activiteGauche = [
-  { title: "Synthèse demande", detail: "Poste ESD · pièces jointes analysées", time: "Aujourd'hui, 09:41" },
-  { title: "Brouillon d'offre", detail: "3 postes NI'One · périmètre proposé", time: "Aujourd'hui, 08:12" },
-  { title: "Réunion client", detail: "Décisions notées · 2 actions ouvertes", time: "Hier, 16:20" },
+const aValider = [
+  {
+    title: "Offre NI'One · prix fournisseur",
+    subtitle: "Horloger Delta · marge mini à confirmer",
+    time: "Il y a 1 h",
+    href: "/dashboard/validations",
+  },
+  {
+    title: "Publication veille salon",
+    subtitle: "Brouillon LinkedIn — relecture métier",
+    time: "Il y a 3 h",
+    href: "/dashboard/validations",
+  },
+  {
+    title: "Complément technique offre",
+    subtitle: "Client industrie — notice ESD manquante",
+    time: "Hier",
+    href: "/dashboard/validations",
+  },
 ] as const;
 
 const activiteDroite = [
@@ -79,8 +105,8 @@ export default function DashboardPage() {
       </div>
 
       <section className="space-y-6 rounded-[28px] border border-[#677991]/25 bg-white/88 p-6 shadow-[0_4px_12px_rgba(45,55,70,0.06),0_28px_70px_-30px_rgba(45,55,65,0.18)] ring-1 ring-[#677991]/12 backdrop-blur-xl dark:border-white/15 dark:bg-[#10161e]/90 dark:ring-white/10 sm:p-7">
-      {/* 6 KPI — une rangée, cartes blanches ~16px radius */}
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-6">
+      {/* KPI — cartes blanches ; 7 entrées sur grands écrans */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7">
         {kpis.map((k) => (
           <Link key={k.label} href={k.href} className="group block">
             <div className="flex h-full min-h-[104px] flex-col justify-between rounded-2xl border border-zinc-300/70 bg-white p-4 shadow-[0_1px_2px_rgba(45,55,70,0.05),0_12px_28px_-16px_rgba(45,55,65,0.10)] ring-1 ring-zinc-200/60 transition hover:-translate-y-0.5 hover:border-zinc-400/70 hover:shadow-[0_12px_32px_-18px_rgba(45,55,65,0.18)] dark:border-white/15 dark:bg-[#171d25] dark:ring-white/10 dark:hover:border-white/25">
@@ -93,7 +119,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Deux blocs en haut, puis parcours recommandé en pleine largeur */}
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-6 lg:grid-cols-3">
         <Card className="overflow-hidden rounded-[22px] border border-white/90 bg-white shadow-[var(--ni-shadow-soft)] dark:border-white/10 dark:bg-[#171d25]">
           <CardHeader className="pb-2">
             <CardTitle className="text-base font-semibold text-[var(--ni-text)]">À reprendre</CardTitle>
@@ -107,6 +133,32 @@ export default function DashboardPage() {
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted/70 text-primary">
                   <Inbox className="h-4 w-4" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-medium text-foreground">{row.title}</p>
+                  <p className="text-xs text-muted-foreground">{row.subtitle}</p>
+                </div>
+                <span className="shrink-0 text-xs text-muted-foreground">{row.time}</span>
+                <ChevronRight className="h-4 w-4 shrink-0 text-muted-foreground/50" />
+              </Link>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card className="overflow-hidden rounded-[22px] border border-white/90 bg-white shadow-[var(--ni-shadow-soft)] dark:border-white/10 dark:bg-[#171d25]">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base font-semibold text-[var(--ni-text)]">À valider</CardTitle>
+            <p className="text-xs text-muted-foreground">Décisions avant envoi ou publication.</p>
+          </CardHeader>
+          <CardContent className="divide-y divide-border/40 p-0">
+            {aValider.map((row) => (
+              <Link
+                key={row.title}
+                href={row.href}
+                className="flex items-center gap-3 px-5 py-4 transition hover:bg-muted/30"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted/70 text-primary">
+                  <BadgeCheck className="h-4 w-4" />
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="text-sm font-medium text-foreground">{row.title}</p>

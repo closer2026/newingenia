@@ -4,15 +4,18 @@ export type ModuleKey =
   | "dashboard"
   | "demo"
   | "taches"
+  | "validations"
   | "facturation"
   | "linkedin"
   | "demandes-entrantes"
   | "recherche-docs"
+  | "documents"
   | "redaction-offres"
   | "reunion-ia"
   | "redaction-emails"
   | "triage-emails"
   | "fiches-clients"
+  | "relances"
   | "studio-visuel"
   | "studio-marketing"
   | "veille"
@@ -38,15 +41,18 @@ export const PERMISSIONS: PermissionMatrix = {
     dashboard: true,
     demo: true,
     taches: true,
+    validations: true,
     facturation: true,
     linkedin: true,
     "demandes-entrantes": true,
     "recherche-docs": true,
+    documents: true,
     "redaction-offres": true,
     "reunion-ia": true,
     "redaction-emails": true,
     "triage-emails": true,
     "fiches-clients": true,
+    relances: true,
     "studio-visuel": true,
     "studio-marketing": true,
     veille: true,
@@ -57,15 +63,18 @@ export const PERMISSIONS: PermissionMatrix = {
     dashboard: true,
     demo: true,
     taches: true,
+    validations: true,
     facturation: true,
     linkedin: true,
     "demandes-entrantes": true,
     "recherche-docs": true,
+    documents: true,
     "redaction-offres": true,
     "reunion-ia": true,
     "redaction-emails": true,
     "triage-emails": false,
     "fiches-clients": true,
+    relances: true,
     "studio-visuel": true,
     "studio-marketing": true,
     veille: true,
@@ -76,15 +85,18 @@ export const PERMISSIONS: PermissionMatrix = {
     dashboard: true,
     demo: true,
     taches: true,
+    validations: true,
     facturation: false,
     linkedin: true,
     "demandes-entrantes": true,
     "recherche-docs": true,
+    documents: true,
     "redaction-offres": false,
     "reunion-ia": false,
     "redaction-emails": false,
     "triage-emails": false,
     "fiches-clients": false,
+    relances: false,
     "studio-visuel": true,
     "studio-marketing": true,
     veille: false,
