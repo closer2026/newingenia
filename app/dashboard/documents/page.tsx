@@ -4,7 +4,8 @@ import Link from "next/link";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const folders = [
   { name: "Catalogues & fiches NI'One", count: 24, tag: "Référentiel" },
@@ -38,9 +39,15 @@ export default function DocumentsPage() {
             </CardHeader>
             <CardContent className="flex items-end justify-between gap-3 text-xs text-muted-foreground">
               <p className="min-w-0">{f.count} documents (illustration)</p>
-              <Button size="sm" variant="outline" className="shrink-0 rounded-xl px-3 text-xs" asChild>
-                <Link href="/dashboard/recherche-docs">Voir</Link>
-              </Button>
+              <Link
+                href="/dashboard/recherche-docs"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "sm" }),
+                  "shrink-0 rounded-xl px-3 text-xs no-underline"
+                )}
+              >
+                Voir
+              </Link>
             </CardContent>
           </Card>
         ))}
