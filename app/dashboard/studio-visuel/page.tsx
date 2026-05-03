@@ -7,9 +7,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
-/** Bureau : `office.glb` (public/models/office.glb). Établi : `bureau.glb` jusqu’à un `etabli.glb` dédié. */
+/** NI'One (bureau) : `office.glb` (public/models/office.glb). Établi : `bureau.glb` jusqu’à un `etabli.glb` dédié. */
 const productOptions = [
-  { label: "Bureau", model: "/models/office.glb" },
+  { label: "NI'One", model: "/models/office.glb" },
   { label: "Etabli", model: "/models/bureau.glb" },
   { label: "Convoyeur", model: "/models/convoyeur.glb" },
   { label: "Buffer", model: "/models/etagere.glb" },
@@ -237,8 +237,8 @@ export default function StudioVisuelPage() {
         </p>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-4">
-        {["Produit", "Vue", "Validation", "Support client"].map((step, index) => (
+      <div className="grid gap-3 md:grid-cols-3">
+        {["Produit", "Vue", "Validation"].map((step, index) => (
           <div key={step} className="rounded-2xl border border-border bg-card/94 px-4 py-3 text-sm shadow-sm">
             <p className="ni-label">Étape {index + 1}</p>
             <p className="mt-1 font-semibold text-foreground">{step}</p>

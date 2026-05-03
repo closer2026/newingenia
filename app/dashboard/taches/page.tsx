@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { AlertCircle, CalendarCheck2, ListTodo } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DemoFlowStatus } from "@/components/layout/DemoFlowStatus";
@@ -82,19 +83,38 @@ export default function TachesPage() {
         </p>
       </div>
 
-      <Card className="rounded-xl border-border bg-card shadow-sm">
-        <CardContent className="grid grid-cols-3 gap-3 px-4 py-5 text-sm">
-          <div>
-            <p className="ni-label">Tâches du jour</p>
-            <p className="mt-1 text-xl font-semibold text-foreground">12</p>
-          </div>
-          <div>
-            <p className="ni-label">En retard</p>
-            <p className="mt-1 text-xl font-semibold text-red-700 dark:text-red-300">2</p>
-          </div>
-          <div>
-            <p className="ni-label">Terminees semaine</p>
-            <p className="mt-1 text-xl font-semibold text-foreground">37</p>
+      <Card className="overflow-hidden rounded-[22px] border border-[#677991]/20 bg-white/92 shadow-[0_4px_12px_rgba(45,55,70,0.06),0_20px_50px_-28px_rgba(45,55,65,0.12)] ring-1 ring-[#677991]/10 dark:border-white/12 dark:bg-[#171d25] dark:ring-white/8">
+        <CardContent className="p-0">
+          <div className="grid grid-cols-1 divide-y divide-border/55 md:grid-cols-3 md:divide-x md:divide-y-0 dark:divide-white/10">
+            <div className="flex items-start gap-3 p-5 sm:p-6">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#677991]/15 bg-[#677991]/08 text-[#677991] dark:border-white/10 dark:bg-white/8 dark:text-[#8fa3bb]">
+                <ListTodo className="h-4 w-4" aria-hidden />
+              </div>
+              <div className="min-w-0">
+                <p className="ni-label">Tâches du jour</p>
+                <p className="mt-1.5 text-2xl font-semibold tabular-nums tracking-tight text-[var(--ni-text)]">12</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-5 sm:p-6">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-red-200/80 bg-red-500/[0.07] text-red-700 dark:border-red-400/25 dark:bg-red-500/12 dark:text-red-300">
+                <AlertCircle className="h-4 w-4" aria-hidden />
+              </div>
+              <div className="min-w-0">
+                <p className="ni-label">En retard</p>
+                <p className="mt-1.5 text-2xl font-semibold tabular-nums tracking-tight text-red-700 dark:text-red-300">
+                  2
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 p-5 sm:p-6">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-emerald-200/80 bg-emerald-500/[0.08] text-emerald-800 dark:border-emerald-400/25 dark:bg-emerald-500/12 dark:text-emerald-200">
+                <CalendarCheck2 className="h-4 w-4" aria-hidden />
+              </div>
+              <div className="min-w-0">
+                <p className="ni-label">Terminées semaine</p>
+                <p className="mt-1.5 text-2xl font-semibold tabular-nums tracking-tight text-[var(--ni-text)]">37</p>
+              </div>
+            </div>
           </div>
         </CardContent>
       </Card>

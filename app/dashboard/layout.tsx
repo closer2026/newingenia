@@ -26,6 +26,7 @@ const labels: Record<string, string> = {
   "/dashboard/fiches-clients": "Fiches clients",
   "/dashboard/studio-visuel": "Studio 3D",
   "/dashboard/studio-marketing": "Studio Marketing",
+  "/dashboard/mediatheque": "Médiathèque",
   "/dashboard/veille": "Veille",
   "/dashboard/gestion-roles": "Accès & rôles",
   "/dashboard/parametres": "Paramètres",

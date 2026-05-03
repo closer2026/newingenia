@@ -18,6 +18,7 @@ export type ModuleKey =
   | "relances"
   | "studio-visuel"
   | "studio-marketing"
+  | "mediatheque"
   | "veille"
   | "gestion-roles"
   | "parametres";
@@ -55,6 +56,7 @@ export const PERMISSIONS: PermissionMatrix = {
     relances: true,
     "studio-visuel": true,
     "studio-marketing": true,
+    mediatheque: true,
     veille: true,
     "gestion-roles": true,
     parametres: true,
@@ -77,6 +79,7 @@ export const PERMISSIONS: PermissionMatrix = {
     relances: true,
     "studio-visuel": true,
     "studio-marketing": true,
+    mediatheque: true,
     veille: true,
     "gestion-roles": false,
     parametres: true,
@@ -99,6 +102,7 @@ export const PERMISSIONS: PermissionMatrix = {
     relances: false,
     "studio-visuel": true,
     "studio-marketing": true,
+    mediatheque: true,
     veille: false,
     "gestion-roles": false,
     parametres: true,

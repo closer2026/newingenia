@@ -3,14 +3,13 @@
 import Link from "next/link";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 const queue = [
-  { type: "Offre", ref: "NI'One · Horloger Delta", state: "À corriger" as const },
-  { type: "Prix", ref: "Option convoyeur — marge mini", state: "Validé" as const },
-  { type: "Publication", ref: "Post LinkedIn veille salon", state: "En attente" as const },
-  { type: "Tâche", ref: "Relance fournisseur blindage", state: "Renvoyé à M. Lambert" as const },
+  { type: "Offre", ref: "NI'One · Horloger Delta" },
+  { type: "Prix", ref: "Option convoyeur — marge mini" },
+  { type: "Publication", ref: "Post LinkedIn veille salon" },
+  { type: "Tâche", ref: "Relance fournisseur blindage" },
 ];
 
 export default function ValidationsPage() {
@@ -25,7 +24,7 @@ export default function ValidationsPage() {
       <div className="grid gap-4 lg:grid-cols-3">
         <Card className="rounded-[22px] border border-border/80 lg:col-span-2 dark:border-white/10 dark:bg-[#171d25]">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base text-[var(--ni-text)]">File en attente (maquette)</CardTitle>
+            <CardTitle className="text-base text-[var(--ni-text)]">En attente</CardTitle>
             <p className="text-xs text-muted-foreground">
               Entrées typiques : offre préparée, prix à confirmer, contenu à publier, tâche sensible.
             </p>
@@ -36,14 +35,11 @@ export default function ValidationsPage() {
                 key={row.ref}
                 className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/60 bg-muted/25 px-4 py-3 dark:border-white/10 dark:bg-[#121821]/80"
               >
-                <div>
+                <div className="min-w-0 flex-1">
                   <p className="text-xs font-semibold text-foreground">{row.type}</p>
                   <p className="text-xs text-muted-foreground">{row.ref}</p>
                 </div>
-                <Badge variant="outline" className="rounded-full text-[10px]">
-                  {row.state}
-                </Badge>
-                <div className="flex w-full gap-2 sm:w-auto">
+                <div className="flex shrink-0 gap-2">
                   <Button size="sm" className="rounded-xl text-xs">
                     Valider
                   </Button>

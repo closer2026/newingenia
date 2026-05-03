@@ -13,6 +13,7 @@ import {
   BellRing,
   Files,
   Newspaper,
+  Images,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import type { ModuleKey } from "./roles";
@@ -31,7 +32,7 @@ export type NavItem = {
  * — Pilotage : synthèse, démo, exécution, arbitrages
  * — Commercial : cycle vente, clients, messages, relances, veille marché/salons/fournisseurs, réunions client
  * — Documentation : corpus technique, recherche interrogative
- * — Studio : production visuelle produit (3D) et marketing (médias)
+ * — Studio : production visuelle produit (3D), marketing (médias), médiathèque partagée
  */
 export const navItems: NavItem[] = [
   /* Pilotage */
@@ -103,6 +104,12 @@ export const navItems: NavItem[] = [
     label: "Studio Marketing",
     href: "/dashboard/studio-marketing",
     icon: Sparkles,
+  },
+  {
+    key: "mediatheque",
+    label: "Médiathèque",
+    href: "/dashboard/mediatheque",
+    icon: Images,
   },
 ];
 

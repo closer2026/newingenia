@@ -7,16 +7,17 @@ import {
   Clapperboard,
   Download,
   FileText,
+  ImageIcon,
   Loader2,
   Mail,
   RotateCw,
   Share2,
   Sparkles,
+  Upload,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -29,16 +30,29 @@ const productPhotoSrc = "/images/ni-one.jpeg";
 
 export default function StudioMarketingPage() {
   const [uploadPreview, setUploadPreview] = useState<string | null>(null);
+  const [uploadFileName, setUploadFileName] = useState<string | null>(null);
+  const [imageDropActive, setImageDropActive] = useState(false);
   const uploadImageInputRef = useRef<HTMLInputElement>(null);
+  const productImageInputId = "studio-marketing-product-image";
 
   function clearUploadImage() {
     if (uploadPreview) {
       URL.revokeObjectURL(uploadPreview);
     }
     setUploadPreview(null);
+    setUploadFileName(null);
     if (uploadImageInputRef.current) {
       uploadImageInputRef.current.value = "";
     }
+  }
+
+  function applyProductImageFile(file: File | undefined) {
+    if (!file || !file.type.startsWith("image/")) return;
+    setUploadFileName(file.name);
+    setUploadPreview((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return URL.createObjectURL(file);
+    });
   }
   const [creativeType, setCreativeType] = useState<CreativeType>("photo");
   const [styleType, setStyleType] = useState<StyleType>("industriel");
@@ -133,45 +147,100 @@ export default function StudioMarketingPage() {
             </CardHeader>
             <CardContent className="space-y-5 pt-4">
               <div className="space-y-2">
-                <Label>Image produit</Label>
-                <Input
+                <Label htmlFor={productImageInputId}>Image produit</Label>
+                <input
+                  id={productImageInputId}
                   ref={uploadImageInputRef}
                   type="file"
                   accept="image/*"
-                  className="rounded-lg"
+                  className="sr-only"
                   onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (!file) return;
-                    setUploadPreview((prev) => {
-                      if (prev) URL.revokeObjectURL(prev);
-                      return URL.createObjectURL(file);
-                    });
+                    applyProductImageFile(e.target.files?.[0]);
                   }}
                 />
-                {uploadPreview ? (
-                  <div className="mt-3">
-                    <p className="mb-1 text-xs text-muted-foreground">Aperçu image</p>
-                    <div className="relative inline-block">
+
+                {!uploadPreview ? (
+                  <button
+                    type="button"
+                    onClick={() => uploadImageInputRef.current?.click()}
+                    onDragEnter={(e) => {
+                      e.preventDefault();
+                      setImageDropActive(true);
+                    }}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      e.dataTransfer.dropEffect = "copy";
+                    }}
+                    onDragLeave={(e) => {
+                      e.preventDefault();
+                      if (!e.currentTarget.contains(e.relatedTarget as Node)) setImageDropActive(false);
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      setImageDropActive(false);
+                      applyProductImageFile(e.dataTransfer.files?.[0]);
+                    }}
+                    className={`flex w-full cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-4 py-8 text-center transition-colors ${
+                      imageDropActive
+                        ? "border-primary bg-primary/5"
+                        : "border-border/80 bg-muted/25 hover:border-primary/45 hover:bg-muted/40 dark:bg-white/[0.03]"
+                    }`}
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-background shadow-sm ring-1 ring-border/60 dark:bg-card">
+                      <Upload className="h-5 w-5 text-muted-foreground" aria-hidden />
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium text-foreground">
+                        Importer une image de référence
+                      </p>
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        Glissez-déposez un fichier ici ou cliquez pour parcourir · PNG, JPG, WebP
+                      </p>
+                    </div>
+                  </button>
+                ) : (
+                  <div className="flex items-center gap-3 rounded-xl border border-border bg-muted/20 p-3 dark:bg-white/[0.04]">
+                    <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-border bg-background">
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={uploadPreview}
-                        alt="Aperçu upload"
-                        className="h-20 w-20 rounded-lg border border-border object-cover"
-                      />
-                      <button
+                      <img src={uploadPreview} alt="" className="h-full w-full object-cover" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="flex items-center gap-1.5 text-xs font-medium text-foreground">
+                        <ImageIcon className="h-3.5 w-3.5 shrink-0 text-muted-foreground" aria-hidden />
+                        <span className="truncate" title={uploadFileName ?? undefined}>
+                          {uploadFileName ?? "Image importée"}
+                        </span>
+                      </p>
+                      <p className="mt-0.5 text-[11px] text-muted-foreground">Prête pour le brief et la génération.</p>
+                    </div>
+                    <div className="flex shrink-0 items-center gap-1.5">
+                      <Button
                         type="button"
-                        onClick={clearUploadImage}
-                        className="absolute -right-1.5 -top-1.5 flex h-6 w-6 items-center justify-center rounded-full border border-border bg-background text-muted-foreground shadow-sm transition hover:bg-muted hover:text-foreground"
-                        aria-label="Supprimer l'image"
-                        title="Supprimer l'image"
+                        variant="outline"
+                        size="sm"
+                        className="h-8 rounded-lg px-2.5 text-xs"
+                        onClick={() => uploadImageInputRef.current?.click()}
                       >
-                        <X className="h-3.5 w-3.5" />
-                      </button>
+                        Remplacer
+                      </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 shrink-0 rounded-lg text-muted-foreground hover:text-foreground"
+                        onClick={clearUploadImage}
+                        aria-label="Retirer l'image"
+                        title="Retirer l'image"
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
-                ) : (
-                  <p className="text-xs text-muted-foreground">Importez une photo de référence si vous en avez une.</p>
                 )}
+
+                {!uploadPreview ? (
+                  <p className="text-xs text-muted-foreground">Importez une photo de référence si vous en avez une.</p>
+                ) : null}
               </div>
 
               <div className="space-y-2">
@@ -275,9 +344,9 @@ export default function StudioMarketingPage() {
               </p>
             </CardHeader>
             <CardContent className="space-y-4 pt-4">
-              <div className="relative aspect-[16/10] overflow-hidden rounded-xl border border-border bg-muted/58">
-                <AnimatePresence mode="wait">
-                  {generating ? (
+              {generating ? (
+                <div className="relative mx-auto min-h-[320px] w-full overflow-hidden rounded-xl border border-border bg-muted/58">
+                  <AnimatePresence mode="wait">
                     <motion.div
                       key="loading"
                       initial={{ opacity: 0 }}
@@ -297,62 +366,82 @@ export default function StudioMarketingPage() {
                         </p>
                       ) : null}
                     </motion.div>
-                  ) : null}
-                </AnimatePresence>
+                  </AnimatePresence>
+                </div>
+              ) : null}
 
-                {creativeType === "video" && !generating ? (
+              {!generating && creativeType === "video" ? (
+                <div className="mx-auto w-full overflow-hidden rounded-xl border border-border bg-muted/58">
                   <motion.video
                     key="marketing-video-preview"
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.35 }}
                     src={marketingVideoSrc}
-                    className="h-full min-h-[320px] w-full object-cover"
+                    className="block max-h-[min(70vh,720px)] w-full object-contain"
                     controls
                     muted
                     loop
                     playsInline
                     preload="metadata"
                   />
-                ) : null}
+                </div>
+              ) : null}
 
-                {creativeType === "photo" && !generating ? (
+              {!generating && creativeType === "photo" ? (
+                <div className="flex justify-center">
                   <motion.div
                     key="product-photo-preview"
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.35 }}
-                    className="relative h-full min-h-[320px] w-full"
+                    className="relative w-fit max-w-full overflow-hidden rounded-xl border border-border bg-muted/58"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={productPhotoSrc} alt="Aperçu produit NI One" className="h-full w-full object-cover" />
+                    <img
+                      src={productPhotoSrc}
+                      alt="Aperçu produit NI One"
+                      className="block h-auto max-h-[min(85vh,800px)] w-auto max-w-full"
+                    />
                   </motion.div>
-                ) : null}
+                </div>
+              ) : null}
 
-                {creativeType !== "video" && creativeType !== "photo" && !mainVisual && !generating ? (
-                  <div className="flex h-full min-h-[320px] flex-col items-center justify-center gap-2 p-6 text-center">
-                    <Sparkles className="h-10 w-10 text-muted-foreground/60" />
-                    <p className="text-sm text-muted-foreground">Le rendu marketing apparaîtra ici après génération.</p>
-                  </div>
-                ) : null}
+              {!generating &&
+              creativeType !== "video" &&
+              creativeType !== "photo" &&
+              !mainVisual ? (
+                <div className="flex min-h-[320px] w-full flex-col items-center justify-center gap-2 rounded-xl border border-border bg-muted/58 p-6 text-center">
+                  <Sparkles className="h-10 w-10 text-muted-foreground/60" />
+                  <p className="text-sm text-muted-foreground">Le rendu marketing apparaîtra ici après génération.</p>
+                </div>
+              ) : null}
 
-                {creativeType !== "video" && creativeType !== "photo" && mainVisual && !generating ? (
+              {!generating &&
+              creativeType !== "video" &&
+              creativeType !== "photo" &&
+              mainVisual ? (
+                <div className="flex justify-center">
                   <motion.div
                     initial={{ opacity: 0, scale: 0.98 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.35 }}
-                    className="relative h-full min-h-[320px] w-full bg-muted/58"
+                    className="relative w-fit max-w-full overflow-hidden rounded-xl border border-border bg-muted/58"
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={mainVisual} alt="Visuel généré" className="h-full w-full object-contain" />
+                    <img
+                      src={mainVisual}
+                      alt="Visuel généré"
+                      className="block h-auto max-h-[min(85vh,800px)] w-auto max-w-full"
+                    />
                     {creativeType === "360" ? (
                       <span className="absolute bottom-3 right-3 rounded-full bg-background/90 px-3 py-1 text-xs font-semibold shadow">
                         360° interactif
                       </span>
                     ) : null}
                   </motion.div>
-                ) : null}
-              </div>
+                </div>
+              ) : null}
 
               <Button className="w-full rounded-lg" onClick={runGeneration} disabled={generating}>
                 {generating ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Sparkles className="mr-2 h-4 w-4" />}
