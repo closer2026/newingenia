@@ -2,8 +2,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { NextResponse } from "next/server";
 
-/** Noms générés par la synchro locale uniquement (pas de traversée de chemin). */
-const SAFE_NAME = /^img-\d{3}\.(jpe?g|png|webp|gif)$/i;
+/** Noms servis depuis public/mediatheque — pas de traversée de chemin. */
+const SAFE_NAME = /^img-\d{3}\.(jpe?g|png|webp|gif|mp4|webm|mov)$/i;
 
 export async function DELETE(
   _request: Request,

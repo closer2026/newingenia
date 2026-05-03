@@ -535,42 +535,46 @@ export default function FacturationPage() {
                           Supprimer
                         </Button>
                       </div>
-                      <div className="grid grid-cols-6 gap-2">
-                        <div className="col-span-2">
-                          <Label>Designation</Label>
-                          <Input
+                      <div className="space-y-3">
+                        <div className="space-y-1.5">
+                          <Label>Désignation</Label>
+                          <Textarea
                             value={line.designation}
                             onChange={(e) => updateLine(line.id, { designation: e.target.value })}
-                            placeholder="Ex: Poste de travail NI'One ESD"
+                            placeholder="Ex. : Poste de travail NI'One avec surface ESD"
+                            rows={2}
+                            className="min-h-[4.5rem] resize-y text-sm leading-snug"
                           />
                         </div>
-                        <div>
-                          <Label>Qté</Label>
-                          <Input
-                            value={line.quantity}
-                            onChange={(e) => updateLine(line.id, { quantity: e.target.value })}
-                          />
-                        </div>
-                        <div>
-                          <Label>PU HT</Label>
-                          <Input
-                            value={line.unitPrice}
-                            onChange={(e) => updateLine(line.id, { unitPrice: e.target.value })}
-                          />
-                        </div>
-                        <div>
-                          <Label>TVA %</Label>
-                          <Input
-                            value={line.vatRate}
-                            onChange={(e) => updateLine(line.id, { vatRate: e.target.value })}
-                          />
-                        </div>
-                        <div>
-                          <Label>Remise %</Label>
-                          <Input
-                            value={line.discountRate}
-                            onChange={(e) => updateLine(line.id, { discountRate: e.target.value })}
-                          />
+                        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                          <div className="space-y-1.5">
+                            <Label>Qté</Label>
+                            <Input
+                              value={line.quantity}
+                              onChange={(e) => updateLine(line.id, { quantity: e.target.value })}
+                            />
+                          </div>
+                          <div className="space-y-1.5">
+                            <Label>PU HT</Label>
+                            <Input
+                              value={line.unitPrice}
+                              onChange={(e) => updateLine(line.id, { unitPrice: e.target.value })}
+                            />
+                          </div>
+                          <div className="space-y-1.5">
+                            <Label>TVA %</Label>
+                            <Input
+                              value={line.vatRate}
+                              onChange={(e) => updateLine(line.id, { vatRate: e.target.value })}
+                            />
+                          </div>
+                          <div className="space-y-1.5">
+                            <Label>Remise %</Label>
+                            <Input
+                              value={line.discountRate}
+                              onChange={(e) => updateLine(line.id, { discountRate: e.target.value })}
+                            />
+                          </div>
                         </div>
                       </div>
                       <p className="mt-2 text-xs text-muted-foreground">
@@ -654,7 +658,7 @@ export default function FacturationPage() {
 
                   <div className="overflow-hidden rounded-md border border-zinc-200">
                     <div className="grid grid-cols-[2fr_0.7fr_1fr_1fr] bg-zinc-100 px-3 py-2 text-xs font-semibold text-zinc-700">
-                      <p>Designation</p>
+                      <p>Désignation</p>
                       <p className="text-right">Qte</p>
                       <p className="text-right">PU HT</p>
                       <p className="text-right">Total HT</p>
@@ -663,7 +667,7 @@ export default function FacturationPage() {
                       const computed = lineTotals.find((item) => item.id === line.id);
                       return (
                         <div key={line.id} className="grid grid-cols-[2fr_0.7fr_1fr_1fr] border-t border-zinc-200 px-3 py-2 text-xs">
-                          <p className="font-medium">{line.designation || "Ligne sans designation"}</p>
+                      <p className="font-medium break-words pr-1 leading-snug">{line.designation || "Ligne sans désignation"}</p>
                           <p className="text-right">{line.quantity}</p>
                           <p className="text-right">{toNumber(line.unitPrice).toFixed(2)} {currency}</p>
                           <p className="text-right font-semibold">{computed?.netHt.toFixed(2) ?? "0.00"} {currency}</p>
