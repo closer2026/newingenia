@@ -19,10 +19,16 @@ function isVideoFile(name: string): boolean {
 export function MediathequeGallery({ initialFiles }: MediathequeGalleryProps) {
   const [files, setFiles] = useState<string[]>(initialFiles);
   const [viewerFile, setViewerFile] = useState<string | null>(null);
+  /** Déduit au chargement métadonnées — adapte le visualiseur (portrait vs paysage). */
+  const [viewerVideoOrientation, setViewerVideoOrientation] = useState<"portrait" | "landscape" | null>(null);
 
   useEffect(() => {
     setFiles(initialFiles);
   }, [initialFiles]);
+
+  useEffect(() => {
+    setViewerVideoOrientation(null);
+  }, [viewerFile]);
 
   const closeViewer = useCallback(() => setViewerFile(null), []);
 
@@ -64,9 +70,10 @@ export function MediathequeGallery({ initialFiles }: MediathequeGalleryProps) {
         <CardContent className="py-10 text-center text-sm text-muted-foreground">
           <p>Aucun média pour le moment.</p>
           <p className="mt-2">
-            Ajoutez des images (JPEG, PNG, WebP…) ou des vidéos (MP4, WebM…) dans{" "}
+            Ajoutez des images (JPEG, PNG, WebP…) ou des vidéos (MP4, WebM, MOV…) dans{" "}
             <code className="rounded-md bg-muted px-1.5 py-0.5 text-xs text-foreground">public/mediatheque</code>{" "}
-            sous la forme <code className="text-xs">img-001.jpeg</code>, <code className="text-xs">img-012.mp4</code>, etc.,
+            sous la forme <code className="text-xs">img-001.jpeg</code>, <code className="text-xs">img-012.mp4</code>,{" "}
+            <code className="text-xs">img-013.mov</code>, etc.,
             puis rechargez la page.
           </p>
         </CardContent>
@@ -92,7 +99,7 @@ export function MediathequeGallery({ initialFiles }: MediathequeGalleryProps) {
               {video ? (
                 <video
                   src={`/mediatheque/${file}`}
-                  className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+                  className="absolute inset-0 h-full w-full bg-black object-contain transition duration-300 group-hover:scale-[1.03]"
                   muted
                   playsInline
                   preload="metadata"
@@ -127,7 +134,12 @@ export function MediathequeGallery({ initialFiles }: MediathequeGalleryProps) {
           onClick={closeViewer}
         >
           <div
-            className="relative flex max-h-[92vh] w-full max-w-5xl flex-col gap-4 rounded-2xl border border-white/10 bg-[#0f141b]/95 p-4 shadow-2xl ring-1 ring-white/10"
+            className={cn(
+              "relative flex max-h-[92vh] w-full flex-col gap-4 rounded-2xl border border-white/10 bg-[#0f141b]/95 p-4 shadow-2xl ring-1 ring-white/10",
+              viewerFile && isVideoFile(viewerFile) && viewerVideoOrientation === "portrait"
+                ? "max-w-md sm:max-w-lg md:max-w-xl"
+                : "max-w-5xl"
+            )}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between gap-3">
@@ -156,14 +168,25 @@ export function MediathequeGallery({ initialFiles }: MediathequeGalleryProps) {
               </div>
             </div>
 
-            <div className="relative mx-auto flex min-h-[200px] w-full flex-1 items-center justify-center">
+            <div className="relative mx-auto flex min-h-[200px] w-full flex-1 items-center justify-center overflow-hidden">
               {isVideoFile(viewerFile) ? (
                 <video
+                  key={viewerFile}
                   src={`/mediatheque/${viewerFile}`}
                   controls
                   playsInline
-                  className="max-h-[min(78vh,820px)] w-full max-w-full rounded-lg bg-black"
                   preload="metadata"
+                  className={cn(
+                    "rounded-lg bg-black shadow-lg",
+                    viewerVideoOrientation === "portrait"
+                      ? "max-h-[min(92vh,calc(100dvh-10rem))] w-auto max-w-full object-contain"
+                      : "max-h-[min(78vh,820px)] w-full max-w-full object-contain"
+                  )}
+                  onLoadedMetadata={(e) => {
+                    const v = e.currentTarget;
+                    if (v.videoWidth <= 0) return;
+                    setViewerVideoOrientation(v.videoHeight > v.videoWidth ? "portrait" : "landscape");
+                  }}
                 />
               ) : (
                 <div className="relative h-[min(78vh,820px)] w-full">
